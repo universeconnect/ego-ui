@@ -20,6 +20,7 @@
           bbtn:function () {
             jiaohu.$on("len",(lens)=>{
               this.len = lens.length+1;
+              console.log(this.len);
             })
           },
         show:function (ye) {
