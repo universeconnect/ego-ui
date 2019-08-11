@@ -109,6 +109,11 @@
           if (body.data.status_code == 1009) {//状态码正常
             this.list = body.data.datas;
             this.open2("加载成功");
+            this.end(this.ye);
+            jiaohu.$emit("len", this.list.filter(data => !this.search || (data.name == this.search) || (data.ID == this.search) || (data.access == this.search)))
+            jiaohu.$on("ye", (ye) => {
+              this.ye = ye;
+            })
           } else {//状态码异常
             this.open4("加载失败");
           }
