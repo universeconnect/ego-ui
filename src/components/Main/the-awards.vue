@@ -126,7 +126,6 @@
             jiaohu.$emit("len", this.list.filter(data => !this.search || (data.name == this.search) || (data.ID == this.search) || (data.access == this.search)))
             jiaohu.$on("ye", (ye) => {
               this.ye = ye;
-              console.log(ye);
             });
           } else {//状态码异常
             this.open4("加载失败");
@@ -169,7 +168,6 @@
         jiaohu.$emit("len", this.list.filter(data => !this.search || (data.name == this.search) || (data.ID == this.search) || (data.access == this.search)))
         jiaohu.$on("ye", (ye) => {
           this.ye = ye;
-          console.log(ye);
         })
       },
     }
