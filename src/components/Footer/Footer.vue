@@ -1,6 +1,7 @@
 <template>
   <el-pagination
     background
+    :current-page=1
     layout="prev, pager, next"
     @current-change="show"
     :total="len">
@@ -13,13 +14,14 @@
         name: "Footer",
       data(){
           return{
-            len:this.bbtn()
+            len:this.bbtn(),
+            yesu:1
           }
       },
       methods:{
           bbtn:function () {
             jiaohu.$on("len",(lens)=>{
-              this.len = lens.length+1;
+              this.len = lens.length;
             })
           },
         show:function (ye) {
