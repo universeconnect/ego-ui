@@ -84,7 +84,7 @@
         list:[],
         search:'',
         ye:1,
-        endye:0,
+        endye:false,
         dialogTableVisible: false,
         dialogFormVisible: false,
         formLabelWidth: '120px'
@@ -125,13 +125,6 @@
         });
       },
 
-    },
-    beforeUpdate() {
-      this.end(this.ye);
-      jiaohu.$emit("len",this.list.filter(data => !this.search || data.username.toLowerCase().includes(this.search.toLowerCase()) || data.nickname.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.email == this.search)))
-      jiaohu.$on("ye",(ye)=>{
-        this.ye = ye;
-      })
     },
     created() {
       let loadingInstance = this.$loading({text:"数据加载中",fullscreen:false,});

@@ -1,13 +1,12 @@
 <template>
   <div id="software">
     <el-table
-      :data="list.filter(data => !search || (data.name == search) || (data.ID == search) || (data.access == search)).slice(ye*10-10,ye*10)"
+      :data="list.filter(data => !search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == search) || (data.access == search)).slice(ye*10-10,ye*10)"
       style="width: 100%">
       <el-table-column
         label="ID"
         prop="ID"
-        width="120px"
-      >
+        width="120px">
       </el-table-column>
       <el-table-column
         label="软件名称"
@@ -73,9 +72,38 @@
       </el-table-column>
     </el-table>
     <div class="el-add-button">
-      <el-button type="primary" plain>添加按钮</el-button>
+      <el-button type="primary" plain @click="dialogVisible1 = true">添加按钮</el-button>
     </div>
     <p v-if="endye" style="color: #ada9af; height: 50px; line-height:50px;">没有更多啦！</p>
+    <!--以下是弹框放置位置-->
+    <el-dialog
+      title="添加推荐软件"
+      :visible.sync="dialogVisible1"
+      width="30%"
+      :before-close="handleClose1">
+      <div style="margin: 10px;"></div>
+      <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+        <el-form-item label="软件名称">
+          <el-input v-model="formLabelAlign.name"></el-input>
+        </el-form-item>
+        <el-form-item label="软件介绍">
+          <el-input v-model="formLabelAlign.description"></el-input>
+        </el-form-item>
+        <el-form-item label="下载链接">
+        <el-input v-model="formLabelAlign.Download_link"></el-input>
+      </el-form-item>
+        <el-form-item label="破解安装">
+          <el-input v-model="formLabelAlign.cit"></el-input>
+        </el-form-item>
+        <el-form-item label="使用教程">
+          <el-input v-model="formLabelAlign.tutorial"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible1 = false">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible1 = false">确 定</el-button>
+  </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -87,6 +115,14 @@
     name: "theSoftware",
     data(){
       return{
+        labelPosition: 'left',
+        formLabelAlign: {
+          name: '',
+          description: '',
+          Download_link: '',
+          cit: '',
+          tutorial: '',
+        },
         list:[],
         search:'',
         ye:1,
@@ -94,7 +130,8 @@
         endye:0,
         dialogTableVisible: false,
         dialogFormVisible: false,
-        formLabelWidth: '120px'
+        formLabelWidth: '120px',
+        dialogVisible1:false
       }
     },
     created() {
@@ -109,19 +146,20 @@
             this.list = body.data.datas;
             this.open2("加载成功");
             this.end(this.ye);
-            jiaohu.$emit("len", this.list.filter(data => !this.search || (data.name == this.search) || (data.ID == this.search) || (data.access == this.search)))
+            jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
             jiaohu.$on("ye", (ye) => {
               this.ye = ye;
+            });
+            for (var i = 0; i < this.list.length; i++) {
+              this.$set(this.list[i], 'visible', false);
+            }
+            this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+              loadingInstance.close();
             })
           } else {//状态码异常
             this.open4("加载失败");
           }
-          for (var i = 0; i < this.list.length; i++) {
-            this.$set(this.list[i], 'visible', false);
-          }
-          this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
-            loadingInstance.close();
-          })
+
         })
         .catch(error => {
           //请求失败
@@ -136,26 +174,27 @@
       amend,//删除方法
       open2,
       open4,
+      handleClose1(done){
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
       handleEdit(index, row) {
       },
       handleDelete(index, row) {
       },
       end(ye) {
-        var i = (this.list.filter(data => !this.search || data.username.toLowerCase().includes(this.search.toLowerCase()) || data.nickname.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.email == this.search))).length / 10;
+        var i = (this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search))).length / 10;
         if (ye > i) {
           this.endye = true;
         } else {
           this.endye = false;
-
         }
       },
-      beforeUpdate() {
-        this.end(this.ye);
-        jiaohu.$emit("len", this.list.filter(data => !this.search || (data.name == this.search) || (data.ID == this.search) || (data.access == this.search)))
-        jiaohu.$on("ye", (ye) => {
-          this.ye = ye;
-        })
-      },
+      addtutton(){
+      }
     }
   }
 </script>
@@ -165,5 +204,8 @@
     position: absolute;
     top: 155px;
     left: 225px;
+  }
+  .el-main{
+    line-height: 20px;
   }
 </style>

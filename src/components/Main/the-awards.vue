@@ -2,13 +2,12 @@
   <div id="awards">
     <el-table
       class="el-table"
-      :data="list.filter(data => !search || (data.name == search) || (data.ID == search) || (data.access == search)).slice(ye*10-10,ye*10)"
+      :data="list.filter(data => !search || (data.prizewinner == search) || (data.ID == search) || data.awards.toLowerCase().includes(this.search.toLowerCase())).slice(ye*10-10,ye*10)"
       style="width: 100%">
       <el-table-column
         label="ID"
         prop="ID"
-        width="120px"
-      >
+        width="120px">
       </el-table-column>
       <el-table-column
         label="获奖信息"
@@ -123,7 +122,7 @@
             this.list = body.data.datas;
             this.open2("加载成功");
             this.end(this.ye);
-            jiaohu.$emit("len", this.list.filter(data => !this.search || (data.name == this.search) || (data.ID == this.search) || (data.access == this.search)))
+            jiaohu.$emit("len", this.list.filter(data => !this.search || (data.prizewinner == this.search) || (data.ID == this.search) || data.awards.toLowerCase().includes(this.search.toLowerCase())));
             jiaohu.$on("ye", (ye) => {
               this.ye = ye;
             });
@@ -154,7 +153,7 @@
       handleDelete(index, row) {
       },
       end(ye) {
-        var i = (this.list.filter(data => !this.search || data.username.toLowerCase().includes(this.search.toLowerCase()) || data.nickname.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.email == this.search))).length / 10;
+        var i = (this.list.filter(data => !this.search || (data.prizewinner == this.search) || (data.ID == this.search) || data.awards.toLowerCase().includes(this.search.toLowerCase()))).length / 10;
         if (ye > i) {
           this.endye = true;
         } else {
@@ -163,13 +162,6 @@
       },
       open2,
       open4,
-      beforeUpdate() {
-        this.end(this.ye);
-        jiaohu.$emit("len", this.list.filter(data => !this.search || (data.name == this.search) || (data.ID == this.search) || (data.access == this.search)))
-        jiaohu.$on("ye", (ye) => {
-          this.ye = ye;
-        })
-      },
     }
   }
 </script>
