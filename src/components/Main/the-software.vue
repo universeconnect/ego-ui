@@ -195,6 +195,9 @@
       },
       addtutton(){
       }
+    },
+    beforeUpdate(){
+      jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
     }
   }
 </script>
