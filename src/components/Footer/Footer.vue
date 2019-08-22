@@ -14,7 +14,7 @@
         name: "Footer",
       data(){
           return{
-            len:this.bbtn(),
+            len:0,
             yesu:1
           }
       },
@@ -28,6 +28,9 @@
           jiaohu.$emit("ye",ye);
         }
       },
+      beforeUpdate(){
+          this.bbtn()
+      }
     }
 </script>
 

@@ -133,7 +133,6 @@
         });
     },
     methods : {
-
       amend,    //删除方法
       handleEdit(index, row) {
       },
@@ -150,6 +149,9 @@
       },
       open2,
       open4,
+    },
+    beforeUpdate(){
+      jiaohu.$emit("len", this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search)));
     }
   }
 </script>

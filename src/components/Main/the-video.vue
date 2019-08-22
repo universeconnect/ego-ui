@@ -150,6 +150,9 @@
       },
       open2,
       open4,
+    },
+    beforeUpdate(){
+      jiaohu.$emit("len", this.list.filter(data => !this.search  || (data.ID == this.search) || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.access == this.search)));
     }
   }
 </script>
