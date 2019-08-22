@@ -165,6 +165,7 @@
     },
     beforeUpdate(){
       jiaohu.$emit("len", this.list.filter(data => !this.search || (data.prizewinner == this.search) || (data.ID == this.search) || data.awards.toLowerCase().includes(this.search.toLowerCase())));
+      this.end(this.ye);
     }
   }
 </script>
