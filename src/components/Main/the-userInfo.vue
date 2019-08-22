@@ -164,6 +164,7 @@
     },
     beforeUpdate(){
       jiaohu.$emit("len",this.list.filter(data => !this.search || data.username.toLowerCase().includes(this.search.toLowerCase()) || data.nickname.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.email == this.search)))
+      this.end(this.ye);
     }
   }
 </script>

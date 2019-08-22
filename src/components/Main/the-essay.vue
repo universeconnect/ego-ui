@@ -144,7 +144,6 @@
           this.endye = true;
         } else {
           this.endye = false;
-
         }
       },
       open2,
@@ -152,6 +151,7 @@
     },
     beforeUpdate(){
       jiaohu.$emit("len", this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search)));
+      this.end(this.ye);
     }
   }
 </script>
