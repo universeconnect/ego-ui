@@ -64,23 +64,23 @@
         placement="right"
         title="添加内容"
       >
-      <div>
-        <el-form  status-icon  label-width="100px" class="demo-ruleForm" style="width: 500px;">
-          <el-form-item label="密码" prop="pass">
-            <el-input v-model="input" type="password" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="确认密码" prop="checkPass">
-            <el-input v-model="input" type="password"  autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="年龄" prop="age">
-            <el-input v-model="input" ></el-input>
-          </el-form-item>
-          <el-form-item align="right">
-            <el-button type="primary">提交</el-button>
-            <el-button @click="">重置</el-button>
-          </el-form-item>
-        </el-form>
-      </div>
+        <div>
+          <el-form  status-icon  label-width="100px" class="demo-ruleForm" style="width: 500px;">
+            <el-form-item label="密码" prop="pass">
+              <el-input v-model="input" type="password" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="确认密码" prop="checkPass">
+              <el-input v-model="input" type="password"  autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="年龄" prop="age">
+              <el-input v-model="input" ></el-input>
+            </el-form-item>
+            <el-form-item align="right">
+              <el-button type="primary">提交</el-button>
+              <el-button @click="">重置</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
         <el-button class="el-add-button" type="primary" slot="reference" plain="">添加</el-button>
       </el-popover>
     </div>
@@ -171,10 +171,10 @@
 </script>
 
 <style scoped>
-.el-add-button{
-  position: absolute;
-  top: 220px;
-  left: 225px;
-}
+  .el-add-button{
+    position: absolute;
+    top: 220px;
+    left: 225px;
+  }
 
 </style>
