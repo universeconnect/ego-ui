@@ -51,7 +51,11 @@ export default new Router({
           component: theMember
         }
       ]
-    },
+    },{
+      path: '/index',
+      component:Index,
+      children:[],
+    }
 
   ]
 })
