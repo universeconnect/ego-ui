@@ -7,7 +7,7 @@ import theVideo from '../components/admin/Main/the-video'
 import theAwards from '../components/admin/Main/the-awards'
 import theMember from '../components/admin/Main/the-member'
 import Admin from '../components/admin/admin'
-import Index from '../components/index/index'
+import Home from '../components/home/index'
 
 Vue.use(Router);
 
@@ -52,10 +52,9 @@ export default new Router({
         }
       ]
     },{
-      path: '/index',
-      component:Index,
+      path: '/home',
+      component:Home,
       children:[],
     }
-
   ]
 })
