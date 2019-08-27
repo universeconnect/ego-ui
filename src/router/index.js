@@ -6,7 +6,7 @@ import theEssay from '../components/admin/Main/the-essay'
 import theVideo from '../components/admin/Main/the-video'
 import theAwards from '../components/admin/Main/the-awards'
 import theMember from '../components/admin/Main/the-member'
-import Ademin from '../components/admin/admin'
+import Admin from '../components/admin/admin'
 import Index from '../components/index/index'
 
 Vue.use(Router);
@@ -19,7 +19,7 @@ export default new Router({
     },
     {
       path: '/admin',
-      component:Ademin,
+      component:Admin,
       children:[
         {
           path: '/',
