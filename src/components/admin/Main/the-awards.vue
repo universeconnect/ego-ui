@@ -94,7 +94,7 @@
 <script>
 
   import jiaohu from "../jiaohu"
-  import {amend, open2, open4} from "../../public/methods/adminFun";
+  import {amend, open2, open4} from "../../../public/methods/adminFun";
   export default {
     name: "theAwards",
     data(){

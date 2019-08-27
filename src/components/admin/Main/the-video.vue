@@ -1,12 +1,13 @@
 <template>
-  <div id="essay">
+  <div id="video">
     <el-table
-      :data="list.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()) || (data.promulgator == search) || (data.ID == search) || (data.access == search)).slice(ye*10-10,ye*10)"
+      :data="list.filter(data => !search  || (data.ID == search) || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.access == search)).slice(ye*10-10,ye*10)"
       style="width: 100%">
       <el-table-column
         label="ID"
         prop="ID"
-        width="120px">
+        width="120px"
+      >
       </el-table-column>
       <el-table-column
         label="标题"
@@ -17,8 +18,8 @@
         prop="abstract">
       </el-table-column>
       <el-table-column
-        label="内容"
-        prop="content">
+        label="视频文件路径"
+        prop="video_file">
       </el-table-column>
       <el-table-column
         label="发布者"
@@ -82,15 +83,15 @@
 <script>
 
   import jiaohu from "../jiaohu"
-  import {amend, open2, open4} from "../../public/methods/adminFun";
+  import {amend, open2, open4} from "../../../public/methods/adminFun";
   export default {
-    name: "theEssay",
+    name: "theVideo",
     data(){
       return{
         list:[],
         search:'',
         ye:1,
-        api:"essay",
+        api:"video",
         endye:0,
         dialogTableVisible: false,
         dialogFormVisible: false,
@@ -101,7 +102,7 @@
       let loadingInstance = this.$loading({text: "数据加载中", fullscreen: false,});
       this.axios.get('http://49.234.9.206/Gaindata/selet_mysql.php', {
         params: {
-          list: "essay"
+          list: "video"
         }
       })
         .then(body => {//请求成功
@@ -109,7 +110,7 @@
             this.list = body.data.datas;
             this.open2("加载成功");
             this.end(this.ye);
-            jiaohu.$emit("len", this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search)));
+            jiaohu.$emit("len", this.list.filter(data => !this.search  || (data.ID == this.search) || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.access == this.search)));
             jiaohu.$on("ye", (ye) => {
               this.ye = ye;
             })
@@ -139,18 +140,19 @@
       handleDelete(index, row) {
       },
       end(ye) {
-        var i = (this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search))).length / 10;
+        var i = (this.list.filter(data => !this.search  || (data.ID == this.search) || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.access == this.search))).length / 10;
         if (ye > i) {
           this.endye = true;
         } else {
           this.endye = false;
+
         }
       },
       open2,
       open4,
     },
     beforeUpdate(){
-      jiaohu.$emit("len", this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search)));
+      jiaohu.$emit("len", this.list.filter(data => !this.search  || (data.ID == this.search) || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.access == this.search)));
       this.end(this.ye);
     }
   }
