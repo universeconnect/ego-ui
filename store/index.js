@@ -4,7 +4,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state:{
     //状态
-    a:1000
+    a:100000000
   },
   mutations:{
     //修改状态
