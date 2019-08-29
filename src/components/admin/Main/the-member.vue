@@ -71,7 +71,6 @@
           </el-popover>
         </template>
       </el-table-column>
-
     </el-table>
     <!--添加表单开始-->
     <div>
