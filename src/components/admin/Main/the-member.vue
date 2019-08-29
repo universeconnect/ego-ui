@@ -2,7 +2,7 @@
   <div id="awards">
     <el-table
       class="el-table"
-      :data="list.filter(data => !search || (data.prizewinner == search) || (data.ID == search) || data.awards.toLowerCase().includes(this.search.toLowerCase())).slice(ye*10-10,ye*10)"
+      :data="list.filter(data => !search || (data.name == search) || (data.age == search)).slice(ye*10-10,ye*10)"
       style="width: 100%">
       <el-table-column
         label="ID"
@@ -168,7 +168,7 @@
       handleDelete(index, row) {
       },
       end(ye) {
-        var i = (this.list.filter(data => !this.search || (data.prizewinner == this.search) || (data.ID == this.search) || data.awards.toLowerCase().includes(this.search.toLowerCase()))).length / 10;
+        var i = (this.list.filter(data => !this.search || (data.name == this.search) || (data.age == this.search))).length / 10;
         if (ye > i) {
           this.endye = true;
         } else {
@@ -179,7 +179,7 @@
       open4,
     },
     beforeUpdate(){
-      jiaohu.$emit("len", this.list.filter(data => !this.search || (data.prizewinner == this.search) || (data.ID == this.search) || data.awards.toLowerCase().includes(this.search.toLowerCase())));
+      jiaohu.$emit("len", this.list.filter(data => !this.search || (data.name == this.search) || (data.age == this.search)));
       this.end(this.ye);
     }
   }
