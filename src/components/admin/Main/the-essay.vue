@@ -157,9 +157,5 @@
 </script>
 
 <style scoped>
-  .el-add-button{
-    position: absolute;
-    top: 155px;
-    left: 225px;
-  }
+
 </style>

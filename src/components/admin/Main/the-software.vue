@@ -25,6 +25,10 @@
         prop="Download_link">
       </el-table-column>
       <el-table-column
+        label="提取码"
+        prop="password">
+      </el-table-column>
+      <el-table-column
         label="破解安装教程"
         prop="cit">
       </el-table-column>
@@ -51,7 +55,7 @@
         <template slot-scope="scope">
           <el-button
             size="mini"
-            @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+            @click="updata(scope.$index, scope.row)">修改</el-button>
           <el-popover
             placement="top"
             width="160"
@@ -72,36 +76,62 @@
       </el-table-column>
     </el-table>
     <div class="el-add-button">
-      <el-button type="primary" plain @click="dialogVisible1 = true">添加按钮</el-button>
+      <el-button type="primary" plain @click="insert()">添加按钮</el-button>
     </div>
     <p v-if="endye" style="color: #ada9af; height: 50px; line-height:50px;">没有更多啦！</p>
     <!--以下是弹框放置位置-->
     <el-dialog
-      title="添加推荐软件"
+      :title="formLabelAlign.title"
       :visible.sync="dialogVisible1"
-      width="30%"
+      width="80%"
       :before-close="handleClose1">
-      <div style="margin: 10px;"></div>
-      <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+      <div style="margin: 10px; line-height: 20px !important;"></div>
+      <el-form :inline="true" :model="formLabelAlign" class="demo-form-inline">
+        <h2 v-if="formLabelAlign.isupdata" style="margin: -20px auto 5px">ID:{{formLabelAlign.ID}}</h2>
         <el-form-item label="软件名称">
-          <el-input v-model="formLabelAlign.name"></el-input>
-        </el-form-item>
-        <el-form-item label="软件介绍">
-          <el-input v-model="formLabelAlign.description"></el-input>
+          <el-input v-model="formLabelAlign.name" placeholder="xxxxxx"></el-input>
         </el-form-item>
         <el-form-item label="下载链接">
-        <el-input v-model="formLabelAlign.Download_link"></el-input>
-      </el-form-item>
-        <el-form-item label="破解安装">
-          <el-input v-model="formLabelAlign.cit"></el-input>
+          <el-input v-model="formLabelAlign.Download_link" placeholder="（http/https）：//xxxxxxxxx.xxxx"></el-input>
         </el-form-item>
-        <el-form-item label="使用教程">
-          <el-input v-model="formLabelAlign.tutorial"></el-input>
+        <el-form-item label="提取码">
+          <el-input v-model="formLabelAlign.password" placeholder="xxxx"></el-input>
         </el-form-item>
+        <el-form-item v-if="formLabelAlign.isupdata" label="下载量">
+          <el-input v-model="formLabelAlign.downloads" placeholder="x"></el-input>
+        </el-form-item>
+        <el-form-item v-if="formLabelAlign.isupdata" label="权限">
+          <el-input v-model="formLabelAlign.access" placeholder="x"></el-input>
+        </el-form-item>
+        <el-form-item v-if="formLabelAlign.isupdata" label="发布时间">
+          <el-input v-model="formLabelAlign.release_time" placeholder="xxxx-xx-xx xx：xx：xx"></el-input>
+        </el-form-item>
+        <p>软件介绍：</p>
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 2, maxRows: 4}"
+          placeholder="请输入内容"
+          v-model="formLabelAlign.description">
+        </el-input>
+        <p>破解安装教程：</p>
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 2, maxRows: 4}"
+          placeholder="请输入内容"
+          v-model="formLabelAlign.cit">
+        </el-input>
+        <p>使用教程：</p>
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 2, maxRows: 4}"
+          placeholder="请输入内容"
+          v-model="formLabelAlign.tutorial">
+        </el-input>
       </el-form>
       <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible1 = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible1 = false">确 定</el-button>
+    <el-button v-if="formLabelAlign.isupdata" type="info" @click="updatareste">重置</el-button>
+    <el-button type="primary" @click="okupdate()">确 定</el-button>
   </span>
     </el-dialog>
   </div>
@@ -117,12 +147,20 @@
       return{
         labelPosition: 'left',
         formLabelAlign: {
-          name: '',
+          ID: '',
           description: '',
           Download_link: '',
           cit: '',
           tutorial: '',
+          downloads: '',
+          access: '',
+          name: '',
+          release_time: '',
+          password: '',
+          title: '添加推荐软件',
+          isupdata: false,//判断是否是修改数据，用于v-if调节表单项，默认不是，因为添加数据时的表单项在修改数据时都存在
         },
+        updatadata:'',
         list:[],
         search:'',
         ye:1,
@@ -184,7 +222,44 @@
           })
           .catch(_ => {});
       },
-      handleEdit(index, row) {
+      updata(index, row) {
+        this.dialogVisible1 = true;//打开对话框
+        this.formLabelAlign.isupdata = true;//是修改对话框
+        this.formLabelAlign.title = '修改信息';
+        this.updatadata = row;//将数据保存，以便于重置功能的实现
+        //对表单赋初值
+        this.formLabelAlign.ID = this.updatadata.ID;
+        this.formLabelAlign.description = this.updatadata.description;
+        this.formLabelAlign.Download_link = this.updatadata.Download_link;
+        this.formLabelAlign.cit = this.updatadata.cit;
+        this.formLabelAlign.tutorial = this.updatadata.tutorial;
+        this.formLabelAlign.downloads = this.updatadata.downloads;
+        this.formLabelAlign.access = this.updatadata.access;
+        this.formLabelAlign.name = this.updatadata.name;
+        this.formLabelAlign.release_time = this.updatadata.release_time;
+        this.formLabelAlign.password = this.updatadata.password;
+      },
+      updatareste(){
+        //对表单重新赋值
+        this.formLabelAlign.description = this.updatadata.description;
+        this.formLabelAlign.Download_link = this.updatadata.Download_link;
+        this.formLabelAlign.cit = this.updatadata.cit;
+        this.formLabelAlign.tutorial = this.updatadata.tutorial;
+        this.formLabelAlign.downloads = this.updatadata.downloads;
+        this.formLabelAlign.access = this.updatadata.access;
+        this.formLabelAlign.name = this.updatadata.name;
+        this.formLabelAlign.release_time = this.updatadata.release_time;
+        this.formLabelAlign.password = this.updatadata.password;
+      },
+      okupdate(){
+        this.dialogVisible1 = false//关闭对话框
+        //发送请求
+      },
+      insert(){
+        this.dialogVisible1 = true;//打开对话框
+        this.formLabelAlign.isupdata = false;//不是修改对话框
+        //对表单赋初值
+        this.formLabelAlign.title = '添加信息';
       },
       handleDelete(index, row) {
       },
@@ -197,7 +272,8 @@
         }
       },
       addtutton(){
-      }
+      },
+      turnoff(){}
     },
     beforeUpdate(){
       jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
@@ -207,12 +283,5 @@
 </script>
 
 <style scoped>
-  .el-add-button{
-    position: absolute;
-    top: 155px;
-    left: 225px;
-  }
-  .el-main{
-    line-height: 20px;
-  }
+
 </style>

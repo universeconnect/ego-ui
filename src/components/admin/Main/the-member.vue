@@ -22,7 +22,7 @@
         prop="motto">
       </el-table-column>
       <el-table-column
-        label="性别"
+        label="年龄"
         prop="age">
       </el-table-column>
       <el-table-column
@@ -186,10 +186,5 @@
 </script>
 
 <style scoped>
-  .el-add-button{
-    position: absolute;
-    top: 220px;
-    left: 225px;
-  }
 
 </style>

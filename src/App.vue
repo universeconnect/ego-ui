@@ -23,17 +23,26 @@ export default {
     text-align: center;
     line-height: 200px;
   }
+  .el-table th{
+    line-height: 200px !important;
+
+  }
 
   .el-main {
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 200px;
+    line-height: 20px;
   }
 
   body > .el-container {
     margin-bottom: 40px;
   }
+
+   body{
+     margin: 0;
+     padding: 0;
+   }
 
   .el-container:nth-child(5) .el-aside,
   .el-container:nth-child(6) .el-aside {
@@ -42,5 +51,10 @@ export default {
 
   .el-container:nth-child(7) .el-aside {
     line-height: 320px;
+  }
+  .el-add-button{
+    position: absolute;
+    top: 235px;
+    left: 225px;
   }
 </style>
