@@ -22,10 +22,7 @@ export function amend(index, row){
         })
           .then(body => {//加载请求成功
             if(body.data.status_code == 1009){//加载状态码正常
-              this.list = body.data.datas;
-              for(var i=0;i<this.list.length;i++){
-                this.$set(this.list[i],'visible',false);
-              }
+              this.Deposit();
             }
           })
           .catch(error => {
@@ -36,26 +33,17 @@ export function amend(index, row){
       }
     })
     .catch(error => {
-      //删除请求失败
-      this.$nextTick(() => {
-        loadingInstance.close();
-      });
       this.open4("删除数据失败");
       console.log(error);
     });
 }
 
 
-export function updatadata(api){//api为请求携带参数
-  //关闭“是否删除”提示
-  row.visible=false;
-  //删除数据
-  this.axios.get('http://49.234.9.206/Gaindata/delete_mysql.php',{
-    params:api
-  })
-    .then(body => {//删除请求成功
-      if(body.data.status_code == 1011){//删除状态码正常
-        this.open2("删除数据成功");
+export function updatadataF(url,api){//api为请求携带参数,url为请求地址
+  this.axios.post(url,this.$qs.stringify(api))
+    .then(body => {//修改请求成功
+      if(body.data.status_code == 1007){//修改状态码正常
+        this.open2("修改数据成功");
         //加载最新数据
         this.axios.get('http://49.234.9.206/Gaindata/selet_mysql.php',{
           params:{
@@ -64,28 +52,69 @@ export function updatadata(api){//api为请求携带参数
         })
           .then(body => {//加载请求成功
             if(body.data.status_code == 1009){//加载状态码正常
-              this.list = body.data.datas;
-              for(var i=0;i<this.list.length;i++){
-                this.$set(this.list[i],'visible',false);
-              }
+              this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
+              this.metadata = body.data.datas;//存放真实数据
+              this.end(this.ye);
+              jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
+              jiaohu.$on("ye", (ye) => {
+                this.ye = ye;
+              });
+              this.Deposit();
             }
           })
           .catch(error => {
             console.log(error);
           });
-      }else {//删除状态码异常
-        this.open4("删除数据失败");
+      }else {//修改状态码异常
+        this.open4("修改数据失败");
       }
     })
     .catch(error => {
-      //删除请求失败
-      this.$nextTick(() => {
-        loadingInstance.close();
-      });
-      this.open4("删除数据失败");
-      console.log(error);
+      //修改请求失败
+      this.open4("修改数据失败");
+      console.log( "修改请求发送失败" +error);
     });
 }
+
+
+export function insertdataF(url,api){//api为请求携带参数,url为请求地址
+  this.axios.post(url,this.$qs.stringify(api))
+    .then(body => {//添加请求成功
+      if(body.data.status_code == 1005){//添加状态码正常
+        this.open2("添加数据成功");
+        //加载最新数据
+        this.axios.get('http://49.234.9.206/Gaindata/selet_mysql.php',{
+          params:{
+            list:this.api,
+          }
+        })
+          .then(body => {//加载请求成功
+            if(body.data.status_code == 1009){//加载状态码正常
+              this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
+              this.metadata = body.data.datas;//存放真实数据
+              this.end(this.ye);
+              jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
+              jiaohu.$on("ye", (ye) => {
+                this.ye = ye;
+              });
+              this.Deposit();
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }else {//添加状态码异常
+        this.open4("添加数据失败");
+      }
+    })
+    .catch(error => {
+      //修改请求失败
+      this.open4("添加数据失败");
+      console.log( "添加请求发送失败" + error);
+    });
+}
+
+
 
 export function open2(hint) {
   this.$message({

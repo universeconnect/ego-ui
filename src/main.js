@@ -10,9 +10,10 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
 import store from '../store'
-
+import qs from 'qs'
 
 Vue.config.productionTip = false;
+Vue.prototype.$qs = qs;
 Vue.use(Element);
 Vue.use(VueRouter);
 Vue.use(VueAxios,axios);
