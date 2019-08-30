@@ -49,9 +49,7 @@
             placeholder="输入关键字搜索"/>
         </template>
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="dialogVisible2 = true, handleEdit(scope.$index, scope.row)">修改</el-button>
           <el-popover
             placement="top"
             width="160"
@@ -75,6 +73,41 @@
       <el-button type="primary" plain>添加按钮</el-button>
     </div>
     <p v-if="endye" style="color: #ada9af; height: 50px; line-height:50px;">没有更多啦！</p>
+    <el-dialog title="修改数据" :visible.sync="dialogVisible2" width="40%" :before-close="handleClose">
+      <el-form label-width="80px" :model="formLabelAlign">
+        <el-form-item label="ID">
+          <el-input v-model="formLabelAlign.ID"></el-input>
+        </el-form-item>
+        <el-form-item label="标题">
+          <el-input v-model="formLabelAlign.title"></el-input>
+        </el-form-item>
+        <el-form-item label="简介">
+          <el-input v-model="formLabelAlign.abstract"></el-input>
+        </el-form-item>
+        <el-form-item label="内容">
+          <el-input v-model="formLabelAlign.content"></el-input>
+        </el-form-item>
+        <el-form-item label="发布者">
+          <el-input v-model="formLabelAlign.promulgator"></el-input>
+        </el-form-item>
+        <el-form-item label="发布时间">
+          <el-input v-model="formLabelAlign.release_time"></el-input>
+        </el-form-item>
+        <el-form-item label="阅读量">
+          <el-input v-model="formLabelAlign.reading_quantity"></el-input>
+        </el-form-item>
+        <el-form-item label="下载量">
+          <el-input v-model="formLabelAlign.downloads"></el-input>
+        </el-form-item>
+        <el-form-item label="权限">
+          <el-input v-model="formLabelAlign.access"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible2 = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible2 = false">确 定</el-button>
+            </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -87,6 +120,18 @@
     name: "theEssay",
     data(){
       return{
+        dialogVisible2: false,
+        formLabelAlign: {
+            ID: '',
+            title: '',
+            abstract: '',
+            content: '',
+            promulgator: '',
+            release_time: '',
+            reading_quantity: '',
+            downloads: '',
+            access: '',
+        },
         list:[],
         search:'',
         ye:1,
@@ -135,6 +180,22 @@
     methods : {
       amend,    //删除方法
       handleEdit(index, row) {
+          this.formLabelAlign.ID = row.ID;
+          this.formLabelAlign.title = row.title;
+          this.formLabelAlign.abstract = row.abstract;
+          this.formLabelAlign.content = row.content;
+          this.formLabelAlign.promulgator = row.promulgator;
+          this.formLabelAlign.release_time = row.release_time;
+          this.formLabelAlign.reading_quantity = row.reading_quantity;
+          this.formLabelAlign.downloads = row.downloads;
+          this.formLabelAlign.access = row.access;
+      },
+      handleClose(done) {
+          this.$confirm('确认关闭？')
+              .then(_ => {
+                  done();
+              })
+              .catch(_ => {});
       },
       handleDelete(index, row) {
       },
