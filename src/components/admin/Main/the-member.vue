@@ -30,6 +30,10 @@
         prop="intro">
       </el-table-column>
       <el-table-column
+        label="住址"
+        prop="address">
+      </el-table-column>
+      <el-table-column
         label="爱好"
         prop="interest">
       </el-table-column>
