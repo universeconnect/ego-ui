@@ -133,6 +133,7 @@
             access: '',
         },
         list:[],
+        metadata:[],
         search:'',
         ye:1,
         api:"essay",
@@ -151,7 +152,8 @@
       })
         .then(body => {//请求成功
           if (body.data.status_code == 1009) {//状态码正常
-            this.list = body.data.datas;
+            this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
+            this.metadata = body.data.datas;//存放真实数据
             this.open2("加载成功");
             this.end(this.ye);
             jiaohu.$emit("len", this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search)));
@@ -161,9 +163,7 @@
           } else {//状态码异常
             this.open4("加载失败");
           }
-          for (var i = 0; i < this.list.length; i++) {
-            this.$set(this.list[i], 'visible', false);
-          }
+          this.Deposit();
           this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
             loadingInstance.close();
           })
@@ -209,6 +209,21 @@
       },
       open2,
       open4,
+      Deposit(){
+        for (var i = 0; i < this.list.length; i++) {
+          this.$set(this.list[i], 'visible', false);
+          //对展示数据的长度进行处理
+          if (this.list[i].abstract.length > 6) {
+            this.list[i].abstract = this.list[i].abstract.substr(0,6) + "...";
+          }
+          if (this.list[i].content.length > 6) {
+            this.list[i].content = this.list[i].content.substr(0,6) + "...";
+          }
+          if (this.list[i].title.length > 6) {
+            this.list[i].title = this.list[i].title.substr(0,6) + "...";
+          }
+        }
+      }
     },
     beforeUpdate(){
       jiaohu.$emit("len", this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search)));

@@ -101,6 +101,7 @@
       return{
         input:'',
         list:[],
+        metadata:[],
         search:'',
         ye:1,
         api:"awards",
@@ -119,7 +120,8 @@
       })
         .then(body => {//请求成功
           if (body.data.status_code == 1009) {//状态码正常
-            this.list = body.data.datas;
+            this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
+            this.metadata = body.data.datas;//存放真实数据
             this.open2("加载成功");
             this.end(this.ye);
             jiaohu.$emit("len", this.list.filter(data => !this.search || (data.prizewinner == this.search) || (data.ID == this.search) || data.awards.toLowerCase().includes(this.search.toLowerCase())));
@@ -129,9 +131,7 @@
           } else {//状态码异常
             this.open4("加载失败");
           }
-          for (var i = 0; i < this.list.length; i++) {
-            this.$set(this.list[i], 'visible', false);
-          }
+          this.Deposit();
           this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
             loadingInstance.close();
           })
@@ -146,7 +146,6 @@
         });
     },
     methods : {
-
       amend,    //删除方法
       handleEdit(index, row) {
       },
@@ -162,6 +161,12 @@
       },
       open2,
       open4,
+      Deposit(){
+        for (var i = 0; i < this.list.length; i++) {
+          this.$set(this.list[i], 'visible', false);
+
+        }
+      }
     },
     beforeUpdate(){
       jiaohu.$emit("len", this.list.filter(data => !this.search || (data.prizewinner == this.search) || (data.ID == this.search) || data.awards.toLowerCase().includes(this.search.toLowerCase())));
