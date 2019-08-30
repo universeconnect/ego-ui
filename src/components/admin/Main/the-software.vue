@@ -237,7 +237,6 @@
         });
     },
     mounted() {
-      this.$cookies.set('dl',1);
     },
     methods : {
       amend,//删除方法
