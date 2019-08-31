@@ -63,8 +63,8 @@
             @click="">
             <p>确定要删除该数据吗</p>
             <div style="text-align: right; margin: 0">
-              <el-button type="primary" size="mini" @click="amend(scope.$index, scope.row)">确定</el-button>
-              <el-button  type="text" size="mini" @click="scope.row.visible = false">取消</el-button>
+              <el-button type="text" size="mini" @click="amend(scope.$index, scope.row)">确定</el-button>
+              <el-button  type="primary" size="mini" @click="scope.row.visible = false">取消</el-button>
             </div>
             <el-button
               size="mini"
@@ -135,8 +135,8 @@
             @click="">
             <p>{{tisi}}</p>
             <div style="text-align: right; margin: 0">
-              <el-button type="primary" size="mini"  @click="dialogVisible1 = false;nodata = false">确定</el-button>
-              <el-button type="text" size="mini" @click="nodata = false">取消</el-button>
+              <el-button type="text" size="mini"  @click="dialogVisible1 = false;nodata = false">确定</el-button>
+              <el-button type="primary" size="mini" @click="nodata = false">取消</el-button>
             </div>
             <el-button
               @click=" tisi= formLabelAlign.isupdata?'确定放弃修改吗？':'确定放弃添加吗？' "
