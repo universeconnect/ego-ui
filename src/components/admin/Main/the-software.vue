@@ -63,8 +63,8 @@
             @click="">
             <p>确定要删除该数据吗</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="amend(scope.$index, scope.row)">确定</el-button>
-              <el-button type="primary" size="mini" @click="scope.row.visible = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="amend(scope.$index, scope.row)">确定</el-button>
+              <el-button  type="text" size="mini" @click="scope.row.visible = false">取消</el-button>
             </div>
             <el-button
               size="mini"
@@ -75,7 +75,7 @@
       </el-table-column>
     </el-table>
     <div class="el-add-button">
-      <el-button type="primary" plain @click="insert()">添加按钮</el-button>
+      <el-button type="primary" plain @click="insert()">添加</el-button>
     </div>
     <p v-if="endye" style="color: #ada9af; height: 50px; line-height:50px;">没有更多啦！</p>
     <!--以下是弹框放置位置-->
@@ -135,8 +135,8 @@
             @click="">
             <p>{{tisi}}</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="dialogVisible1 = false;nodata = false">确定</el-button>
-              <el-button type="primary" size="mini" @click="nodata = false">取消</el-button>
+              <el-button type="primary" size="mini"  @click="dialogVisible1 = false;nodata = false">确定</el-button>
+              <el-button type="text" size="mini" @click="nodata = false">取消</el-button>
             </div>
             <el-button
               @click=" tisi= formLabelAlign.isupdata?'确定放弃修改吗？':'确定放弃添加吗？' "
