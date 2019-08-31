@@ -24,12 +24,13 @@ export function amend(index, row){
             if(body.data.status_code == 1009){//加载状态码正常
               this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
               this.metadata = body.data.datas;//存放真实数据
+              this.Deposit();
               this.end(this.ye);
               jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
               jiaohu.$on("ye", (ye) => {
                 this.ye = ye;
               });
-              this.Deposit();
+
             }
           })
           .catch(error => {
@@ -61,12 +62,13 @@ export function updatadataF(url,api){//api为请求携带参数,url为请求地�
             if(body.data.status_code == 1009){//加载状态码正常
               this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
               this.metadata = body.data.datas;//存放真实数据
+              this.Deposit();
               this.end(this.ye);
               jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
               jiaohu.$on("ye", (ye) => {
                 this.ye = ye;
               });
-              this.Deposit();
+
             }
           })
           .catch(error => {
@@ -99,12 +101,12 @@ export function insertdataF(url,api){//api为请求携带参数,url为请求地�
             if(body.data.status_code == 1009){//加载状态码正常
               this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
               this.metadata = body.data.datas;//存放真实数据
+              this.Deposit();
               this.end(this.ye);
               jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
               jiaohu.$on("ye", (ye) => {
                 this.ye = ye;
               });
-              this.Deposit();
             }
           })
           .catch(error => {
