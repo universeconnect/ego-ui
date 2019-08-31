@@ -49,7 +49,7 @@
             placeholder="输入关键字搜索"/>
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="dialogVisible2 = true, handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="updata(scope.$index, scope.row)">修改</el-button>
           <el-popover
             placement="top"
             width="160"
@@ -70,43 +70,87 @@
       </el-table-column>
     </el-table>
     <div class="el-add-button">
-      <el-button type="primary" plain>添加按钮</el-button>
+      <el-button type="primary" plain @click="insert()">添加</el-button>
     </div>
     <p v-if="endye" style="color: #ada9af; height: 50px; line-height:50px;">没有更多啦！</p>
-    <el-dialog title="修改数据" :visible.sync="dialogVisible2" width="40%" :before-close="handleClose">
-      <el-form label-width="80px" :model="formLabelAlign">
-        <el-form-item label="ID">
-          <el-input v-model="formLabelAlign.ID"></el-input>
-        </el-form-item>
-        <el-form-item label="标题">
-          <el-input v-model="formLabelAlign.title"></el-input>
-        </el-form-item>
-        <el-form-item label="简介">
-          <el-input v-model="formLabelAlign.abstract"></el-input>
-        </el-form-item>
-        <el-form-item label="内容">
-          <el-input v-model="formLabelAlign.content"></el-input>
-        </el-form-item>
+    <!--以下是弹框放置位置-->
+    <el-dialog
+      :title="formLabelAlign.title1"
+      :visible.sync="dialogVisible1"
+      width="80%"
+      :before-close="handleClose1">
+      <div style="margin: 10px; line-height: 20px !important;"></div>
+      <el-form :inline="true" :model="formLabelAlign" class="demo-form-inline">
+        <h2 v-if="formLabelAlign.isupdata" style="margin: -20px auto 5px">ID:{{formLabelAlign.ID}}</h2>
         <el-form-item label="发布者">
-          <el-input v-model="formLabelAlign.promulgator"></el-input>
-        </el-form-item>
-        <el-form-item label="发布时间">
-          <el-input v-model="formLabelAlign.release_time"></el-input>
+          <el-input v-model="formLabelAlign.promulgator"  placeholder="xxxx"></el-input>
         </el-form-item>
         <el-form-item label="阅读量">
-          <el-input v-model="formLabelAlign.reading_quantity"></el-input>
+          <el-input v-model="formLabelAlign.reading_quantity"  placeholder="xxxx"></el-input>
         </el-form-item>
-        <el-form-item label="下载量">
-          <el-input v-model="formLabelAlign.downloads"></el-input>
+        <el-form-item v-if="formLabelAlign.isupdata" label="下载量">
+          <el-input v-model="formLabelAlign.downloads" placeholder="x"></el-input>
         </el-form-item>
-        <el-form-item label="权限">
-          <el-input v-model="formLabelAlign.access"></el-input>
+        <el-form-item v-if="formLabelAlign.isupdata" label="权限">
+          <el-input v-model="formLabelAlign.access" placeholder="x"></el-input>
         </el-form-item>
+        <el-form-item v-if="formLabelAlign.isupdata" label="发布时间">
+          <el-input v-model="formLabelAlign.release_time"  placeholder="xxxx-xx-xx xx：xx：xx"></el-input>
+        </el-form-item>
+        <p>标题：</p>
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 2, maxRows: 4}"
+          placeholder="请输入内容"
+          v-model="formLabelAlign.title">
+        </el-input>
+        <p>简介：</p>
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 2, maxRows: 4}"
+          placeholder="请输入内容"
+          v-model="formLabelAlign.abstract">
+        </el-input>
+        <p>内容：</p>
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 2, maxRows: 4}"
+          placeholder="请输入内容"
+          v-model="formLabelAlign.content">
+        </el-input>
       </el-form>
       <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogVisible2 = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible2 = false">确 定</el-button>
-            </span>
+        <el-popover
+          placement="top"
+          width="160"
+          v-model="nodata"
+          @click="">
+            <p>{{tisi}}</p>
+            <div style="text-align: right; margin: 0">
+              <el-button type="primary" size="mini"  @click="dialogVisible1 = false;nodata = false">确定</el-button>
+              <el-button type="text" size="mini" @click="nodata = false">取消</el-button>
+            </div>
+            <el-button
+              @click=" tisi= formLabelAlign.isupdata?'确定放弃修改吗？':'确定放弃添加吗？' "
+              slot="reference">取 消</el-button>
+        </el-popover>
+    <el-button v-if="formLabelAlign.isupdata" type="info" @click="updatareste">重置</el-button>
+        <el-popover
+          placement="top"
+          width="160"
+          v-model="okdata"
+          @click="">
+            <p>{{tisi}}</p>
+            <div style="text-align: right; margin: 0">
+              <el-button size="mini" type="text" @click="okdata = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="okdata = false; okupdate()">确定</el-button>
+            </div>
+            <el-button
+              type="primary"
+              @click=" tisi= formLabelAlign.isupdata?'确定提交修改吗？':'确定提交添加吗？' "
+              slot="reference">确 定</el-button>
+        </el-popover>
+  </span>
     </el-dialog>
   </div>
 </template>
@@ -115,12 +159,12 @@
 <script>
 
   import jiaohu from "../jiaohu"
-  import {amend, open2, open4} from "../../../public/methods/adminFun";
+  import {amend, open2, open4, updatadataF, insertdataF} from "../../../public/methods/adminFun";
   export default {
     name: "theEssay",
     data(){
       return{
-        dialogVisible2: false,
+        labelPosition: 'left',
         formLabelAlign: {
             ID: '',
             title: '',
@@ -131,7 +175,13 @@
             reading_quantity: '',
             downloads: '',
             access: '',
+            title1: '添加文章',
+            isupdata: false,
         },
+        updatadata:'',
+        okdata:'',
+        tisi:"",//提示
+        nodata:'',
         list:[],
         metadata:[],
         search:'',
@@ -140,7 +190,8 @@
         endye:0,
         dialogTableVisible: false,
         dialogFormVisible: false,
-        formLabelWidth: '120px'
+        formLabelWidth: '120px',
+        dialogVisible1:false
       }
     },
     created() {
@@ -152,21 +203,21 @@
       })
         .then(body => {//请求成功
           if (body.data.status_code == 1009) {//状态码正常
-            this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
-            this.metadata = body.data.datas;//存放真实数据
-            this.open2("加载成功");
-            this.end(this.ye);
-            jiaohu.$emit("len", this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search)));
-            jiaohu.$on("ye", (ye) => {
-              this.ye = ye;
-            })
+              this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
+              this.metadata = body.data.datas;//存放真实数据
+              this.end(this.ye);
+              jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
+              jiaohu.$on("ye", (ye) => {
+                  this.ye = ye;
+              });
+              this.open2("加载成功");
+              this.Deposit();
+              this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+                  loadingInstance.close();
+              })
           } else {//状态码异常
-            this.open4("加载失败");
+              this.open4("加载失败");
           }
-          this.Deposit();
-          this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
-            loadingInstance.close();
-          })
         })
         .catch(error => {
           //请求失败
@@ -177,20 +228,79 @@
           console.log(error);
         });
     },
+    mounted() {
+    },
     methods : {
       amend,    //删除方法
-      handleEdit(index, row) {
-          this.formLabelAlign.ID = row.ID;
-          this.formLabelAlign.title = row.title;
-          this.formLabelAlign.abstract = row.abstract;
-          this.formLabelAlign.content = row.content;
-          this.formLabelAlign.promulgator = row.promulgator;
-          this.formLabelAlign.release_time = row.release_time;
-          this.formLabelAlign.reading_quantity = row.reading_quantity;
-          this.formLabelAlign.downloads = row.downloads;
-          this.formLabelAlign.access = row.access;
+      updatadataF,//修改方法
+      insertdataF,//添加方法
+      updata(index, row) {
+          this.dialogVisible1 = true;//打开对话框
+          this.formLabelAlign.isupdata = true;//是修改对话框
+          this.formLabelAlign.title1 = '修改信息';
+          this.updatadata = this.metadata.filter(data => data.ID == row.ID)[0];//提取元数据
+          //对表单赋初值
+          this.formLabelAlign.ID = this.updatadata.ID;
+          this.formLabelAlign.title = this.updatadata.title;
+          this.formLabelAlign.abstract = this.updatadata.abstract;
+          this.formLabelAlign.content = this.updatadata.content;
+          this.formLabelAlign.promulgator = this.updatadata.promulgator;
+          this.formLabelAlign.release_time = this.updatadata.release_time;
+          this.formLabelAlign.reading_quantity = this.updatadata.reading_quantity;
+          this.formLabelAlign.downloads = this.updatadata.downloads;
+          this.formLabelAlign.access = this.updatadata.access;
       },
-      handleClose(done) {
+      updatareste(){
+          //对表单重新赋值
+          this.formLabelAlign.title = this.updatadata.title;
+          this.formLabelAlign.abstract = this.updatadata.abstract;
+          this.formLabelAlign.content = this.updatadata.content;
+          this.formLabelAlign.promulgator = this.updatadata.promulgator;
+          this.formLabelAlign.release_time = this.updatadata.release_time;
+          this.formLabelAlign.reading_quantity = this.updatadata.reading_quantity;
+          this.formLabelAlign.downloads = this.updatadata.downloads;
+          this.formLabelAlign.access = this.updatadata.access;
+      },
+      okupdate(){
+          this.dialogVisible1 = false;//关闭对话框
+          if (this.formLabelAlign.isupdata) {
+              //发送修改请求
+              this.updatadataF('http://49.234.9.206/Gaindata/updata_essay.php',{
+                  ID : this.formLabelAlign.ID,
+                  title : this.formLabelAlign.title,
+                  abstract : this.formLabelAlign.abstract,
+                  content :this.formLabelAlign.content,
+                  promulgator : this.formLabelAlign.promulgator,
+                  release_time : this.formLabelAlign.release_time,
+                  reading_quantity : this.formLabelAlign.reading_quantity,
+                  downloads : this.formLabelAlign.downloads,
+                  access : this.formLabelAlign.access,
+              });
+          }else {
+              //发送添加请求
+              this.insertdataF('http://49.234.9.206/Gaindata/insert_essay.php',{
+                  title : this.formLabelAlign.title,
+                  abstract : this.formLabelAlign.abstract,
+                  content :this.formLabelAlign.content,
+                  promulgator : this.formLabelAlign.promulgator,
+              });
+          }
+
+      },
+      insert(){
+          this.dialogVisible1 = true;//打开对话框
+          this.formLabelAlign.isupdata = false;//不是修改对话框
+          //清除表单初值
+          this.formLabelAlign = {
+              title: '',
+              abstract: '',
+              content: '',
+              promulgator: '',
+              title1: '添加文章',
+              isupdata: false,
+          };
+      },
+      handleClose1(done) {
           this.$confirm('确认关闭？')
               .then(_ => {
                   done();
