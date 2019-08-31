@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import WE from '../components/wangEditor/wE'
 import theUserInfo from '../components/admin/Main/the-userInfo'
 import theSoftware from '../components/admin/Main/the-software'
 import theEssay from '../components/admin/Main/the-essay'
@@ -17,6 +18,10 @@ export default new Router({
     {
       path: '/',
       redirect:'/admin'
+    },
+    {
+      path: '/we',
+      component:WE,
     },
     {
       path: '/admin',

@@ -143,4 +143,3 @@ export function open4(hint) {
   });
 }
 
-
