@@ -10,66 +10,112 @@ import theMember from '../components/admin/Main/the-member'
 import Admin from '../components/admin/admin'
 import Index from '../components/index/index'
 import theHome from '../components/index/home/home'
+import Login from '../components/index/loginAndSign/login'
+import theLogin from '../components/index/loginAndSign/login/the-login'
+import theSign from '../components/index/loginAndSign/login/the-sign'
+
 
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      redirect:'/admin'
-    },
-    {
-      path: '/we',
-      component:WE,
-    },
-    {
-      path: '/admin',
-      component:Admin,
-      children:[
+    routes: [
         {
-          path: '/',
-          redirect:'/admin/the-userInfo',
+            path: '/',
+            redirect:'/admin'
         },
         {
-          path: '/admin/the-userInfo',
-          name: 'theUserInfo',
-          component: theUserInfo
-        },{
-          path: '/admin/the-software',
-          name: 'theSoftware',
-          component: theSoftware
-        },{
-          path: '/admin/the-essay',
-          name: 'theEssay',
-          component: theEssay
-        },{
-          path: '/admin/the-video',
-          name: 'theVideo',
-          component: theVideo
-        },{
-          path: '/admin/the-awards',
-          name: 'theAwards',
-          component: theAwards
-        },{
-          path: '/admin/the-member',
-          name: 'theMember',
-          component: theMember
-        }
-      ]
-    },{
-      path: '/index',
-      component:Index,
-      children:[
-        {
-          path: '',
-          redirect:'/index/home'
-        },{
-          path: 'home',
-          name: 'theHome',
-          component: theHome
+            path: '/we',
+            component:WE,
         },
-      ],
-    }
-  ]
+        {
+            path: '/admin',
+            component:Admin,
+            children:[
+                {
+                    path: '/',
+                    redirect:'/admin/the-userInfo',
+                },
+                {
+                    path: '/admin/the-userInfo',
+                    name: 'theUserInfo',
+                    component: theUserInfo,
+                    meta: {
+                        needLogin: false,
+                    }
+                },{
+                    path: '/admin/the-software',
+                    name: 'theSoftware',
+                    component: theSoftware,
+                    meta: {
+                        needLogin: false,
+                    }
+                },{
+                    path: '/admin/the-essay',
+                    name: 'theEssay',
+                    component: theEssay,
+                    meta: {
+                        needLogin: false,
+                    }
+                },{
+                    path: '/admin/the-video',
+                    name: 'theVideo',
+                    component: theVideo,
+                    meta: {
+                        needLogin: false,
+                    }
+                },{
+                    path: '/admin/the-awards',
+                    name: 'theAwards',
+                    component: theAwards,
+                    meta: {
+                        needLogin: false,
+                    }
+                },{
+                    path: '/admin/the-member',
+                    name: 'theMember',
+                    component: theMember,
+                    meta: {
+                        needLogin: false,
+                    }
+                }
+            ]
+        },{
+            path: '/index',
+            component:Index,
+            children:[
+                {
+                    path: '',
+                    redirect:'/index/home'
+                },{
+                    path: 'home',
+                    name: 'theHome',
+                    component: theHome,
+                    meta: {
+                        needLogin: false,
+                    }
+                },
+            ]
+        },
+        {
+            path: '/index/login',
+            component: Login,
+            children:[
+                {
+                    path: '/index/login',
+                    name: 'theLogin',
+                    component: theLogin,
+                    meta: {
+                        needLogin: false,
+                    }
+                },{
+                    path: '/index/sign',
+                    name: 'theSign',
+                    component: theSign,
+                    meta: {
+                        needLogin: false,
+                    }
+                },
+            ]
+        },
+    ]
 })

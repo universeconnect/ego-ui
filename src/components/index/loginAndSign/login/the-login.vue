@@ -1,12 +1,12 @@
 <template>
-  <div class="box01">
-
-  </div>
+    <div>
+        <h1>这是登录组件</h1>
+    </div>
 </template>
 
 <script>
     export default {
-        name: "the-home-share"
+        name: "login"
     }
 </script>
 

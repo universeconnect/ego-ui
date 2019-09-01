@@ -30,4 +30,7 @@
       - static --> 存放静态文件
       - index.html --> 入口文件
       - package.josn --> 配置信息
-      - store --> vueX文件
+      - store --> vueX文件  
++ 文件夹路径指向()
+  + @ --> src
+  + ~assets --> src/assets(该路径用于存放图片)
