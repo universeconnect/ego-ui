@@ -1,5 +1,6 @@
 <template>
     <div class="box01">
+        <TheHomeNavigation></TheHomeNavigation>
         <TheHomeHead></TheHomeHead>
         <TheHomeIntro></TheHomeIntro>
         <TheHomeTestimonial></TheHomeTestimonial>
@@ -11,7 +12,8 @@
 
 <script>
     import TheHomeBelow from './home/the-home-below';
-    import TheHomeHead from './home/the-home-head';
+    import TheHomeNavigation from './home/the-home-navigation';
+    import TheHomeSlideshow from './home/the-home-slideshow';
     import TheHomeIntro from './home/the-home-intro';
     import TheHomeShare from './home/the-home-share';
     import TheHomeTeam from './home/the-home-team';
@@ -23,7 +25,7 @@
 
             }
         },
-        components:{TheHomeBelow, TheHomeHead, TheHomeIntro, TheHomeShare, TheHomeTeam, TheHomeTestimonial}
+        components:{TheHomeBelow, TheHomeSlideshow, TheHomeIntro, TheHomeShare, TheHomeTeam, TheHomeTestimonial, TheHomeNavigation}
     }
 </script>
 
