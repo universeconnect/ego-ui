@@ -1,7 +1,7 @@
 <template>
     <div class="box01">
         <TheHomeNavigation></TheHomeNavigation>
-        <TheHomeHead></TheHomeHead>
+        <TheHomeSlideshow></TheHomeSlideshow>
         <TheHomeIntro></TheHomeIntro>
         <TheHomeTestimonial></TheHomeTestimonial>
         <TheHomeTeam></TheHomeTeam>
