@@ -1,8 +1,8 @@
 <template>
     <div>
         <Navigation></Navigation>
-        <router-link to="{path: '/index/login'}">登录</router-link>
-        <router-link to="{path: '/index/sign'}">注册</router-link>
+        <router-link :to="{path: 'login'}">登录</router-link>
+        <router-link :to="{path: 'sign'}">注册</router-link>
         <router-view></router-view>
     </div>
 </template>

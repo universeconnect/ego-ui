@@ -20,7 +20,7 @@
                         <span class="box"></span>
                     </span>
                 </router-link>
-                <router-link :to="{path: '/index/home2'}" class="link01" replace>
+                <router-link :to="{path: '/index/links'}" class="link01" replace>
                     <span class="link02">
                         有情链接
                         <span class="box"></span>
@@ -126,7 +126,7 @@
     .user{
         position: absolute;
         top: 0;
-        right: 20px;
+        right: 100px;
         width: 230px;
         height: 66px;
     }

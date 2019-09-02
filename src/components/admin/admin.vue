@@ -25,7 +25,7 @@
 
 <style scoped>
   #div01{
-    height: 740px;
+    height: 670px;
   }
   *{
     margin: 0;

@@ -5,16 +5,10 @@ const store = new Vuex.Store({
     state:{
         //状态
         isLogin: null,//是否已经登录
-        username: null,//用户名
-        nickname: null,//昵称
-        head_portrait: null,//头像
     },
     mutations:{
         //修改状态
         increment(state){
-            state.a++
-        },
-        decrement(state){
             state.a++
         }
     },
