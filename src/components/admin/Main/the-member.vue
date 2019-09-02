@@ -286,7 +286,7 @@
                     this.insertdataF('http://49.234.9.206/Gaindata/insert_member.php',{
                         name : this.formLabelAlign.name,
                         imgs : this.formLabelAlign.imgs,
-                        age :this.formLabelAlign.age,
+                      age :this.formLabelAlign.age,
                         intro : this.formLabelAlign.intro,
                         interest : this.formLabelAlign.interest,
                         adept : this.formLabelAlign.adept,
