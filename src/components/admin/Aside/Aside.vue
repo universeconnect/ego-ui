@@ -77,6 +77,6 @@
 
 <style scoped>
     ul{
-        height: 900px;
+        height: 790px;
     }
 </style>

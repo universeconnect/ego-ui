@@ -13,6 +13,7 @@ import theHome from '../components/index/home/home'
 import Login from '../components/index/loginAndSign/login'
 import theLogin from '../components/index/loginAndSign/login/the-login'
 import theSign from '../components/index/loginAndSign/login/the-sign'
+import theUser from '../components/index/user/the-user'
 
 
 Vue.use(Router);
@@ -21,7 +22,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect:'/admin'
+            redirect:'/index'
         },
         {
             path: '/we',
@@ -116,6 +117,10 @@ export default new Router({
                     }
                 },
             ]
-        },
+        },{
+            path: '/index/user',
+            name: 'theUser',
+            component: theUser,
+        }
     ]
 })

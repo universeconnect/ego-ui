@@ -75,7 +75,7 @@
         <div class="el-add-button">
             <el-button type="primary" plain>添加按钮</el-button>
         </div>
-        <p v-if="endye" style="color: #ada9af; height: 50px; line-height:50px;">没有更多啦！</p>
+        <p v-if="endye" style="color: #ada9af; height: 20px; line-height:20px;">没有更多啦！</p>
     </div>
 </template>
 

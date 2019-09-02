@@ -51,7 +51,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <p v-if="endye" style="color: #ada9af; height: 50px; line-height:50px;">没有更多啦！</p>
+        <p v-if="endye" style="color: #ada9af; height: 20px; line-height:20px;">没有更多啦！</p>
         <!--以下是弹框放置位置-->
         <el-dialog
                 title="修改用户信息"

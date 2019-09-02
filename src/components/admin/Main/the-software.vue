@@ -29,10 +29,6 @@
                     prop="password">
             </el-table-column>
             <el-table-column
-                    label="破解安装教程"
-                    prop="cit">
-            </el-table-column>
-            <el-table-column
                     label="使用教程"
                     prop="tutorial">
             </el-table-column>
@@ -77,7 +73,7 @@
         <div class="el-add-button">
             <el-button type="primary" plain @click="insert()">添加</el-button>
         </div>
-        <p v-if="endye" style="color: #ada9af; height: 50px; line-height:50px;">没有更多啦！</p>
+        <p v-if="endye" style="color: #ada9af; height: 20px; line-height:20px;">没有更多啦！</p>
         <!--以下是弹框放置位置-->
         <el-dialog
                 :title="formLabelAlign.title"
@@ -344,6 +340,9 @@
                     //对展示数据的长度进行处理
                     if (this.list[i].description.length > 6) {
                         this.list[i].description = this.list[i].description.substr(0,6) + "...";
+                    }
+                    if (this.list[i].release_time.length > 6) {
+                        this.list[i].release_time = this.list[i].release_time.substr(0,6) + "...";
                     }
                     if (this.list[i].Download_link.length > 6) {
                         this.list[i].Download_link = this.list[i].Download_link.substr(0,6) + "...";

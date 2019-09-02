@@ -24,7 +24,7 @@
         line-height: 200px;
     }
     .el-table th{
-        line-height: 200px !important;
+        line-height: 130px !important;
 
     }
 
@@ -54,7 +54,7 @@
     }
     .el-add-button{
         position: absolute;
-        top: 235px;
+        top: 175px;
         left: 225px;
     }
 </style>

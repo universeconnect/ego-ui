@@ -12,7 +12,7 @@
 
 <script>
     import TheHomeBelow from './home/the-home-below';
-    import TheHomeNavigation from './home/the-home-navigation';
+    import TheHomeNavigation from '../the-navigation';
     import TheHomeSlideshow from './home/the-home-slideshow';
     import TheHomeIntro from './home/the-home-intro';
     import TheHomeShare from './home/the-home-share';
