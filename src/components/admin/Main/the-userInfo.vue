@@ -25,10 +25,6 @@
                     prop="nickname">
             </el-table-column>
             <el-table-column
-                    label="头像"
-                    prop="head_portrait">
-            </el-table-column>
-            <el-table-column
                     label="创建时间"
                     prop="creation_time">
             </el-table-column>

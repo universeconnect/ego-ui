@@ -13,14 +13,6 @@
                     prop="title">
             </el-table-column>
             <el-table-column
-                    label="简介"
-                    prop="abstract">
-            </el-table-column>
-            <el-table-column
-                    label="内容"
-                    prop="content">
-            </el-table-column>
-            <el-table-column
                     label="发布者"
                     prop="promulgator">
             </el-table-column>
