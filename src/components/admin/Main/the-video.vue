@@ -314,6 +314,7 @@
         };
       },
       handleDelete(index, row) {
+
       },
       end(ye) {
         var i = (this.list.filter(data => !this.search || data.address.toLowerCase().includes(this.search.toLowerCase())  || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.good == this.search))).length / 10;
