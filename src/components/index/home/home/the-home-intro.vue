@@ -20,7 +20,7 @@
             <el-carousel-item class="intro-card-ca" v-for="item in 6" :key="item">
               <el-card shadow="always" class="intro-card-nei">
                 <div class="intro-card-radio">
-                  <img src="../../../../assets/default_imgs/tzb.jpg" width="150px" height="150px" style="border-radius: 50%"/>
+                  <!--<img src="" width="150px" height="150px" style="border-radius: 50%"/>-->
                 </div>
                 <h4 class="center">挑战杯优秀奖</h4>
                 <p>挑战杯是全国大学生课外科技作品竞赛。指导老师:陈妍</p>
