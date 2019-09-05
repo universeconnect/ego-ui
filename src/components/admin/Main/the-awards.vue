@@ -246,7 +246,7 @@
             insert(){
                 this.dialogVisible1 = true;//打开对话框
                 this.formLabelAlign.isupdata = false;//不是修改对话框
-                //清除表单初值
+                // 清除表单初值
                 this.formLabelAlign = {
                     ID: '',
                     awards: '',

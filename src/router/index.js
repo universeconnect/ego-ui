@@ -15,7 +15,7 @@ import theLogin from '../components/index/loginAndSign/login/the-login'
 import theSign from '../components/index/loginAndSign/login/the-sign'
 import theUser from '../components/index/user/the-user'
 import theLinks from '../components/index/links/the-links'
-
+import theContactUs from '../components/index/contactUs/the-contactUs'
 
 Vue.use(Router);
 
@@ -126,6 +126,10 @@ export default new Router({
             path: '/index/links',
             name: 'theLinks',
             component: theLinks,
+        },{
+            path: '/index/contactUS',
+            name: 'theContactUs',
+            component: theContactUs,
         }
     ]
 })
