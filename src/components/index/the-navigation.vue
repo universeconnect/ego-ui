@@ -14,7 +14,7 @@
                         <span class="box"></span>
                     </span>
                 </router-link>
-                <router-link :to="{path: 'home1'}" class="link01" replace>
+                <router-link :to="{path: 'information'}" class="link01" replace>
                     <span class="link02">
                         分享资料
                         <span class="box"></span>
@@ -33,7 +33,7 @@
                     </span>
                 </router-link>
                 <span v-if="!$store.state.isLogin" class="loginAndSign">
-                    <router-link :to="{path: 'ogin'}" class="link01" style="margin-left: 25%;" replace>
+                    <router-link :to="{path: 'login'}" class="link01" style="margin-left: 25%;" replace>
                     <span class="link02">
                         登陆
                         <span class="box"></span>

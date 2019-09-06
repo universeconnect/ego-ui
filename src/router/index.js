@@ -16,6 +16,7 @@ import theSign from '../components/index/loginAndSign/login/the-sign'
 import theUser from '../components/index/user/the-user'
 import theLinks from '../components/index/links/the-links'
 import theContactUs from '../components/index/contactUs/the-contactUs'
+import Information from '../components/index/information/information'
 
 Vue.use(Router);
 
@@ -28,6 +29,10 @@ export default new Router({
         {
             path: '/we',
             component:WE,
+            meta: {
+                needLogin: true,//是否需要登录
+                access: 10//登录最低权限级别
+            }
         },
         {
             path: '/admin',
@@ -42,42 +47,48 @@ export default new Router({
                     name: 'theUserInfo',
                     component: theUserInfo,
                     meta: {
-                        needLogin: false,
+                        needLogin: true,//是否需要登录
+                        access: 10//登录最低权限级别
                     }
                 },{
                     path: '/admin/the-software',
                     name: 'theSoftware',
                     component: theSoftware,
                     meta: {
-                        needLogin: false,
+                        needLogin: true,//是否需要登录
+                        access: 10//登录最低权限级别
                     }
                 },{
                     path: '/admin/the-essay',
                     name: 'theEssay',
                     component: theEssay,
                     meta: {
-                        needLogin: false,
+                        needLogin: true,//是否需要登录
+                        access: 10//登录最低权限级别
                     }
                 },{
                     path: '/admin/the-video',
                     name: 'theVideo',
                     component: theVideo,
                     meta: {
-                        needLogin: false,
+                        needLogin: true,//是否需要登录
+                        access: 10//登录最低权限级别
                     }
                 },{
                     path: '/admin/the-awards',
                     name: 'theAwards',
                     component: theAwards,
                     meta: {
-                        needLogin: false,
+                        needLogin: true,//是否需要登录
+                        access: 10//登录最低权限级别
                     }
                 },{
                     path: '/admin/the-member',
                     name: 'theMember',
                     component: theMember,
                     meta: {
-                        needLogin: false,
+                        needLogin: true,//是否需要登录
+                        access: 10//登录最低权限级别
                     }
                 }
             ]
@@ -122,6 +133,10 @@ export default new Router({
             path: '/index/user',
             name: 'theUser',
             component: theUser,
+            meta: {
+                needLogin: true,//是否需要登录
+                access: 10//登录最低权限级别
+            }
         },{
             path: '/index/links',
             name: 'theLinks',
@@ -130,6 +145,10 @@ export default new Router({
             path: '/index/contactUS',
             name: 'theContactUs',
             component: theContactUs,
+        },{
+            path: '/index/information',
+            name: 'Information',
+            component: Information,
         }
     ]
 })
