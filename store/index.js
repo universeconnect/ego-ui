@@ -5,11 +5,16 @@ const store = new Vuex.Store({
     state:{
         //状态
         isLogin: null,//是否已经登录
+        scrolltop:0,//滚动条
     },
     mutations:{
         //修改状态
         increment(state){
             state.a++
+        },
+        updatascrollTop(state, scrolltop){
+            state.scrolltop = scrolltop;
+
         }
     },
     actions:{
