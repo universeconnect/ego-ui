@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "essay"
+        name: "the-information"
     }
 </script>
 
