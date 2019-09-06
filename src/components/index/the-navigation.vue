@@ -2,45 +2,45 @@
     <div class="box01">
         <div class="navigation">
             <div class="navigationA">
-                <router-link :to="{path: 'home'}"  class="link01" replace>
+                <router-link :to="{path: '/index/home'}"  class="link01" replace>
                     <span class="link02">
                         宇宙互联
                         <span class="box"></span>
                     </span>
                 </router-link>
-                <router-link :to="{path: 'home0'}" class="link01" replace>
+                <router-link :to="{path: '/index/home0'}" class="link01" replace>
                     <span class="link02">
                         了解我们
                         <span class="box"></span>
                     </span>
                 </router-link>
-                <router-link :to="{path: 'information'}" class="link01" replace>
+                <router-link :to="{path: '/index/information'}" class="link01" replace>
                     <span class="link02">
-                        分享资料
+                        经验分享
                         <span class="box"></span>
                     </span>
                 </router-link>
-                <router-link :to="{path: 'links'}" class="link01" replace>
+                <router-link :to="{path: '/index/links'}" class="link01" replace>
                     <span class="link02">
                         有情链接
                         <span class="box"></span>
                     </span>
                 </router-link>
-                <router-link class="link01" :to="{path: 'contactUs'}" replace>
+                <router-link class="link01" :to="{path: '/index/contactUs'}" replace>
                     <span class="link02">
                         联系我们
                         <span class="box"></span>
                     </span>
                 </router-link>
                 <span v-if="!$store.state.isLogin" class="loginAndSign">
-                    <router-link :to="{path: 'login'}" class="link01" style="margin-left: 25%;" replace>
+                    <router-link :to="{path: '/index/login'}" class="link01" style="margin-left: 25%;" replace>
                     <span class="link02">
                         登陆
                         <span class="box"></span>
                     </span>
                     </router-link>
                     <span style="color: #e5e5e5;">|</span>
-                    <router-link :to="{path: 'sign'}" class="link01" replace>
+                    <router-link :to="{path: '/index/sign'}" class="link01" replace>
                     <span class="link02">
                         注册
                         <span class="box"></span>
@@ -68,6 +68,7 @@
         name: "the-home-navigation",
         data(){
             return{
+
             }
         },
         methods: {
@@ -104,8 +105,9 @@
     .box{
         display: block;
         width: 25px;
-        height: 3px;
+        height: 2px;
         background-color: #201e1e;
+        border-bottom: 1px #666666 solid;
         margin: 0 auto;
     }
     .link01{
@@ -178,5 +180,7 @@
     }
     .router-link-active > .link02 > .box{
         background-color: #d73d07;
+        height: 3px;
+        border: 0;
     }
 </style>
