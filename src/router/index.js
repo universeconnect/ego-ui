@@ -8,6 +8,7 @@ import theVideo from '../components/admin/Main/the-video'
 import theAwards from '../components/admin/Main/the-awards'
 import theMember from '../components/admin/Main/the-member'
 import Admin from '../components/admin/admin'
+
 import Index from '../components/index/index'
 import theHome from '../components/index/home/home'
 import Login from '../components/index/loginAndSign/login'
@@ -17,6 +18,9 @@ import theUser from '../components/index/user/the-user'
 import theLinks from '../components/index/links/the-links'
 import theContactUs from '../components/index/contactUs/the-contactUs'
 import Information from '../components/index/information/information'
+import Essay from '../components/index/information/essay/essay'
+import Software from '../components/index/information/software/software'
+import Video from '../components/index/information/video/video'
 
 Vue.use(Router);
 
@@ -39,11 +43,11 @@ export default new Router({
             component:Admin,
             children:[
                 {
-                    path: '/',
-                    redirect:'/admin/the-userInfo',
+                    path: '',
+                    redirect:'the-userInfo',
                 },
                 {
-                    path: '/admin/the-userInfo',
+                    path: 'the-userInfo',
                     name: 'theUserInfo',
                     component: theUserInfo,
                     meta: {
@@ -51,7 +55,7 @@ export default new Router({
                         access: 10//登录最低权限级别
                     }
                 },{
-                    path: '/admin/the-software',
+                    path: 'the-software',
                     name: 'theSoftware',
                     component: theSoftware,
                     meta: {
@@ -59,7 +63,7 @@ export default new Router({
                         access: 10//登录最低权限级别
                     }
                 },{
-                    path: '/admin/the-essay',
+                    path: 'the-essay',
                     name: 'theEssay',
                     component: theEssay,
                     meta: {
@@ -67,7 +71,7 @@ export default new Router({
                         access: 10//登录最低权限级别
                     }
                 },{
-                    path: '/admin/the-video',
+                    path: 'the-video',
                     name: 'theVideo',
                     component: theVideo,
                     meta: {
@@ -75,7 +79,7 @@ export default new Router({
                         access: 10//登录最低权限级别
                     }
                 },{
-                    path: '/admin/the-awards',
+                    path: 'the-awards',
                     name: 'theAwards',
                     component: theAwards,
                     meta: {
@@ -83,7 +87,7 @@ export default new Router({
                         access: 10//登录最低权限级别
                     }
                 },{
-                    path: '/admin/the-member',
+                    path: 'the-member',
                     name: 'theMember',
                     component: theMember,
                     meta: {
@@ -92,14 +96,16 @@ export default new Router({
                     }
                 }
             ]
-        },{
+        },
+        {
             path: '/index',
-            component:Index,
-            children:[
+            component: Index,
+            children: [
                 {
                     path: '',
-                    redirect:'/index/home'
-                },{
+                    redirect: 'home'
+                },
+                {
                     path: 'home',
                     name: 'theHome',
                     component: theHome,
@@ -107,48 +113,84 @@ export default new Router({
                         needLogin: false,
                     }
                 },
-            ]
-        },
-        {
-            path: '/index/login',
-            component: Login,
-            children:[
                 {
-                    path: '/index/login',
-                    name: 'theLogin',
-                    component: theLogin,
+                    path: 'login',
+                    component: Login,
+                    children:[
+                        {
+                            path: '/index/login',
+                            name: 'theLogin',
+                            component: theLogin,
+                            meta: {
+                                needLogin: false,
+                            }
+                        },{
+                            path: '/index/sign',
+                            name: 'theSign',
+                            component: theSign,
+                            meta: {
+                                needLogin: false,
+                            }
+                        },
+                    ]
+                },
+                {
+                    path: 'user',
+                    name: 'theUser',
+                    component: theUser,
                     meta: {
-                        needLogin: false,
-                    }
-                },{
-                    path: '/index/sign',
-                    name: 'theSign',
-                    component: theSign,
-                    meta: {
-                        needLogin: false,
+                        needLogin: true,//是否需要登录
+                        access: 10//登录最低权限级别
                     }
                 },
+                {
+                    path: 'links',
+                    name: 'theLinks',
+                    component: theLinks,
+                },
+                {
+                    path: 'contactUS',
+                    name: 'theContactUs',
+                    component: theContactUs,
+                },
+                {
+                    path: 'information',
+                    name: 'Information',
+                    component: Information,
+                    children:[
+                        {
+                            path: '',
+                            redirect:'essay',
+                        },
+                        {
+                            path: 'essay',
+                            name: 'Essay',
+                            component: Essay,
+                        },
+                        {
+                            path: 'video',
+                            name: 'video',
+                            component: Essay,
+                        },
+                        {
+                            path: 'software',
+                            name: 'software',
+                            component: Essay,
+                        },
+                        {
+                            path: 'website',
+                            name: 'website',
+                            component: Essay,
+                        },
+                        {
+                            path: 'informations',
+                            name: 'information',
+                            component: Essay,
+                        }
+                    ]
+                }
+
             ]
-        },{
-            path: '/index/user',
-            name: 'theUser',
-            component: theUser,
-            meta: {
-                needLogin: true,//是否需要登录
-                access: 10//登录最低权限级别
-            }
-        },{
-            path: '/index/links',
-            name: 'theLinks',
-            component: theLinks,
-        },{
-            path: '/index/contactUS',
-            name: 'theContactUs',
-            component: theContactUs,
-        },{
-            path: '/index/information',
-            name: 'Information',
-            component: Information,
         }
     ]
 })

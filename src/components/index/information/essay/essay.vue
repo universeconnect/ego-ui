@@ -1,10 +1,15 @@
 <template>
-
+<div>
+    <p>
+        {{a}}
+    </p>
+</div>
 </template>
 
 <script>
     export default {
-        name: "essay"
+        name: "essay",
+        props:['a'],
     }
 </script>
 
