@@ -88,7 +88,6 @@
     .box01{
         width: 100%;
         height: 500px;
-        background-color: lightgray;
         overflow: hidden;
     }
     .intro-left-box{
