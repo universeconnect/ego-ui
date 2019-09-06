@@ -18,9 +18,12 @@ import theUser from '../components/index/user/the-user'
 import theLinks from '../components/index/links/the-links'
 import theContactUs from '../components/index/contactUs/the-contactUs'
 import Information from '../components/index/information/information'
-import Essay from '../components/index/information/essay/essay'
-import Software from '../components/index/information/software/software'
-import Video from '../components/index/information/video/video'
+import theEssays from '../components/index/information/essay/the-essay'
+import theSoftwares from '../components/index/information/software/the-software'
+import theVideos from '../components/index/information/video/the-video'
+import theSoftwareCoures from '../components/index/information/softwareCoures/the-softwareCoures'
+import theInformations from '../components/index/information/information/the-information'
+import theWebsite from '../components/index/information/website/the-website'
 
 Vue.use(Router);
 
@@ -164,28 +167,33 @@ export default new Router({
                         },
                         {
                             path: 'essay',
-                            name: 'Essay',
-                            component: Essay,
+                            name: 'the-Essay',
+                            component: theEssays,
                         },
                         {
                             path: 'video',
-                            name: 'video',
-                            component: Essay,
+                            name: 'the-Video',
+                            component: theVideos,
                         },
                         {
                             path: 'software',
-                            name: 'software',
-                            component: Essay,
+                            name: 'the-Software',
+                            component: theSoftwares,
                         },
                         {
                             path: 'website',
-                            name: 'website',
-                            component: Essay,
+                            name: 'the-Website',
+                            component: theWebsite,
                         },
                         {
                             path: 'informations',
-                            name: 'information',
-                            component: Essay,
+                            name: 'the-Information',
+                            component: theInformations,
+                        },
+                        {
+                            path: 'softwareCoures',
+                            name: 'the-SoftwareCoures',
+                            component: theSoftwareCoures,
                         }
                     ]
                 }

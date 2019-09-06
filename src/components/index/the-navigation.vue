@@ -16,7 +16,7 @@
                 </router-link>
                 <router-link :to="{path: '/index/information'}" class="link01" replace>
                     <span class="link02">
-                        分享资料
+                        经验分享
                         <span class="box"></span>
                     </span>
                 </router-link>

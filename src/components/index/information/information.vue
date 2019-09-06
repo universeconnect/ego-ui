@@ -6,6 +6,7 @@
             <router-link :to="{path: 'essay'}">分享文章</router-link>
             <router-link :to="{path: 'video'}">分享视频</router-link>
             <router-link :to="{path: 'software'}">分享软件</router-link>
+            <router-link :to="{path: 'softwareCoures'}">软件使用教程</router-link>
             <router-link :to="{path: 'website'}">分享网站</router-link>
             <router-link :to="{path: 'informations'}">分享资料</router-link>
             <br>
