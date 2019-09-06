@@ -104,8 +104,9 @@
     .box{
         display: block;
         width: 25px;
-        height: 3px;
+        height: 2px;
         background-color: #201e1e;
+        border-bottom: 1px #666666 solid;
         margin: 0 auto;
     }
     .link01{
@@ -178,5 +179,7 @@
     }
     .router-link-active > .link02 > .box{
         background-color: #d73d07;
+        height: 3px;
+        border: 0;
     }
 </style>
