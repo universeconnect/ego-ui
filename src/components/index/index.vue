@@ -4,7 +4,13 @@
 
 <script>
     export default {
-        name: "index"
+        name: "index",
+        mounted() {
+            window.addEventListener('scroll', this.handleScroll);
+        },
+        methods:{
+
+        }
     }
 </script>
 

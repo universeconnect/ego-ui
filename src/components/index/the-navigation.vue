@@ -68,6 +68,7 @@
         name: "the-home-navigation",
         data(){
             return{
+
             }
         },
         methods: {

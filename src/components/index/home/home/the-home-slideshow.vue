@@ -42,11 +42,6 @@
     color: white;
     margin-top: 120px;
   }
-  .banner-divider{
-    width: 120px;
-    position: absolute;
-    left: 540px;
-  }
   .el-carousel__item h3 {
     color: #475669;
     font-size: 18px;
@@ -54,7 +49,10 @@
     line-height: 300px;
     margin: 0;
   }
-
+    .el-divider{
+    width: 120px;
+    margin: 24px auto;
+}
   .el-carousel__item:nth-child(2n) {
     background-color: #470000;
   }
