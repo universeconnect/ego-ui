@@ -83,11 +83,11 @@
 
 
 <style scoped>
-  .box01{
+/*  .box01{
     position: fixed;
     width: 100%;
     z-index: 999;
-  }
+  }*/
     .navigation{
         position: relative;
         height: 66px;

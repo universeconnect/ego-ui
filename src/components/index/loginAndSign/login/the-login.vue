@@ -77,6 +77,7 @@
           }
         },
       mounted() {
+            this.$cookies.set('isLogin',true);
           for( let i = 0;i< document.getElementsByClassName('el-form-item__label').length; i++)
           document.getElementsByClassName('el-form-item__label')[i].style.color = "#FFF";
 

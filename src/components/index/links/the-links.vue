@@ -11,6 +11,7 @@
         components: {Navigation},
         data(){
             return{
+
             }
         },
         methods:{

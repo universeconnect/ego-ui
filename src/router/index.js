@@ -8,7 +8,6 @@ import theVideo from '../components/admin/Main/the-video'
 import theAwards from '../components/admin/Main/the-awards'
 import theMember from '../components/admin/Main/the-member'
 import Admin from '../components/admin/admin'
-
 import Index from '../components/index/index'
 import theHome from '../components/index/home/home'
 import Login from '../components/index/loginAndSign/login'
@@ -36,10 +35,10 @@ export default new Router({
         {
             path: '/we',
             component:WE,
-            meta: {
+           /* meta: {
                 needLogin: true,//是否需要登录
                 access: 10//登录最低权限级别
-            }
+            }*/
         },
         {
             path: '/admin',
@@ -53,50 +52,50 @@ export default new Router({
                     path: 'the-userInfo',
                     name: 'theUserInfo',
                     component: theUserInfo,
-                    meta: {
+                    /*meta: {
                         needLogin: true,//是否需要登录
                         access: 10//登录最低权限级别
-                    }
+                    }*/
                 },{
                     path: 'the-software',
                     name: 'theSoftware',
                     component: theSoftware,
-                    meta: {
+                   /* meta: {
                         needLogin: true,//是否需要登录
                         access: 10//登录最低权限级别
-                    }
+                    }*/
                 },{
                     path: 'the-essay',
                     name: 'theEssay',
                     component: theEssay,
-                    meta: {
+                    /*meta: {
                         needLogin: true,//是否需要登录
                         access: 10//登录最低权限级别
-                    }
+                    }*/
                 },{
                     path: 'the-video',
                     name: 'theVideo',
                     component: theVideo,
-                    meta: {
+                   /* meta: {
                         needLogin: true,//是否需要登录
                         access: 10//登录最低权限级别
-                    }
+                    }*/
                 },{
                     path: 'the-awards',
                     name: 'theAwards',
                     component: theAwards,
-                    meta: {
+                   /* meta: {
                         needLogin: true,//是否需要登录
                         access: 10//登录最低权限级别
-                    }
+                    }*/
                 },{
                     path: 'the-member',
                     name: 'theMember',
                     component: theMember,
-                    meta: {
+                   /* meta: {
                         needLogin: true,//是否需要登录
                         access: 10//登录最低权限级别
-                    }
+                    }*/
                 }
             ]
         },
@@ -112,9 +111,9 @@ export default new Router({
                     path: 'home',
                     name: 'theHome',
                     component: theHome,
-                    meta: {
+                 /*   meta: {
                         needLogin: false,
-                    }
+                    }*/
                 },
                 {
                     path: 'login',
@@ -124,16 +123,16 @@ export default new Router({
                             path: '/index/login',
                             name: 'theLogin',
                             component: theLogin,
-                            meta: {
+                            /*meta: {
                                 needLogin: false,
-                            }
+                            }*/
                         },{
                             path: '/index/sign',
                             name: 'theSign',
                             component: theSign,
-                            meta: {
+                           /* meta: {
                                 needLogin: false,
-                            }
+                            }*/
                         },
                     ]
                 },
@@ -141,10 +140,10 @@ export default new Router({
                     path: 'user',
                     name: 'theUser',
                     component: theUser,
-                    meta: {
+                   /* meta: {
                         needLogin: true,//是否需要登录
                         access: 10//登录最低权限级别
-                    }
+                    }*/
                 },
                 {
                     path: 'links',
