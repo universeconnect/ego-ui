@@ -9,7 +9,7 @@
         </el-col>
         <el-col class="share_left">
             <div :span="8">
-              <el-card class="share_card" shadow="hover" v-for="card in share" :key="card" :body-style="{ padding: '0px' }">
+              <el-card class="share_card" shadow="hover" v-for="(card,index) in share" :key="index" :body-style="{ padding: '0px' }">
                 <img :src="card.img" class="image">
                 <div class="share_care_content">
                   <span>{{card.title}}</span>
@@ -39,7 +39,7 @@
 
           <div class="share_essay">
             <span class="share_essay_title">文章分类</span>
-            <div v-for="sort in essayData" :key="sort" class="share_essay_sort">
+            <div v-for="(sort,index) in essayData" :key="index" class="share_essay_sort">
               <span>{{sort.sort}}</span>
               <el-divider></el-divider>
             </div>
