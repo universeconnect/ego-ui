@@ -51,13 +51,21 @@
             <div v-if="$store.state.isLogin" class="user">
                 <div class="head_portraitBox"><img src="../../assets/default_imgs/user.png" width="55" height="55" alt="userimg"></div>
                 <div class="openUserInfoBox">
-                    <router-link :to="{path: 'user'}" class="openUserInfo">...</router-link>
+                    <el-button class="openUserInfo" type="text" @click="show3 = !show3">...</el-button>
                 </div>
                 <div class="userinfoBox">
                     <p class="nicknameBox"><!--{{nickname}}-->这是昵称哦！</p>
                     <p class="usernameBox"><!--{{username}}-->15870290085@163.com</p>
                 </div>
-
+              <div style="margin-top: -3px; height: 200px; width: 300px;z-index: 100">
+                <el-collapse-transition>
+                  <div v-show="show3">
+                    <div class="transition-box">
+                      <el-input type="text" placeholder="请输入密码" v-model="input" clearable></el-input>
+                    </div>
+                  </div>
+                </el-collapse-transition>
+              </div>
             </div>
         </div>
     </div>
@@ -68,7 +76,8 @@
         name: "the-home-navigation",
         data(){
             return{
-
+                show3: true,
+                input: ''
             }
         },
         methods: {
@@ -76,18 +85,13 @@
         },
         mounted() {
             // console.log($store.state.isLogin);
-        }
+        },
     }
 </script>
 
 
 
 <style scoped>
-/*  .box01{
-    position: fixed;
-    width: 100%;
-    z-index: 999;
-  }*/
     .navigation{
         position: relative;
         height: 66px;
@@ -166,19 +170,14 @@
         color: #9e99a0;
     }
     .openUserInfoBox{
-        display: inline-block;
         float: right;
         width: 20px;
-        height: 66px;
         overflow: hidden;
     }
     .openUserInfo{
         color: #fff;
-        display: inline-block;
-        height: 66px;
-        line-height: 50px;
-        font-size: 30px;
-        text-decoration: none;
+        height: 50px;
+        font-size: 25px;
     }
     .router-link-active > .link02{
         color: #d73d07;
@@ -187,5 +186,17 @@
         background-color: #d73d07;
         height: 3px;
         border: 0;
+    }
+    .transition-box {
+      margin-bottom: 10px;
+      width: 300px;
+      height: 100px;
+      border-radius: 4px;
+      background-color: #409EFF;
+      text-align: center;
+      color: #fff;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      margin-right: 20px;
     }
 </style>
