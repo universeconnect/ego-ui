@@ -1,7 +1,7 @@
 <template>
     <div id="software">
         <el-table
-                :data="list.filter(data => !search || data.address.toLowerCase().includes(this.search.toLowerCase())  || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == search) || (data.good == search)).slice(ye*10-10,ye*10)"
+                :data="list.filter(data => !search || (data.age == this.search) || (data.name == this.search) || (data.ID == this.search) || (data.good == this.search) || (data.type == this.search)).slice(ye*10-10,ye*10)"
                 style="width: 100%">
             <el-table-column
                     label="ID"
@@ -23,6 +23,10 @@
             <el-table-column
                     label="展示级别"
                     prop="good">
+            </el-table-column>
+            <el-table-column
+                    label="成员类型"
+                    prop="type">
             </el-table-column>
             <el-table-column
                     align="right">
@@ -66,7 +70,7 @@
                 :before-close="handleClose1">
             <div style="margin: 10px; line-height: 20px !important;"></div>
             <el-form :inline="true" :model="formLabelAlign" class="demo-form-inline">
-                <h2 v-if="formLabelAlign.isupdata" style="margin: -20px auto 5px">ID:{{formLabelAlign.ID}}</h2>
+                <h2 v-if="formLabelAlign.isupdata" style="margin: -20px auto 5px">ID:{{formLabelAlign.ID}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成员信息创建时间：{{formLabelAlign.time}}</h2>
                 <el-form-item label="姓名">
                     <el-input v-model="formLabelAlign.name" placeholder=""></el-input>
                 </el-form-item>
@@ -74,7 +78,14 @@
                     <el-input v-model="formLabelAlign.age" placeholder=""></el-input>
                 </el-form-item>
                 <el-form-item label="成员类型">
-                    <el-input v-model="formLabelAlign.type" placeholder=""></el-input>
+                    <el-select v-model="formLabelAlign.type" placeholder="请选择">
+                        <el-option
+                                v-for="item in options"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="头像">
                     <el-input v-model="formLabelAlign.imgs" placeholder=""></el-input>
@@ -156,6 +167,7 @@
                     good: '',
                     address: '',
                     type:'',
+                    time:'',
                     title: '添加成员信息',
                     isupdata: false,//判断是否是修改数据，用于v-if调节表单项，默认不是，因为添加数据时的表单项在修改数据时都存在
                 },
@@ -172,7 +184,17 @@
                 dialogTableVisible: false,
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
-                dialogVisible1:false
+                dialogVisible1:false,
+                options: [{
+                    value: '临时成员',
+                    label: '临时成员'
+                }, {
+                    value: '正式成员',
+                    label: '正式成员'
+                }, {
+                    value: '核心成员',
+                    label: '核心成员'
+                }],
             }
         },
         created() {
@@ -187,7 +209,7 @@
                         this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
                         this.metadata = body.data.datas;//存放真实数据
                         this.end(this.ye);
-                        jiaohu.$emit("len", this.list.filter(data => !this.search || data.address.toLowerCase().includes(this.search.toLowerCase())  || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.good == this.search)));
+                        jiaohu.$emit("len", this.list.filter(data => !this.search || (data.age == this.search) || (data.name == this.search) || (data.ID == this.search) || (data.good == this.search) || (data.type == this.search)));
                         jiaohu.$on("ye", (ye) => {
                             this.ye = ye;
                         });
@@ -232,6 +254,7 @@
                 //对表单赋初值
                 this.formLabelAlign.ID = this.updatadata.ID;
                 this.formLabelAlign.name = this.updatadata.name;
+                this.formLabelAlign.time = this.updatadata.time;
                 this.formLabelAlign.type = this.updatadata.type;
                 this.formLabelAlign.imgs = this.updatadata.imgs;
                 this.formLabelAlign.motto = this.updatadata.motto;
@@ -262,6 +285,7 @@
                     this.updatadataF('http://49.234.9.206/Gaindata/updata_member.php',{
                         ID : this.formLabelAlign.ID,
                         name : this.formLabelAlign.name,
+                        time : this.formLabelAlign.time,
                         type : this.formLabelAlign.type,
                         imgs : this.formLabelAlign.imgs,
                         age :this.formLabelAlign.age,
@@ -276,6 +300,7 @@
                     //发送添加请求
                     this.insertdataF('http://49.234.9.206/Gaindata/insert_member.php',{
                         name : this.formLabelAlign.name,
+                        time : this.formLabelAlign.time,
                         imgs : this.formLabelAlign.imgs,
                         type : this.formLabelAlign.type,
                         age :this.formLabelAlign.age,
@@ -303,7 +328,8 @@
                     interest: '',
                     adept: '',
                     good: '',
-                    type: '',
+                    type: '临时成员',
+                    time: '',
                     address: '',
                     title: '添加成员信息',
                     isupdata: false,
@@ -312,7 +338,7 @@
             handleDelete(index, row) {
             },
             end(ye) {
-                var i = (this.list.filter(data => !this.search || data.address.toLowerCase().includes(this.search.toLowerCase())  || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.good == this.search))).length / 10;
+                var i = (this.list.filter(data => !this.search || (data.age == this.search) || (data.name == this.search) || (data.ID == this.search) || (data.good == this.search) || (data.type == this.search))).length / 10;
                 if (ye > i) {
                     this.endye = true;
                 } else {
@@ -330,7 +356,7 @@
             }
         },
         beforeUpdate(){
-            jiaohu.$emit("len", this.list.filter(data => !this.search || data.address.toLowerCase().includes(this.search.toLowerCase())  || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.good == this.search)));
+            jiaohu.$emit("len", this.list.filter(data => !this.search || (data.age == this.search) || (data.name == this.search) || (data.ID == this.search) || (data.good == this.search) || (data.type == this.search)));
             this.end(this.ye);
         }
     }
