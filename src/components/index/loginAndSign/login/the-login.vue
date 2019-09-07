@@ -88,11 +88,11 @@
 <style scoped>
 .el-form-box{
   width: 400px;
-  height: 280px;
+  height: auto;
   margin: 0 auto;
-  padding: 80px 100px 10px 20px;
+  padding: 80px 100px 30px 20px;
   position: relative;
-  top: 150px;
+  top: 100px;
   border-radius: 10px;
   background-color: rgba(255,255,255,0.1);
 }
