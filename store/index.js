@@ -9,8 +9,8 @@ const store = new Vuex.Store({
     },
     mutations:{
         //修改状态
-        increment(state){
-            state.a++
+        updataIsLogin(state,data) {
+            state.isLogin =  data;
         },
         updatascrollTop(state, scrolltop){
             state.scrolltop = scrolltop;
@@ -22,17 +22,6 @@ const store = new Vuex.Store({
     },
     getters:{
         //数据处理
-        data1(state){
-            return state.a*5
-        },
-        data2(state){
-            return function (x) {
-                return state.a*x
-            }
-        },
-        data3(state,getters){
-            return getters.data1*5
-        }
     },
     modules:{
 
