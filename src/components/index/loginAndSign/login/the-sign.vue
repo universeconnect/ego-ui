@@ -2,6 +2,9 @@
     <div>
       <div class="el-form-box">
         <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <el-form-item label="邮箱" prop="username">
+            <el-input type="text" v-model="ruleForm.email" autocomplete="off"></el-input>
+          </el-form-item>
           <el-form-item label="用户名" prop="username">
             <el-input type="text" v-model="ruleForm.username" autocomplete="off"></el-input>
           </el-form-item>
