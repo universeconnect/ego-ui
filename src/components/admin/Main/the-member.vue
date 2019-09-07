@@ -68,19 +68,22 @@
             <el-form :inline="true" :model="formLabelAlign" class="demo-form-inline">
                 <h2 v-if="formLabelAlign.isupdata" style="margin: -20px auto 5px">ID:{{formLabelAlign.ID}}</h2>
                 <el-form-item label="姓名">
-                    <el-input v-model="formLabelAlign.name" placeholder="xxx"></el-input>
+                    <el-input v-model="formLabelAlign.name" placeholder=""></el-input>
                 </el-form-item>
-                <el-form-item label="	年龄">
-                    <el-input v-model="formLabelAlign.age" placeholder="xx"></el-input>
+                <el-form-item label="年龄">
+                    <el-input v-model="formLabelAlign.age" placeholder=""></el-input>
+                </el-form-item>
+                <el-form-item label="成员类型">
+                    <el-input v-model="formLabelAlign.type" placeholder=""></el-input>
                 </el-form-item>
                 <el-form-item label="头像">
-                    <el-input v-model="formLabelAlign.imgs" placeholder="c:xxxxxxxxxx/xxxxxxxxxxx/xxxxxxxxxx.png"></el-input>
+                    <el-input v-model="formLabelAlign.imgs" placeholder=""></el-input>
                 </el-form-item>
                 <el-form-item label="座右铭">
-                    <el-input v-model="formLabelAlign.motto" placeholder="xxxx"></el-input>
+                    <el-input v-model="formLabelAlign.motto" placeholder=""></el-input>
                 </el-form-item>
                 <el-form-item  label="展示级别">
-                    <el-input v-model="formLabelAlign.good" placeholder="x"></el-input>
+                    <el-input v-model="formLabelAlign.good" placeholder=""></el-input>
                 </el-form-item>
                 <p>	个人简介：<el-input v-model="formLabelAlign.intro" placeholder="请输入内容"></el-input></p>
 
@@ -152,6 +155,7 @@
                     adept: '',
                     good: '',
                     address: '',
+                    type:'',
                     title: '添加成员信息',
                     isupdata: false,//判断是否是修改数据，用于v-if调节表单项，默认不是，因为添加数据时的表单项在修改数据时都存在
                 },
@@ -228,6 +232,7 @@
                 //对表单赋初值
                 this.formLabelAlign.ID = this.updatadata.ID;
                 this.formLabelAlign.name = this.updatadata.name;
+                this.formLabelAlign.type = this.updatadata.type;
                 this.formLabelAlign.imgs = this.updatadata.imgs;
                 this.formLabelAlign.motto = this.updatadata.motto;
                 this.formLabelAlign.age = this.updatadata.age;
@@ -240,6 +245,7 @@
             updatareste(){
                 //对表单重新赋值
                 this.formLabelAlign.name = this.updatadata.name;
+                this.formLabelAlign.type = this.updatadata.type;
                 this.formLabelAlign.imgs = this.updatadata.imgs;
                 this.formLabelAlign.motto = this.updatadata.motto;
                 this.formLabelAlign.age = this.updatadata.age;
@@ -256,6 +262,7 @@
                     this.updatadataF('http://49.234.9.206/Gaindata/updata_member.php',{
                         ID : this.formLabelAlign.ID,
                         name : this.formLabelAlign.name,
+                        type : this.formLabelAlign.type,
                         imgs : this.formLabelAlign.imgs,
                         age :this.formLabelAlign.age,
                         intro : this.formLabelAlign.intro,
@@ -270,7 +277,8 @@
                     this.insertdataF('http://49.234.9.206/Gaindata/insert_member.php',{
                         name : this.formLabelAlign.name,
                         imgs : this.formLabelAlign.imgs,
-                      age :this.formLabelAlign.age,
+                        type : this.formLabelAlign.type,
+                        age :this.formLabelAlign.age,
                         intro : this.formLabelAlign.intro,
                         interest : this.formLabelAlign.interest,
                         adept : this.formLabelAlign.adept,
@@ -295,6 +303,7 @@
                     interest: '',
                     adept: '',
                     good: '',
+                    type: '',
                     address: '',
                     title: '添加成员信息',
                     isupdata: false,
@@ -316,21 +325,6 @@
                     //对展示数据的长度进行处理
                     if (this.list[i].imgs.length > 10) {
                         this.list[i].imgs = this.list[i].imgs.substr(0,10) + "...";
-                    }
-                    if (this.list[i].motto.length > 6) {
-                        this.list[i].motto = this.list[i].motto.substr(0,6) + "...";
-                    }
-                    if (this.list[i].intro.length > 6) {
-                        this.list[i].intro = this.list[i].intro.substr(0,6) + "...";
-                    }
-                    if (this.list[i].interest.length > 6) {
-                        this.list[i].interest = this.list[i].interest.substr(0,6) + "...";
-                    }
-                    if (this.list[i].adept.length > 6) {
-                        this.list[i].adept = this.list[i].adept.substr(0,6) + "...";
-                    }
-                    if (this.list[i].address.length > 6) {
-                        this.list[i].address = this.list[i].address.substr(0,6) + "...";
                     }
                 }
             }
