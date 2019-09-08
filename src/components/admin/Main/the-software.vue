@@ -90,9 +90,9 @@
                     <el-input v-model="formLabelAlign.link" placeholder="（http/https）：//xxxxxxxxx.xxxx"></el-input>
                 </el-form-item>
                 <el-form-item label="分类">
-                  <el-select v-model="value" placeholder="请选择">
+                  <el-select v-model="formLabelAlign.classify" placeholder="请选择">
                     <el-option
-                      v-for="item in classify"
+                      v-for="item in classifyItem"
                       :key="item.value"
                       :label="item.label"
                       :value="item.value">
@@ -191,7 +191,7 @@
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
                 dialogVisible1:false,
-              classify:[{
+              classifyItem:[{
                 value: '开发编程',
                 label: '开发编程'
               }, {
@@ -285,7 +285,7 @@
             updatareste(){
                 //对表单重新赋值
               this.formLabelAlign.ID = this.updatadata.ID;
-              this.formLabelAlign.classify = this.updatadata.classify;
+              this.formLabelAlign.classify = this.updatadata.classifyItem;
               this.formLabelAlign.description = this.updatadata.description;
               this.formLabelAlign.link = this.updatadata.link;
               this.formLabelAlign.icon = this .updatadata.icon;
@@ -297,7 +297,6 @@
             },
             okupdate(){
                 this.dialogVisible1 = false;//关闭对话框
-              console.log(this.formLabelAlign.classify);
                 if (this.formLabelAlign.isupdata) {
                     //发送修改请求
                     this.updatadataF('http://49.234.9.206/Gaindata/updata_software.php',{
