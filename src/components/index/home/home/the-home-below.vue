@@ -1,6 +1,5 @@
 <template>
     <div class="footer">
-      <div>
         <div class="links">
           <dl>
             <dt>关于我们</dt>
@@ -24,10 +23,13 @@
             <dd><a href="#">关于我们</a></dd>
           </dl>
         </div>
-      </div>
       <div class="right">
-        <img src="src/assets/web_img/QRcode.jpg" alt="">
+        <img src="../../../.././assets/web_img/QRcode.jpg" alt="">
       </div>
+        <div class="bottom">
+        本站资源来自互联网，若有侵权，请联系站长清除<br>
+          copyrigh &copy;2018-2019&nbsp;宇宙互联工作室&nbsp;&nbsp;黔ICP备19008883
+        </div>
     </div>
 </template>
 
@@ -43,7 +45,7 @@
   }
  .footer {
    width: 100%;
-   height: 200px;
+   height: 247px;
    background-color: #201e1e;
  }
  .links {
@@ -56,20 +58,35 @@
   }
   .links dt {
     height: 35px;
-    font-size: 16px;
+    font-size: 18px;
     color: #e5e5e5;
     text-align: right;
   }
   .links dd a {
     text-align: left;
-    font-size: 12px;
+    font-size: 13px;
     color: #e5e5e5;
 
   }
   .links dd a:hover {
     color: #d73d07;
   }
-  .right {
-    float: right;
+  img {
+    width: 150px;
+    height: 150px;
+    margin-top: 13px;
+    margin-left: 395px;
   }
+  .bottom {
+    float: left;
+    width: 100%;
+    height: 70px;
+    border-top: 1px dotted #5d5d5d;
+    font-size: 13px;
+    color:#5d5d5d ;
+    padding-top: 10px;
+    text-align: center;
+  }
+
+
 </style>
