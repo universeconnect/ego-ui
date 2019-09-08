@@ -141,6 +141,6 @@
         filter:alpha(Opacity=0);
         -moz-opacity:1;
         opacity: 0;
-        transition-duration: 0.5s;
+        transition-duration: 1.2s;
     }
 </style>

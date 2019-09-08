@@ -157,7 +157,6 @@ export default new Router({
                 },
                 {
                     path: 'information',
-                    name: 'Information',
                     component: Information,
                     children:[
                         {

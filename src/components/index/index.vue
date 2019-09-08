@@ -11,6 +11,11 @@
           }
         },
         mounted() {
+            //登录
+            //1强行cookie中的isLogin
+            this.$cookies.set("isLogin",true);
+            //2.将结果保存到vuex
+            this.$store.commit('updataIsLogin',this.$cookies.get("isLogin"));
             window.addEventListener('scroll', this.handleScroll);
         },
         methods:{
