@@ -42,6 +42,7 @@ export function amend(index, row){
 }
 
 
+
 export function updatadataF(url,api){//api为请求携带参数,url为请求地址
     this.axios.post(url,this.$qs.stringify(api))
         .then(body => {//修改请求成功

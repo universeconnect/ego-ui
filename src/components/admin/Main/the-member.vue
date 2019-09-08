@@ -186,11 +186,11 @@
                 formLabelWidth: '120px',
                 dialogVisible1:false,
                 options: [{
-                    value: '临时成员',
-                    label: '临时成员'
+                    value: '普通成员',
+                    label: '普通成员'
                 }, {
-                    value: '正式成员',
-                    label: '正式成员'
+                    value: '主要成员',
+                    label: '主要成员'
                 }, {
                     value: '核心成员',
                     label: '核心成员'
@@ -328,7 +328,7 @@
                     interest: '',
                     adept: '',
                     good: '',
-                    type: '临时成员',
+                    type: '普通成员',
                     time: '',
                     address: '',
                     title: '添加成员信息',

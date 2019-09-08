@@ -54,7 +54,7 @@
   };
 </script>
 
-<style>
+<style scoped>
   .abc {
     width: 600px;
     height: 200px;

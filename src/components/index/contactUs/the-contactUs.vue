@@ -139,7 +139,7 @@
         top: 66px;
         right: -600px;
         width: 600px;
-        background: url("../../../assets/web_img/contactUs01.png") no-repeat 0 -200px;
+        background: url("../../../assets/web_img/contactUs01.png") no-repeat 0 -100px;
         filter:alpha(Opacity=0);
         -moz-opacity:0.95;
         opacity: 0;
@@ -148,14 +148,14 @@
         width: 110px;
         height: 110px;
         position: absolute;
-        top: 180px;
+        top: 280px;
         right: 180px;
     }
     .text{
         position: absolute;
         width: 450px;
         height: 120px;
-        top: 350px;
+        top: 450px;
         right: 0px;
         font-size: 14px;
         text-align: left;
