@@ -51,20 +51,50 @@
             <div v-if="$store.state.isLogin" class="user">
                 <div class="head_portraitBox"><img src="../../assets/default_imgs/user.png" width="55" height="55" alt="userimg"></div>
                 <div class="openUserInfoBox">
-                    <el-button class="openUserInfo" type="text" @click="show3 = !show3">...</el-button>
+                    <el-button class="openUserInfo" type="text"  @click="drawer = true">...</el-button>
                 </div>
                 <div class="userinfoBox">
                     <p class="nicknameBox"><!--{{nickname}}-->这是昵称哦！</p>
                     <p class="usernameBox"><!--{{username}}-->15870290085@163.com</p>
                 </div>
-              <div style="margin-top: -3px; height: 200px; width: 300px;z-index: 100">
-                <el-collapse-transition>
-                  <div v-show="show3">
-                    <div class="transition-box">
-                      <el-input type="text" placeholder="请输入密码" v-model="input" clearable></el-input>
+              <div style="margin-top: -3px; height: 200px; width: 300px;z-index: 200">
+                <el-drawer
+                  title="个人信息"
+                  :visible.sync="drawer"
+                  :direction="direction"
+                  :before-close="handleClose">
+                  <div class="personal_info">
+                    <div class="head_portraitBox_user">
+                      <img src="../../assets/default_imgs/user.png" width="120" height="120" alt="userimg">
                     </div>
+                    <div class="personal_info_head">
+                      <el-button size="mini">修改头像</el-button>
+                    </div>
+                    <div class="personal_info_input">
+                      <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
+                        <el-form-item label="用户名：">
+                          <el-input v-model="formLabelAlign.name" style="width: 350px;"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称：">
+                          <el-input v-model="formLabelAlign.region" style="width: 350px;"></el-input>
+                        </el-form-item>
+                        <el-form-item label="邮箱：">
+                          <el-input v-model="formLabelAlign.type" style="width: 350px;"></el-input>
+                        </el-form-item>
+                        <el-form-item label="个人简介：" class="personal_info_intro">
+                          <el-input type="textarea" :rows="4" placeholder="请输入内容" style="width: 350px;" v-model="textarea"></el-input>
+                        </el-form-item>
+                      </el-form>
+                    </div>
+                    <div class="personal_info_btn">
+                      <el-button>取 消</el-button>
+                      <el-button>重 置</el-button>
+                      <el-button type="primary" :loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
+                    </div>
+
+
                   </div>
-                </el-collapse-transition>
+                </el-drawer>
               </div>
             </div>
         </div>
@@ -75,13 +105,25 @@
     export default {
         name: "the-home-navigation",
         data(){
-            return{
-                show3: true,
-                input: ''
+            return {
+                drawer: false,
+                direction: 'rtl',
+                labelPosition: 'right',
+                formLabelAlign: {
+                    name: '',
+                    region: '',
+                    type: ''
+                },
             }
         },
         methods: {
-
+            handleClose(done) {
+                this.$confirm('确认关闭？')
+                    .then(_ => {
+                        done();
+                    })
+                    .catch(_ => {});
+            }
         },
         mounted() {
             // console.log($store.state.isLogin);
@@ -187,16 +229,25 @@
         height: 3px;
         border: 0;
     }
-    .transition-box {
-      margin-bottom: 10px;
-      width: 300px;
-      height: 100px;
-      border-radius: 4px;
-      background-color: #409EFF;
-      text-align: center;
-      color: #fff;
-      padding: 40px 20px;
-      box-sizing: border-box;
-      margin-right: 20px;
+    .head_portraitBox_user{
+      margin: 0 auto;
+      width: 120px;
+      height: 120px;
     }
+  .personal_info{
+    width: 500px;
+    height: 800px;
+    margin: 50px auto 0;
+  }
+  .personal_info_input{
+    margin-top: 80px;
+  }
+  .personal_info_head{
+    margin: 20px auto 0;
+    width: 80px;
+  }
+  .personal_info_btn{
+    width: 252px;
+    margin: 50px auto 0;
+  }
 </style>
