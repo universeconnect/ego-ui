@@ -25,9 +25,8 @@
           </dl>
         </div>
       </div>
-      <img src="erweima.jpg" alt="">
       <div class="right">
-        <img src="" alt="">
+        <img src="src/assets/web_img/QRcode.jpg" alt="">
       </div>
     </div>
 </template>
