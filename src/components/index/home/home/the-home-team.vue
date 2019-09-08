@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    export default {
+     export default {
         name: "the-home-team",
       data(){
           return{
