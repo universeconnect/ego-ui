@@ -1,6 +1,6 @@
 <template>
     <div class="box01">
-     <h2><font color="#b22222">Team</font></h2>
+     <h2 class="cc">Team</h2>
       <el-carousel :interval="5000" arrow="always">
 
         <el-carousel-item v-for="(item,c) in a" :key="c">
@@ -58,13 +58,8 @@
 
 <style scoped>
   .box01{ width:1200px; height:300px; text-align: center; margin: auto; margin-top: 90px}
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 18px;
-    opacity: 0.75;
-    line-height: 300px;
-    margin: 0;
-  }
+
+
   .el-carousel__item h2 {
     color: #666666;
     font-size: 18px;
@@ -73,26 +68,23 @@
     margin: 0;
   }
 
-  .el-carousel__item:nth-child(3) {
-    background-color: #99a9bf;
 
-  }
 
-  .el-carousel__item:nth-child(4) {
+  .el-carousel-item:nth-child(4) {
     background-color: #d3dce6;
   }
-  .el-carousel__item:nth-child(5) {
+  .el-carousel-item:nth-child(5) {
     background-color: wheat;
   }
-  .el-carousel__item:nth-child(6) {
+  .el-carousel-item:nth-child(6) {
     background-color: cornsilk;
   }
-  .el-carousel__item:nth-child(7) {
+  .el-carousel-item:nth-child(7) {
     background-color: #666666;
   }
   .aa{ margin-left:120px; margin-top: 25px}
   .a{width:300px; height:230px; background: #B3C0D1; float: left; margin: auto; margin-left: 20px}
   .b{ height: 90px; width: 90px; background: wheat; margin: auto; border-radius: 50%; margin-top: 20px}
-  .b1{ }
+  .cc{ color: #b22222}
 
 </style>
