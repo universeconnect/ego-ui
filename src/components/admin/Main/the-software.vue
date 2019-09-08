@@ -13,20 +13,28 @@
                     prop="name">
             </el-table-column>
             <el-table-column
+                    label="软件介绍"
+                    prop="description">
+            </el-table-column>
+            <el-table-column
                     label="发布时间"
                     prop="release_time">
             </el-table-column>
             <el-table-column
-                    label="下载链接"
-                    prop="Download_link">
+                    label="跳转链接"
+                    prop="link">
             </el-table-column>
             <el-table-column
-                    label="提取码"
-                    prop="password">
+                    label="图标"
+                    prop="icon">
             </el-table-column>
             <el-table-column
                     label="下载量"
                     prop="downloads">
+            </el-table-column>
+            <el-table-column
+                    label="分类"
+                    prop="classify">
             </el-table-column>
             <el-table-column
                     label="权限"
@@ -78,11 +86,21 @@
                 <el-form-item label="软件名称">
                     <el-input v-model="formLabelAlign.name" placeholder="xxxxxx"></el-input>
                 </el-form-item>
-                <el-form-item label="下载链接">
-                    <el-input v-model="formLabelAlign.Download_link" placeholder="（http/https）：//xxxxxxxxx.xxxx"></el-input>
+                <el-form-item label="跳转链接">
+                    <el-input v-model="formLabelAlign.link" placeholder="（http/https）：//xxxxxxxxx.xxxx"></el-input>
                 </el-form-item>
-                <el-form-item label="提取码">
-                    <el-input v-model="formLabelAlign.password" placeholder="xxxx"></el-input>
+                <el-form-item label="分类">
+                  <el-select v-model="formLabelAlign.classify" placeholder="请选择">
+                    <el-option
+                      v-for="item in classifyItem"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="图标">
+                  <el-input v-model="formLabelAlign.icon" placeholder="xxxx"></el-input>
                 </el-form-item>
                 <el-form-item v-if="formLabelAlign.isupdata" label="下载量">
                     <el-input v-model="formLabelAlign.downloads" placeholder="x"></el-input>
@@ -96,24 +114,11 @@
                 <p>软件介绍：</p>
                 <el-input
                         type="textarea"
-                        :autosize="{ minRows: 2, maxRows: 4}"
+                        :autosize="{ minRows: 4, maxRows: 8}"
                         placeholder="请输入内容"
                         v-model="formLabelAlign.description">
                 </el-input>
-                <p>破解安装教程：</p>
-                <el-input
-                        type="textarea"
-                        :autosize="{ minRows: 2, maxRows: 4}"
-                        placeholder="请输入内容"
-                        v-model="formLabelAlign.cit">
-                </el-input>
-                <p>使用教程：</p>
-                <el-input
-                        type="textarea"
-                        :autosize="{ minRows: 2, maxRows: 4}"
-                        placeholder="请输入内容"
-                        v-model="formLabelAlign.tutorial">
-                </el-input>
+
             </el-form>
             <span slot="footer" class="dialog-footer">
         <el-popover
@@ -162,14 +167,13 @@
                 formLabelAlign: {
                     ID: '',
                     description: '',
-                    Download_link: '',
-                    cit: '',
-                    tutorial: '',
+                    link: '',
                     downloads: '',
+                    icon:'',
                     access: '',
+                  classify:'',
                     name: '',
                     release_time: '',
-                    password: '',
                     title: '添加推荐软件',
                     isupdata: false,//判断是否是修改数据，用于v-if调节表单项，默认不是，因为添加数据时的表单项在修改数据时都存在
                 },
@@ -186,7 +190,30 @@
                 dialogTableVisible: false,
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
-                dialogVisible1:false
+                dialogVisible1:false,
+              classifyItem:[{
+                value: '开发编程',
+                label: '开发编程'
+              }, {
+                value: '电脑办公',
+                label: '电脑办公'
+              }, {
+                value: '数据分析',
+                label: '数据分析'
+              }, {
+                value: '虚拟机',
+                label: '虚拟机'
+              }, {
+                value: '科技绘图',
+                label: '科技绘图'
+              }, {
+                value: '机械设计',
+                label: '机械设计'
+              }, {
+                value: '建筑设计',
+                label: '建筑设计'
+              }],
+              value:''
             }
         },
         created() {
@@ -246,27 +273,27 @@
                 this.updatadata = this.metadata.filter(data => data.ID == row.ID)[0];//提取元数据
                 //对表单赋初值
                 this.formLabelAlign.ID = this.updatadata.ID;
+                this.formLabelAlign.classify = this.updatadata.classify;
                 this.formLabelAlign.description = this.updatadata.description;
-                this.formLabelAlign.Download_link = this.updatadata.Download_link;
-                this.formLabelAlign.cit = this.updatadata.cit;
-                this.formLabelAlign.tutorial = this.updatadata.tutorial;
+                this.formLabelAlign.link = this.updatadata.link;
+                this.formLabelAlign.icon = this .updatadata.icon;
                 this.formLabelAlign.downloads = this.updatadata.downloads;
                 this.formLabelAlign.access = this.updatadata.access;
                 this.formLabelAlign.name = this.updatadata.name;
                 this.formLabelAlign.release_time = this.updatadata.release_time;
-                this.formLabelAlign.password = this.updatadata.password;
             },
             updatareste(){
                 //对表单重新赋值
-                this.formLabelAlign.description = this.updatadata.description;
-                this.formLabelAlign.Download_link = this.updatadata.Download_link;
-                this.formLabelAlign.cit = this.updatadata.cit;
-                this.formLabelAlign.tutorial = this.updatadata.tutorial;
-                this.formLabelAlign.downloads = this.updatadata.downloads;
-                this.formLabelAlign.access = this.updatadata.access;
-                this.formLabelAlign.name = this.updatadata.name;
-                this.formLabelAlign.release_time = this.updatadata.release_time;
-                this.formLabelAlign.password = this.updatadata.password;
+              this.formLabelAlign.ID = this.updatadata.ID;
+              this.formLabelAlign.classify = this.updatadata.classifyItem;
+              this.formLabelAlign.description = this.updatadata.description;
+              this.formLabelAlign.link = this.updatadata.link;
+              this.formLabelAlign.icon = this .updatadata.icon;
+              this.formLabelAlign.downloads = this.updatadata.downloads;
+              this.formLabelAlign.access = this.updatadata.access;
+              this.formLabelAlign.name = this.updatadata.name;
+              this.formLabelAlign.release_time = this.updatadata.release_time;
+
             },
             okupdate(){
                 this.dialogVisible1 = false;//关闭对话框
@@ -275,24 +302,23 @@
                     this.updatadataF('http://49.234.9.206/Gaindata/updata_software.php',{
                         ID : this.formLabelAlign.ID,
                         description : this.formLabelAlign.description,
-                        Download_link : this.formLabelAlign.Download_link,
-                        cit :this.formLabelAlign.cit,
-                        tutorial : this.formLabelAlign.tutorial,
+                        link : this.formLabelAlign.link,
                         downloads : this.formLabelAlign.downloads,
                         access : this.formLabelAlign.access,
                         name : this.formLabelAlign.name,
+                        classify: this.formLabelAlign.classify,
+                        icon: this.formLabelAlign.icon,
                         release_time : this.formLabelAlign.release_time,
-                        password : this.formLabelAlign.password,
                     });
                 }else {
                     //发送添加请求
                     this.insertdataF('http://49.234.9.206/Gaindata/insert_software.php',{
                         description : this.formLabelAlign.description,
-                        Download_link : this.formLabelAlign.Download_link,
-                        cit :this.formLabelAlign.cit,
-                        tutorial : this.formLabelAlign.tutorial,
                         name : this.formLabelAlign.name,
-                        password : this.formLabelAlign.password,
+                        link: this.formLabelAlign.link,
+                        icon: this.formLabelAlign.icon,
+                      access : this.formLabelAlign.access,
+                      classify: this.formLabelAlign.classify
                     });
                 }
 
@@ -303,15 +329,13 @@
                 //清除表单初值
                 this.formLabelAlign = {
                     ID: '',
-                    description: '',
-                    Download_link: '',
-                    cit: '',
-                    tutorial: '',
+                    link: '',
                     downloads: '',
                     access: '',
                     name: '',
+                    icon: '',
+                    classify:'',
                     release_time: '',
-                    password: '',
                     title: '添加推荐软件',
                     isupdata: false,
                 };
@@ -333,23 +357,19 @@
                     if (this.list[i].description.length > 6) {
                         this.list[i].description = this.list[i].description.substr(0,6) + "...";
                     }
-                    if (this.list[i].release_time.length > 6) {
-                        this.list[i].release_time = this.list[i].release_time.substr(0,6) + "...";
+                    if (this.list[i].release_time.length > 12) {
+                        this.list[i].release_time = this.list[i].release_time.substr(0,12) + "...";
                     }
-                    if (this.list[i].Download_link.length > 6) {
-                        this.list[i].Download_link = this.list[i].Download_link.substr(0,6) + "...";
-                    }
-                    if (this.list[i].cit.length > 6) {
-                        this.list[i].cit = this.list[i].cit.substr(0,6) + "...";
-                    }
-                    if (this.list[i].tutorial.length > 6) {
-                        this.list[i].tutorial = this.list[i].tutorial.substr(0,6) + "...";
+                    if (this.list[i].link.length > 6) {
+                        this.list[i].link = this.list[i].link.substr(0,6) + "...";
                     }
                     if (this.list[i].downloads.length > 6) {
                         this.list[i].downloads = this.list[i].downloads.substr(0,6) + "...";
                     }
                     if (this.list[i].access.length > 6) {
                         this.list[i].access = this.list[i].access.substr(0,6) + "...";
+                    }if (this.list[i].icon.length > 12) {
+                        this.list[i].icon = this.list[i].icon.substr(0,12) + "...";
                     }
                 }
             }

@@ -1,7 +1,6 @@
 <template>
     <div>
         <Navigation></Navigation>
-        <p>友情链接</p>
     </div>
 </template>
 
@@ -10,6 +9,16 @@
     export default {
         name: "the-links",
         components: {Navigation},
+        data(){
+            return{
+
+            }
+        },
+        methods:{
+
+        },
+        mounted() {
+        }
     }
 </script>
 

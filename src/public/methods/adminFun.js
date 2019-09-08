@@ -26,11 +26,6 @@ export function amend(index, row){
                             this.metadata = body.data.datas;//存放真实数据
                             this.Deposit();
                             this.end(this.ye);
-                            jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
-                            jiaohu.$on("ye", (ye) => {
-                                this.ye = ye;
-                            });
-
                         }
                     })
                     .catch(error => {
@@ -64,11 +59,6 @@ export function updatadataF(url,api){//api为请求携带参数,url为请求地�
                             this.metadata = body.data.datas;//存放真实数据
                             this.Deposit();
                             this.end(this.ye);
-                            jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
-                            jiaohu.$on("ye", (ye) => {
-                                this.ye = ye;
-                            });
-
                         }
                     })
                     .catch(error => {
@@ -103,10 +93,6 @@ export function insertdataF(url,api){//api为请求携带参数,url为请求地�
                             this.metadata = body.data.datas;//存放真实数据
                             this.Deposit();
                             this.end(this.ye);
-                            jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
-                            jiaohu.$on("ye", (ye) => {
-                                this.ye = ye;
-                            });
                         }
                     })
                     .catch(error => {

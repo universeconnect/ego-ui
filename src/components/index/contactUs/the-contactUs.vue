@@ -129,11 +129,9 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    background-color: chocolate;
 }
     .map{
         width: 100%;
-        background-color: crimson;
     }
     .information{
         position: absolute;
@@ -149,7 +147,6 @@
     .QRcode{
         width: 110px;
         height: 110px;
-        background-color: coral;
         position: absolute;
         top: 180px;
         right: 180px;
