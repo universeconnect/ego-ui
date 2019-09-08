@@ -4,7 +4,7 @@
         <h2><font color="#b22222">Testimonial</font></h2>
         <el-carousel :interval="5000" arrow="always">
 
-          <el-carousel-item v-for="item in b" :key="item">
+          <el-carousel-item v-for="(item,index) in b" :key="index">
             <div  class="one">{{item.img}}</div>
             <div>{{item.text1}}</div>
             <div class="two">{{item.text}}</div>

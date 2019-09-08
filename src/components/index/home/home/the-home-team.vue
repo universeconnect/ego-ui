@@ -3,7 +3,7 @@
      <h2><font color="#b22222">Team</font></h2>
       <el-carousel :interval="5000" arrow="always">
 
-        <el-carousel-item v-for="item in a" :key="item">
+        <el-carousel-item v-for="(item,c) in a" :key="c">
           <div>{{item.text}}</div>
           <div class="aa">
               <div class="a">
