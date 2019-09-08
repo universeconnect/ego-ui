@@ -68,18 +68,21 @@
     margin: 0;
   }
 
+  .el-carousel__item:nth-child(3) {
+    background-color: #99a9bf;
 
+  }
 
-  .el-carousel-item:nth-child(4) {
+  .el-carousel__item:nth-child(4) {
     background-color: #d3dce6;
   }
-  .el-carousel-item:nth-child(5) {
+  .el-carousel__item:nth-child(5) {
     background-color: wheat;
   }
-  .el-carousel-item:nth-child(6) {
+  .el-carousel__item:nth-child(6) {
     background-color: cornsilk;
   }
-  .el-carousel-item:nth-child(7) {
+  .el-carousel__item:nth-child(7) {
     background-color: #666666;
   }
   .aa{ margin-left:120px; margin-top: 25px}
