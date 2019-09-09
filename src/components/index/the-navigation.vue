@@ -87,12 +87,11 @@
                               </el-form>
                           </div>
                           <div class="personal_info_btn">
-                              <el-button>取 消</el-button>
+                              <!--<el-button>取 消</el-button>-->
                               <el-button>重 置</el-button>
                               <el-button type="primary">确 定</el-button>
+                              <el-button type="danger" @click="logout">注销</el-button>
                           </div>
-
-
                       </div>
                   </el-drawer>
               </div>
@@ -124,6 +123,21 @@
                         done();
                     })
                     .catch(_ => {});
+            },
+            logout(){
+                //注销登录
+                //删除所有注册cookie数据
+                this.$cookies.set('isLogin',null);
+                this.$cookies.remove('username',);
+                this.$cookies.remove('ID');
+                this.$cookies.remove('email');
+                this.$cookies.remove('nickname');
+                this.$cookies.remove('head_portrait');
+                this.$cookies.remove('creation_time');
+                this.$cookies.remove('access');
+                //清除vux登录状态以及数据
+                this.$store.commit('logout')
+
             }
         },
         mounted() {
