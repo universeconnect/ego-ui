@@ -1,48 +1,105 @@
 <template>
-
-<div>
-  <div class="abc">
-
+  <div>
+    <a v-for="(value,index) in datas" :key="index">
+      <ul>
+        <li>
+          <div class="img">
+            <img src="../../../.././assets/imgs/Word.png" alt="">
+          </div>
+          <div class="right">
+            <div class="top">
+              <div class="zuo">{{value.title}}</div>
+              <div class="you">上传日期：{{value.release_time}}</div>
+              <div class="you">下载量：{{value.downloads}} 次</div>
+            </div>
+            <div class="bottom">
+              <div class="btm">简介：{{value.abstract}}</div>
+              <div class="btm">类别：{{value.classify}}</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </a>
   </div>
-  <table>
-    <thead>
-    <tr>
-      <th>全部文档</th>
-      <th>推荐</th>
-      <th>价格</th>
-      <th>阅读量</th>
-      <th>下载量</th>
-      <th>上传日期</th>
-      <th>creation_time</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr v-for="list in lists" :key="list.ID">
-      <td>{{list.ID}}</td>
-      <td>{{list.username}}</td>
-      <td>{{list.password}}</td>
-      <td>{{list.email}}</td>
-      <td>{{list.nickname}}</td>
-      <td>{{list.head_portrait}}</td>
-      <td>{{list.creation_time}}</td>
-    </tr>
-    </tbody>
-  </table>
-
-</div>
 </template>
 <script>
   export default {
     name: 'App',
     data(){
       return{
-        lists:[
-          {"ID":1, "username":"李斯", "password":"99", "email":"390", "nickname":"100", "head_portrait":"2019-09-08", },
-          {"ID":2, "username":"嬴政", "password":"99", "email":"390", "nickname":"100", "head_portrait":"2019-09-08", },
-          {"ID":3, "username":"赵高", "password":"99", "email":"390", "nickname":"100", "head_portrait":"2019-09-08", },
-          {"ID":4, "username":"韩非", "password":"99", "email":"390", "nickname":"100", "head_portrait":"2019-09-08", },
-          {"ID":5, "username":"荀子", "password":"99", "email":"390", "nickname":"100", "head_portrait":"2019-09-08", },
-        ],
+        datas:[
+          {
+            title:'这是一个资料1',//标题
+            release_time:'2019-09-09',//上传时间
+            downloads:1234,//下载量
+            classify:'教育',//类别
+            abstract:'这里是简介简介这里是简介简介这里是简介简介这里是简介简介这里是简介简介',//简介
+            icon: '',//图标
+          },{
+            title:'这是一个资料2',//标题
+            release_time:'2019-09-09',//上传时间
+            downloads:1234,//下载量
+            classify:'教育',//类别
+            abstract:'这里是简介简介介这里是简介简介这里是简介简介这里是简介简介',//简介
+            icon: '',//图标
+          },{
+            title:'这是一个资料1',//标题
+            release_time:'2019-09-09',//上传时间
+            downloads:1234,//下载量
+            classify:'教育',//类别
+            abstract:'这里是简介简介这里是简介简介这里是简介简介srhrs更多人的当然会介这里是简介简介',//简介
+            icon: '',//图标
+          },{
+            title:'这是一个资料1',//标题
+            release_time:'2019-09-09',//上传时间
+            downloads:1234,//下载量
+            classify:'教育',//类别
+            abstract:'这里是简介简介这里是简介简介这里是简介简介这里是简介简介这里是简介简介',//简介
+            icon: '',//图标
+          },{
+            title:'这是一个资料1',//标题
+            release_time:'2019-09-09',//上传时间
+            downloads:1234,//下载量
+            classify:'教育',//类别
+            abstract:'这里是简介简介这里是简介简介这里是简介简介这里是简介简介这里是简介简介',//简介
+            icon: '',//图标
+          },{
+            title:'这是一个资料1',//标题
+            release_time:'2019-09-09',//上传时间
+            downloads:1234,//下载量
+            classify:'教育',//类别
+            abstract:'这里是简介简介这里是简介简介这里是简介简介这里是简介简介这里是简介简介',//简介
+            icon: '',//图标
+          },{
+            title:'这是一个资料1',//标题
+            release_time:'2019-09-09',//上传时间
+            downloads:1234,//下载量
+            classify:'教育',//类别
+            abstract:'这里是简介简介这里是简介简介这里是简介简介这里是简介简介这里是简介简介',//简介
+            icon: '',//图标
+          },{
+            title:'这是一个资料1',//标题
+            release_time:'2019-09-09',//上传时间
+            downloads:1234,//下载量
+            classify:'教育',//类别
+            abstract:'这里是简介简介这里是简介简介这里是简介简介这里是简介简介这里是简介简介',//简介
+            icon: '',//图标
+          },{
+            title:'这是一个资料1',//标题
+            release_time:'2019-09-09',//上传时间
+            downloads:1234,//下载量
+            classify:'教育',//类别
+            abstract:'这里是简介简介这里是简介简介这里是简介简介这里是简介简介这里是简介简介',//简介
+            icon: '',//图标
+          },{
+            title:'这是一个资料1',//标题
+            release_time:'2019-09-09',//上传时间
+            downloads:1234,//下载量
+            classify:'教育',//类别
+            abstract:'这里是简介简介这里是简介简介这里是简介简介这里是简介简介这里是简介简介',//简介
+            icon: '',//图标
+          },
+        ]
       }
     },
     created() {
@@ -55,27 +112,70 @@
 </script>
 
 <style scoped>
-  .abc {
-    width: 600px;
-    height: 200px;
+  a {
+    display: block;
   }
-  table {
+li {
+  list-style: none;
+  width: 100%;
+  height: 96px;
+  border-top: 1px solid #e5e5e5;
+ border-bottom: 1px dashed #e5e5e5;
+}
+  img {
+    float: left;
+    width: 104px;
+    height: 75px;
+    margin-top: 12px;
+    /*f9f9f9*/
+  }
+  .right {
+    float:right;
+    width: 1055px;
+    height: 96px;
+    background-color: #ffffff;
+  }
+  .top {
+    float: left;
+    width: 100%;
+    height: 48px;
+    line-height: 65px;
+  }
+  .bottom {
+    float: left;
+    width: 100%;
+    height: 48px;
+    color: #999999;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .zuo {
+    width: 475px;
+    float: left;
     font-family: "宋体";
+    font-size: 18px;
     color: #333333;
   }
-  th{
-    width: 200px;
-    height: 80px;
-    border-top:1px solid #e4e4e4;
-    border-bottom: 1px solid #e4e4e4;
+  .you{
+    width: 195px;
+    font-size: 15px;
+    font-family: "宋体";
+    float: right;
   }
-  td{
-    height: 129px;
-    border-bottom: 1px dashed #e4e4e4;
-    text-align: center;
-  }
-  table {
-    background-color: #ffffff;
+.you:nth-child(2) {
+  color: #999999;
+
+}
+.btm {
+  color: #96602b;
+  float: left;
+}
+
+  .btm:nth-child(2) {
+    float: right;
+    position: relative;
+    right: 46px;
+
   }
 </style>
 
