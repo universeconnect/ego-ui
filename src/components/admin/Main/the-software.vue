@@ -25,10 +25,6 @@
                     prop="link">
             </el-table-column>
             <el-table-column
-                    label="图标"
-                    prop="icon">
-            </el-table-column>
-            <el-table-column
                     label="下载量"
                     prop="downloads">
             </el-table-column>
@@ -98,9 +94,6 @@
                       :value="item.value">
                     </el-option>
                   </el-select>
-                </el-form-item>
-                <el-form-item label="图标">
-                  <el-input v-model="formLabelAlign.icon" placeholder="xxxx"></el-input>
                 </el-form-item>
                 <el-form-item v-if="formLabelAlign.isupdata" label="下载量">
                     <el-input v-model="formLabelAlign.downloads" placeholder="x"></el-input>
@@ -224,7 +217,7 @@
                 }
             })
                 .then(body => {//请求成功
-                    if (body.data.status_code == 1009) {//状态码正常
+                    if (body.data.status_code === 1009) {//状态码正常
                         this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
                         this.metadata = body.data.datas;//存放真实数据
                         this.end(this.ye);
@@ -270,7 +263,7 @@
                 this.dialogVisible1 = true;//打开对话框
                 this.formLabelAlign.isupdata = true;//是修改对话框
                 this.formLabelAlign.title = '修改信息';
-                this.updatadata = this.metadata.filter(data => data.ID == row.ID)[0];//提取元数据
+                this.updatadata = this.metadata.filter(data => data.ID === row.ID)[0];//提取元数据
                 //对表单赋初值
                 this.formLabelAlign.ID = this.updatadata.ID;
                 this.formLabelAlign.classify = this.updatadata.classify;

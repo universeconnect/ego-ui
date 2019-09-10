@@ -20,7 +20,6 @@
                                 <!--<img src="" width="150px" height="150px" style="border-radius: 50%"/>-->
                             </div>
                             <h4 class="center">{{item.center}}</h4>
-                            <p>{{item.intro}}</p>
                             <p>{{item.name}}</p>
                             <p>指导老师:{{item.teacher}}</p>
                         </el-card>
@@ -42,31 +41,26 @@
                         img:'',//头像
                         center:'挑战杯优秀奖',//奖项
                         name:'陈晋',//获奖人
-                        intro:'挑战杯是全国大学生课外科技作品竞赛',//简介
                         teacher:'陈妍'//指导老师
                     },{
                         img:'',//头像
                         center:'挑战杯优秀奖',//奖项
                         name:'王明',//获奖人
-                        intro:'挑战杯是全国大学生课外科技作品竞赛',//简介
                         teacher:'陈妍'//指导老师
                     },{
                         img:'',//头像
                         center:'挑战杯优秀奖',//奖项
                         name:'吴英',//获奖人
-                        intro:'挑战杯是全国大学生课外科技作品竞赛',//简介
                         teacher:'陈妍'//指导老师
                     },{
                         img:'',//头像
                         center:'挑战杯优秀奖',//奖项
                         name:'陈瑶',//获奖人
-                        intro:'挑战杯是全国大学生课外科技作品竞赛',//简介
                         teacher:'陈妍'//指导老师
                     },{
                         img:'',//头像
                         center:'挑战杯优秀奖',//奖项
                         name:'韩颖',//获奖人
-                        intro:'挑战杯是全国大学生课外科技作品竞赛',//简介
                         teacher:'陈妍'//指导老师
                     }
                 ]

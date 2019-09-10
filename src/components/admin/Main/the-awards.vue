@@ -19,6 +19,10 @@
                     prop="prizewinner">
             </el-table-column>
             <el-table-column
+                    label="指导老师"
+                    prop="teacher">
+            </el-table-column>
+            <el-table-column
                     label="获奖日期"
                     prop="data_of_award">
             </el-table-column>
@@ -78,6 +82,9 @@
                 <el-form-item label="获奖日期">
                     <el-input v-model="formLabelAlign.data_of_award" placeholder="xxxx"></el-input>
                 </el-form-item>
+                <el-form-item label="指导老师">
+                    <el-input v-model="formLabelAlign.teacher" placeholder="xxxx"></el-input>
+                </el-form-item>
                 <el-form-item label="图片">
                     <el-input v-model="formLabelAlign.img" placeholder="xxxx"></el-input>
                 </el-form-item>
@@ -130,6 +137,7 @@
                 formLabelAlign: {
                     ID: '',
                     awards: '',
+                  teacher:'',
                     prizewinner: '',
                     data_of_award: '',
                     img: '',
@@ -210,6 +218,7 @@
                 //对表单赋初值
                 this.formLabelAlign.ID = this.updatadata.ID;
                 this.formLabelAlign.awards = this.updatadata.awards;
+                this.formLabelAlign.teacher = this.updatadata.teacher;
                 this.formLabelAlign.prizewinner = this.updatadata.prizewinner;
                 this.formLabelAlign.data_of_award = this.updatadata.data_of_award;
                 this.formLabelAlign.img = this.updatadata.img;
@@ -217,6 +226,7 @@
             updatareste(){
                 //对表单重新赋值
                 this.formLabelAlign.awards = this.updatadata.awards;
+                this.formLabelAlign.teacher = this.updatadata.teacher;
                 this.formLabelAlign.prizewinner = this.updatadata.prizewinner;
                 this.formLabelAlign.data_of_award = this.updatadata.data_of_award;
                 this.formLabelAlign.img = this.updatadata.img;
@@ -229,6 +239,7 @@
                         ID : this.formLabelAlign.ID,
                         awards : this.formLabelAlign.awards,
                         prizewinner : this.formLabelAlign.prizewinner,
+                      teacher: this.formLabelAlign.teacher,
                         data_of_award :this.formLabelAlign.data_of_award,
                         img : this.formLabelAlign.img,
                     });
@@ -237,6 +248,7 @@
                     this.insertdataF('http://49.234.9.206/Gaindata/insert_awards.php',{
                         awards : this.formLabelAlign.awards,
                         prizewinner : this.formLabelAlign.prizewinner,
+                      teacher: this.formLabelAlign.teacher,
                         data_of_award :this.formLabelAlign.data_of_award,
                         img : this.formLabelAlign.img,
                     });
@@ -253,6 +265,7 @@
                     prizewinner: '',
                     data_of_award: '',
                     img: '',
+                  teacher:'',
                     title: '添加获奖信息',
                     isupdata: false,
                 };
