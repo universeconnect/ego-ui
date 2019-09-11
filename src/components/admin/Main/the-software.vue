@@ -85,6 +85,9 @@
                 <el-form-item label="跳转链接">
                     <el-input v-model="formLabelAlign.link" placeholder="（http/https）：//xxxxxxxxx.xxxx"></el-input>
                 </el-form-item>
+                <el-form-item label="图标">
+                    <el-input v-model="formLabelAlign.icon" placeholder="xxxxxxxxx"></el-input>
+                </el-form-item>
                 <el-form-item label="分类">
                   <el-select v-model="formLabelAlign.classify" placeholder="请选择">
                     <el-option
