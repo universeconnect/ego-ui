@@ -19,11 +19,13 @@ export function login(api){
     //发送登录请求
     this.axios.post('http://49.234.9.206/LoginAndSignin/userinfo_login.php',this.$qs.stringify(api))
         .then(body => {//登录请求成功
-            if(body.data.status_code == 1104){//登录成功
+            console.log(body.data.status_code);
+            if(body.data.status_code === 1104){//登录成功
                 //登录成功并且将用户信息存放
                 this.$store.commit('updataUserInfo',body.data.datas[0])
                 //将用户信息存放到cookie
                 this.$cookies.set('isLogin',true);
+                this.$store.commit('updataIsLogin',this.$cookies.get('isLogin'))
                 this.$cookies.set('username',body.data.datas[0].username);
                 this.$cookies.set('ID',body.data.datas[0].ID);
                 this.$cookies.set('email',body.data.datas[0].email);
@@ -33,7 +35,7 @@ export function login(api){
                 this.$cookies.set('access',body.data.datas[0].access);
                 //转跳路由到首页
                 this.$router.push({path:'/index/home'})
-            }else if(body.data.status_code == 1103 || body.data.status_code == 1105) {//密码或用户名错误
+            }else if(body.data.status_code === 1103 || body.data.status_code === 1105) {//密码或用户名错误
                 this.loginError = '用户名或密码错误';
                 this.updataVerificationCode();//获取新的验证码
             }else {
@@ -73,6 +75,7 @@ export function sign(api){
                     this.$store.commit('updataUserInfo',body.data.datas[0])
                     //将用户信息存放到cookie
                     this.$cookies.set('isLogin',true);
+                    this.$store.commit('updataIsLogin',this.$cookies.get('isLogin'))
                     this.$cookies.set('username',body.data.datas[0].username);
                     this.$cookies.set('ID',body.data.datas[0].ID);
                     this.$cookies.set('email',body.data.datas[0].email);
@@ -91,4 +94,37 @@ export function sign(api){
         .catch(error => {
             //注册请求失败
         });
+}
+
+
+
+export function newestuserinfo() {
+    if((this.$cookies.get('isLogin') !== null) && (this.$cookies.get('isLogin') !== false)){
+        //拿到用户最新数据
+        //请求后台
+        this.axios.get('http://49.234.9.206/LoginAndSignin/userinfo.php', {
+            params: {
+                ID: this.$cookies.get('ID')
+            }
+        })
+            .then(body => {
+                //将数据存放到cookie
+                this.$cookies.set('username',body.data.datas[0].username);
+                this.$cookies.set('ID',body.data.datas[0].ID);
+                this.$cookies.set('email',body.data.datas[0].email);
+                this.$cookies.set('nickname',body.data.datas[0].nickname);
+                this.$cookies.set('head_portrait',body.data.datas[0].head_portrait);
+                this.$cookies.set('creation_time',body.data.datas[0].creation_time);
+                this.$cookies.set('access',body.data.datas[0].access);
+                this.$store.commit('updataUserInfo',{
+                    username:this.$cookies.get('username'),
+                    ID:this.$cookies.get('ID'),
+                    email:this.$cookies.get('email'),
+                    nickname:this.$cookies.get('nickname'),
+                    head_portrait:this.$cookies.get('head_portrait'),
+                    creation_time:this.$cookies.get('creation_time'),
+                    access:this.$cookies.get('access'),
+                })
+            })
+    }
 }

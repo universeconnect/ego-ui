@@ -32,7 +32,7 @@
                         <span class="box"></span>
                     </span>
                 </router-link>
-                <span v-if="!$store.state.isLogin" class="loginAndSign">
+                <span v-if="($store.state.isLogin === null) || ($store.state.isLogin === false)" class="loginAndSign">
                     <router-link :to="{path: '/index/login'}" class="link01" style="margin-left: 25%;" replace>
                     <span class="link02">
                         登陆
@@ -48,53 +48,53 @@
                     </router-link>
                 </span>
             </div>
-            <div v-if="$store.state.isLogin" class="user">
+            <div v-if="($store.state.isLogin !== null) && ($store.state.isLogin !== false)" class="user">
                 <div class="head_portraitBox"><img src="../../assets/default_imgs/user.png" width="55" height="55" alt="userimg"></div>
                 <div class="openUserInfoBox">
                     <el-button class="openUserInfo" type="text"  @click="drawer = true">...</el-button>
                 </div>
                 <div class="userinfoBox">
-                    <p class="nicknameBox"><!--{{nickname}}-->这是昵称哦！</p>
-                    <p class="usernameBox"><!--{{username}}-->15870290085@163.com</p>
+                    <p class="nicknameBox">&nbsp;{{$store .state.userinfo.nickname}}<!--昵称--></p>
+                    <p class="usernameBox">{{$store .state.userinfo.email}}<!--邮件--></p>
                 </div>
-              <div style="margin-top: -3px; height: 200px; width: 300px;z-index: 200">
-                  <el-drawer
-                          title="个人信息"
-                          :visible.sync="drawer"
-                          :direction="direction"
-                          :before-close="handleClose">
-                      <div class="personal_info">
-                          <div class="head_portraitBox_user">
-                              <img src="../../assets/default_imgs/user.png" width="120" height="120" alt="userimg">
-                          </div>
-                          <div class="personal_info_head">
-                              <el-button size="mini">修改头像</el-button>
-                          </div>
-                          <div class="personal_info_input">
-                              <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
-                                  <el-form-item label="用户名：">
-                                      <el-input v-model="formLabelAlign.name" style="width: 350px;"></el-input>
-                                  </el-form-item>
-                                  <el-form-item label="昵称：">
-                                      <el-input v-model="formLabelAlign.region" style="width: 350px;"></el-input>
-                                  </el-form-item>
-                                  <el-form-item label="邮箱：">
-                                      <el-input v-model="formLabelAlign.type" style="width: 350px;"></el-input>
-                                  </el-form-item>
-                                  <el-form-item label="个人简介：" class="personal_info_intro">
-                                      <el-input type="textarea" :rows="4" placeholder="请输入内容" style="width: 350px;" v-model="textarea"></el-input>
-                                  </el-form-item>
-                              </el-form>
-                          </div>
-                          <div class="personal_info_btn">
-                              <!--<el-button>取 消</el-button>-->
-                              <el-button>重 置</el-button>
-                              <el-button type="primary">确 定</el-button>
-                              <el-button type="danger" @click="logout">注销</el-button>
-                          </div>
-                      </div>
-                  </el-drawer>
-              </div>
+                <div style="margin-top: -3px; height: 200px; width: 300px;z-index: 200">
+                    <el-drawer
+                            title="个人信息"
+                            :visible.sync="drawer"
+                            :direction="direction"
+                            :before-close="handleClose">
+                        <div class="personal_info">
+                            <div class="head_portraitBox_user">
+                                <img src="../../assets/default_imgs/user.png" width="120" height="120" alt="userimg">
+                            </div>
+                            <div class="personal_info_head">
+                                <el-button size="mini">修改头像</el-button>
+                            </div>
+                            <div class="personal_info_input">
+                                <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
+                                    <el-form-item label="用户名：">
+                                        <el-input v-model="formLabelAlign.name" style="width: 350px;"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="昵称：">
+                                        <el-input v-model="formLabelAlign.region" style="width: 350px;"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="邮箱：">
+                                        <el-input v-model="formLabelAlign.type" style="width: 350px;"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="个人简介：" class="personal_info_intro">
+                                        <el-input type="textarea" :rows="4" placeholder="请输入内容" style="width: 350px;" v-model="textarea"></el-input>
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+                            <div class="personal_info_btn">
+                                <!--<el-button>取 消</el-button>-->
+                                <el-button>重 置</el-button>
+                                <el-button type="primary">确 定</el-button>
+                                <el-button type="danger" @click="logout">注销</el-button>
+                            </div>
+                        </div>
+                    </el-drawer>
+                </div>
             </div>
         </div>
     </div>
@@ -127,7 +127,7 @@
             logout(){
                 //注销登录
                 //删除所有注册cookie数据
-                this.$cookies.set('isLogin',null);
+                this.$cookies.set('isLogin',false);
                 this.$cookies.remove('username',);
                 this.$cookies.remove('ID');
                 this.$cookies.remove('email');
@@ -138,10 +138,50 @@
                 //清除vux登录状态以及数据
                 this.$store.commit('logout')
 
+            },
+            updatauserinfo(){
+                this.$store.commit('updataIsLogin',this.$cookies.get('isLogin'))
+                if((this.$cookies.get('isLogin') !== null) && (this.$cookies.get('isLogin') !== false)){
+                    //拿到用户最新数据
+                    //请求后台
+                    this.axios.get('http://49.234.9.206/LoginAndSignin/userinfo.php', {
+                        params: {
+                            ID: this.$cookies.get('ID')
+                        }
+                    })
+                        .then(body => {
+                            //将数据存放到cookie
+                            this.$cookies.set('username',body.data.datas[0].username);
+                            this.$cookies.set('ID',body.data.datas[0].ID);
+                            this.$cookies.set('email',body.data.datas[0].email);
+                            this.$cookies.set('nickname',body.data.datas[0].nickname);
+                            this.$cookies.set('head_portrait',body.data.datas[0].head_portrait);
+                            this.$cookies.set('creation_time',body.data.datas[0].creation_time);
+                            this.$cookies.set('access',body.data.datas[0].access);
+                            this.$store.commit('updataUserInfo',{
+                                username:this.$cookies.get('username'),
+                                ID:this.$cookies.get('ID'),
+                                email:this.$cookies.get('email'),
+                                nickname:this.$cookies.get('nickname'),
+                                head_portrait:this.$cookies.get('head_portrait'),
+                                creation_time:this.$cookies.get('creation_time'),
+                                access:this.$cookies.get('access'),
+                            })
+                        })
+                }
             }
         },
         mounted() {
-            // console.log($store.state.isLogin);
+            this.$store.commit('updataUserInfo',{
+                username:this.$cookies.get('username'),
+                ID:this.$cookies.get('ID'),
+                email:this.$cookies.get('email'),
+                nickname:this.$cookies.get('nickname'),
+                head_portrait:this.$cookies.get('head_portrait'),
+                creation_time:this.$cookies.get('creation_time'),
+                access:this.$cookies.get('access'),
+            })
+            this.updatauserinfo();
         },
     }
 
@@ -247,24 +287,24 @@
         border: 0;
     }
     .head_portraitBox_user{
-      margin: 0 auto;
-      width: 120px;
-      height: 120px;
+        margin: 0 auto;
+        width: 120px;
+        height: 120px;
     }
-  .personal_info{
-    width: 500px;
-    height: 800px;
-    margin: 50px auto 0;
-  }
-  .personal_info_input{
-    margin-top: 80px;
-  }
-  .personal_info_head{
-    margin: 20px auto 0;
-    width: 80px;
-  }
-  .personal_info_btn{
-    width: 252px;
-    margin: 50px auto 0;
-  }
+    .personal_info{
+        width: 500px;
+        height: 800px;
+        margin: 50px auto 0;
+    }
+    .personal_info_input{
+        margin-top: 80px;
+    }
+    .personal_info_head{
+        margin: 20px auto 0;
+        width: 80px;
+    }
+    .personal_info_btn{
+        width: 252px;
+        margin: 50px auto 0;
+    }
 </style>
