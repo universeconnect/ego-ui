@@ -6,6 +6,7 @@ import theSoftware from '../components/admin/Main/the-software'
 import theEssay from '../components/admin/Main/the-essay'
 import theVideo from '../components/admin/Main/the-video'
 import theAwards from '../components/admin/Main/the-awards'
+import theSoftwareCouses from '../components/admin/Main/the-softwareCouses'
 import theMember from '../components/admin/Main/the-member'
 import Admin from '../components/admin/admin'
 import Index from '../components/index/index'
@@ -96,6 +97,14 @@ export default new Router({
                         needLogin: true,//是否需要登录
                         access: 10//登录最低权限级别
                     }*/
+                },{
+                    path: 'the-softwareCouses',
+                    name: 'theSoftwareCouses',
+                    component: theSoftwareCouses,
+                    /* meta: {
+                         needLogin: true,//是否需要登录
+                         access: 10//登录最低权限级别
+                     }*/
                 }
             ]
         },

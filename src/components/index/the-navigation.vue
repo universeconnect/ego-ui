@@ -81,13 +81,9 @@
                                     <el-form-item label="邮箱：">
                                         <el-input v-model="formLabelAlign.type" style="width: 350px;"></el-input>
                                     </el-form-item>
-                                    <el-form-item label="个人简介：" class="personal_info_intro">
-                                        <el-input type="textarea" :rows="4" placeholder="请输入内容" style="width: 350px;" v-model="textarea"></el-input>
-                                    </el-form-item>
                                 </el-form>
                             </div>
                             <div class="personal_info_btn">
-                                <!--<el-button>取 消</el-button>-->
                                 <el-button>重 置</el-button>
                                 <el-button type="primary">确 定</el-button>
                                 <el-button type="danger" @click="logout">注销</el-button>

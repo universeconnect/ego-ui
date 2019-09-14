@@ -147,7 +147,7 @@
                 }
             })
                 .then(body => {//请求成功
-                    if (body.data.status_code == 1009) {//状态码正常
+                    if (body.data.status_code === 1009) {//状态码正常
                         this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
                         this.metadata = body.data.datas;//存放真实数据
                         this.end(this.ye);

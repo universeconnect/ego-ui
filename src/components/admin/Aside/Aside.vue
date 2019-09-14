@@ -33,6 +33,10 @@
                 <i class="el-icon-s-custom"></i>
                 <span slot="title">成员信息</span>
             </el-menu-item>
+            <el-menu-item index="/admin/the-softwareCouses" >
+                <i class="el-icon-s-platform"></i>
+                <span slot="title">软件教程</span>
+            </el-menu-item>
         </el-menu>
     </div>
 </template>
