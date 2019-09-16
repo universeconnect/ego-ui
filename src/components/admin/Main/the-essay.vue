@@ -90,7 +90,14 @@
                     <el-input v-model="formLabelAlign.presenter"  placeholder="xxxx"></el-input>
                 </el-form-item>
                 <el-form-item label="分类">
-                    <el-input v-model="formLabelAlign.classify"  placeholder="xxxx"></el-input>
+                  <el-select v-model="formLabelAlign.classify" placeholder="请选择">
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
                 </el-form-item>
                 <el-form-item label="图标">
                     <el-input v-model="formLabelAlign.icon"  placeholder="xxxx"></el-input>
@@ -186,7 +193,18 @@
                 dialogTableVisible: false,
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
-                dialogVisible1:false
+                dialogVisible1:false,
+                options: [{
+                    value: '经验技巧',
+                    label: '经验技巧'
+                }, {
+                    value: '学习规划',
+                    label: '学习规划'
+                }, {
+                    value: '前沿技术',
+                    label: '前沿技术'
+                }],
+                value: ''
             }
         },
         created() {

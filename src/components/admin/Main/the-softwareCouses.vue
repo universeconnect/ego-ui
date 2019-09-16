@@ -95,7 +95,14 @@
           <el-input v-model="formLabelAlign.name" placeholder="xxxx"></el-input>
         </el-form-item>
         <el-form-item label="分类">
-          <el-input v-model="formLabelAlign.classify" placeholder="xxxx"></el-input>
+          <el-select v-model="formLabelAlign.classify" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="注册时间">
           <el-input v-model="formLabelAlign.release_time" placeholder="xxxx"></el-input>
@@ -174,12 +181,23 @@
                 metadata:[],
                 search:'',
                 ye:1,
-                api:"awards",
+                api:"softwarecoures",
                 endye:0,
                 dialogTableVisible: false,
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
-                dialogVisible1:false
+                dialogVisible1:false,
+                options: [{
+                    value: '快捷键',
+                    label: '快捷键'
+                }, {
+                    value: '基本设置',
+                    label: '基本设置'
+                }, {
+                    value: '软件特色',
+                    label: '软件特色'
+                }],
+                    value: ''
             }
         },
         created() {
@@ -314,17 +332,14 @@
                 for (var i = 0; i < this.list.length; i++) {
                     this.$set(this.list[i], 'visible', false);
                     //对展示数据的长度进行处理
-                    if (this.list[i].awards.length > 18) {
-                        this.list[i].awards = this.list[i].awards.substr(0,18) + "...";
+                    if (this.list[i].link.length > 6) {
+                        this.list[i].link = this.list[i].link.substr(0,6) + "...";
                     }
-                    if (this.list[i].prizewinner.length > 8) {
-                        this.list[i].prizewinner = this.list[i].prizewinner.substr(0,8) + "...";
+                    if (this.list[i].icon.length > 12) {
+                        this.list[i].icon = this.list[i].icon.substr(0,12) + "...";
                     }
-                    if (this.list[i].data_of_award.length > 12) {
-                        this.list[i].data_of_award = this.list[i].data_of_award.substr(0,12) + "...";
-                    }
-                    if (this.list[i].img.length > 25) {
-                        this.list[i].img = this.list[i].img.substr(0,25) + "...";
+                    if (this.list[i].title.length > 6) {
+                        this.list[i].title = this.list[i].title.substr(0,6) + "...";
                     }
                 }
             }
