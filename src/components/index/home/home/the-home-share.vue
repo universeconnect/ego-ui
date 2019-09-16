@@ -9,10 +9,10 @@
         </el-col>
         <el-col class="share_left">
             <div :span="8">
-              <el-card class="share_card" shadow="hover" v-for="(card,index) in share" :key="index" :body-style="{ padding: '0px' }">
-                <img :src="card.img" class="image">
+              <el-card class="share_card" shadow="hover" v-for="(card,index) in share" :key="index" @click="click01()" :body-style="{ padding: '0px' }">
+                <a href="#"><img :src="card.img" class="image"></a>
                 <div class="share_care_content">
-                  <span>{{card.title}}</span>
+                  <a href="#"><span>{{card.title}}</span></a>
                   <div class="bottom">
                     <span class="share_card_author"><span class="share_card_author_by">by</span> {{card.author}}</span>
                     <span class="share_card_sort">{{card.sort}}</span>
@@ -33,14 +33,17 @@
               :fetch-suggestions="querySearch"
               placeholder="请输入内容"
               :trigger-on-focus="false"
-              @select="handleSelect"
-            ><i slot="suffix" class="el-input__icon el-icon-search"></i></el-autocomplete>
+              @select="handleSelect">
+              <i slot="suffix" class="el-input__icon el-icon-search"></i>
+            </el-autocomplete>
           </div>
 
           <div class="share_essay">
             <span class="share_essay_title">文章分类</span>
             <div v-for="(sort,index) in essayData" :key="index" class="share_essay_sort">
-              <el-link :underline="false" class="share_essay_link">{{sort.sort}}</el-link>
+              <a class="link01" href="#">
+                <span>{{sort.sort}}</span>
+              </a>
               <el-divider></el-divider>
             </div>
           </div>
@@ -234,6 +237,7 @@
   }
   .share_care_content{
     padding: 10px 10px 0 10px;
+    color: #201e1e;
   }
   .share_card_author{
     font-size: 14px;
@@ -267,7 +271,7 @@
     margin-top: 20px;
   }
   .image {
-    width: 100%;
+    width: 280px;
     height: 200px;
     display: block;
   }
@@ -299,9 +303,17 @@
     margin: 40px 0 0 20px;
     width: 250px;
   }
-  .share_essay_link{
+  .link01{
     display: block;
     margin: -20px 0 -12px 0;
     color: #8e8e8e;
   }
+  a:visited, a:link{
+    text-decoration: none;
+    color: #8e8e8e;
+  }
+  a:hover{
+    color: #d73d07;
+  }
+
 </style>
