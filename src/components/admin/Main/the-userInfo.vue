@@ -69,6 +69,9 @@
                 <el-form-item label="邮箱">
                     <el-input v-model="formLabelAlign.email" placeholder="x"></el-input>
                 </el-form-item>
+                <el-form-item label="权限">
+                    <el-input v-model="formLabelAlign.access" placeholder="x"></el-input>
+                </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
         <el-popover
@@ -119,6 +122,7 @@
                     head_portrait: '',
                     password: '',
                     email: '',
+                    access: '',
                 },
                 updatadata:'',
                 okdata:'',
@@ -143,7 +147,7 @@
                 }
             })
                 .then(body => {//请求成功
-                    if (body.data.status_code == 1009) {//状态码正常
+                    if (body.data.status_code === 1009) {//状态码正常
                         this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
                         this.metadata = body.data.datas;//存放真实数据
                         this.end(this.ye);
@@ -190,6 +194,7 @@
                 //对表单赋初值
                 this.formLabelAlign.ID = this.updatadata.ID;
                 this.formLabelAlign.username = this.updatadata.username;
+                this.formLabelAlign.access = this.updatadata.access;
                 this.formLabelAlign.nickname = this.updatadata.nickname;
                 this.formLabelAlign.head_portrait = this.updatadata.head_portrait;
                 this.formLabelAlign.password = this.updatadata.password;
@@ -198,6 +203,7 @@
             updatareste(){
                 //对表单重新赋值
                 this.formLabelAlign.nickname = this.updatadata.nickname;
+                this.formLabelAlign.access = this.updatadata.access;
                 this.formLabelAlign.head_portrait = this.updatadata.head_portrait;
                 this.formLabelAlign.password = this.updatadata.password;
                 this.formLabelAlign.email = this.updatadata.email;
@@ -208,6 +214,7 @@
                     this.updatadataF('http://49.234.9.206/Gaindata/updata_userinfo.php',{
                         ID : this.formLabelAlign.ID,
                         nickname : this.formLabelAlign.nickname,
+                        access : this.formLabelAlign.access,
                         head_portrait : this.formLabelAlign.head_portrait,
                         password :this.formLabelAlign.password,
                         email : this.formLabelAlign.email,

@@ -13,8 +13,16 @@
                     prop="title">
             </el-table-column>
             <el-table-column
-                    label="发布者"
-                    prop="promulgator">
+                    label="简介"
+                    prop="abstract">
+            </el-table-column>
+            <el-table-column
+                    label="转跳连接"
+                    prop="link">
+            </el-table-column>
+            <el-table-column
+                    label="推荐者（发布者）"
+                    prop="presenter">
             </el-table-column>
             <el-table-column
                     label="发布时间"
@@ -25,12 +33,16 @@
                     prop="reading_quantity">
             </el-table-column>
             <el-table-column
-                    label="下载量"
-                    prop="downloads">
-            </el-table-column>
-            <el-table-column
                     label="权限"
                     prop="access">
+            </el-table-column>
+            <el-table-column
+                    label="分类"
+                    prop="classify">
+            </el-table-column>
+            <el-table-column
+                    label="图标"
+                    prop="icon">
             </el-table-column>
             <el-table-column
                     align="right">
@@ -74,20 +86,24 @@
             <div style="margin: 10px; line-height: 20px !important;"></div>
             <el-form :inline="true" :model="formLabelAlign" class="demo-form-inline">
                 <h2 v-if="formLabelAlign.isupdata" style="margin: -20px auto 5px">ID:{{formLabelAlign.ID}}</h2>
-                <el-form-item label="发布者">
-                    <el-input v-model="formLabelAlign.promulgator"  placeholder="xxxx"></el-input>
+                <el-form-item label="推荐者（发布者）">
+                    <el-input v-model="formLabelAlign.presenter"  placeholder="xxxx"></el-input>
                 </el-form-item>
-                <el-form-item label="阅读量">
-                    <el-input v-model="formLabelAlign.reading_quantity"  placeholder="xxxx"></el-input>
+                <el-form-item label="分类">
+                  <el-select v-model="formLabelAlign.classify" placeholder="请选择">
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
                 </el-form-item>
-                <el-form-item v-if="formLabelAlign.isupdata" label="下载量">
-                    <el-input v-model="formLabelAlign.downloads" placeholder="x"></el-input>
+                <el-form-item label="图标">
+                    <el-input v-model="formLabelAlign.icon"  placeholder="xxxx"></el-input>
                 </el-form-item>
-                <el-form-item v-if="formLabelAlign.isupdata" label="权限">
-                    <el-input v-model="formLabelAlign.access" placeholder="x"></el-input>
-                </el-form-item>
-                <el-form-item v-if="formLabelAlign.isupdata" label="发布时间">
-                    <el-input v-model="formLabelAlign.release_time"  placeholder="xxxx-xx-xx xx：xx：xx"></el-input>
+                <el-form-item label="转跳连接">
+                    <el-input v-model="formLabelAlign.link" placeholder="x"></el-input>
                 </el-form-item>
                 <p>标题：</p>
                 <el-input
@@ -102,13 +118,6 @@
                         :autosize="{ minRows: 2, maxRows: 4}"
                         placeholder="请输入内容"
                         v-model="formLabelAlign.abstract">
-                </el-input>
-                <p>内容：</p>
-                <el-input
-                        type="textarea"
-                        :autosize="{ minRows: 2, maxRows: 4}"
-                        placeholder="请输入内容"
-                        v-model="formLabelAlign.content">
                 </el-input>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -161,12 +170,13 @@
                     ID: '',
                     title: '',
                     abstract: '',
-                    content: '',
-                    promulgator: '',
+                    link: '',
+                    presenter: '',
                     release_time: '',
                     reading_quantity: '',
-                    downloads: '',
                     access: '',
+                    classify: '',
+                    icon: '',
                     title1: '添加文章',
                     isupdata: false,
                 },
@@ -183,7 +193,18 @@
                 dialogTableVisible: false,
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
-                dialogVisible1:false
+                dialogVisible1:false,
+                options: [{
+                    value: '经验技巧',
+                    label: '经验技巧'
+                }, {
+                    value: '学习规划',
+                    label: '学习规划'
+                }, {
+                    value: '前沿技术',
+                    label: '前沿技术'
+                }],
+                value: ''
             }
         },
         created() {
@@ -235,23 +256,25 @@
                 this.formLabelAlign.ID = this.updatadata.ID;
                 this.formLabelAlign.title = this.updatadata.title;
                 this.formLabelAlign.abstract = this.updatadata.abstract;
-                this.formLabelAlign.content = this.updatadata.content;
-                this.formLabelAlign.promulgator = this.updatadata.promulgator;
+                this.formLabelAlign.link = this.updatadata.link;
+                this.formLabelAlign.presenter = this.updatadata.presenter;
                 this.formLabelAlign.release_time = this.updatadata.release_time;
                 this.formLabelAlign.reading_quantity = this.updatadata.reading_quantity;
-                this.formLabelAlign.downloads = this.updatadata.downloads;
+                this.formLabelAlign.classify = this.updatadata.classify;
                 this.formLabelAlign.access = this.updatadata.access;
+                this.formLabelAlign.icon = this.updatadata.icon;
             },
             updatareste(){
                 //对表单重新赋值
                 this.formLabelAlign.title = this.updatadata.title;
                 this.formLabelAlign.abstract = this.updatadata.abstract;
-                this.formLabelAlign.content = this.updatadata.content;
-                this.formLabelAlign.promulgator = this.updatadata.promulgator;
+                this.formLabelAlign.link = this.updatadata.link;
+                this.formLabelAlign.presenter = this.updatadata.presenter;
                 this.formLabelAlign.release_time = this.updatadata.release_time;
                 this.formLabelAlign.reading_quantity = this.updatadata.reading_quantity;
-                this.formLabelAlign.downloads = this.updatadata.downloads;
+                this.formLabelAlign.classify = this.updatadata.classify;
                 this.formLabelAlign.access = this.updatadata.access;
+                this.formLabelAlign.icon = this.updatadata.icon;
             },
             okupdate(){
                 this.dialogVisible1 = false;//关闭对话框
@@ -261,20 +284,23 @@
                         ID : this.formLabelAlign.ID,
                         title : this.formLabelAlign.title,
                         abstract : this.formLabelAlign.abstract,
-                        content :this.formLabelAlign.content,
-                        promulgator : this.formLabelAlign.promulgator,
+                        link :this.formLabelAlign.link,
+                        presenter :this.formLabelAlign.presenter,
                         release_time : this.formLabelAlign.release_time,
                         reading_quantity : this.formLabelAlign.reading_quantity,
-                        downloads : this.formLabelAlign.downloads,
+                        classify : this.formLabelAlign.classify,
                         access : this.formLabelAlign.access,
+                        icon : this.formLabelAlign.icon,
                     });
                 }else {
                     //发送添加请求
                     this.insertdataF('http://49.234.9.206/Gaindata/insert_essay.php',{
                         title : this.formLabelAlign.title,
                         abstract : this.formLabelAlign.abstract,
-                        content :this.formLabelAlign.content,
-                        promulgator : this.formLabelAlign.promulgator,
+                        link : this.formLabelAlign.link,
+                        presenter :this.formLabelAlign.presenter,
+                        icon : this.formLabelAlign.icon,
+                        classify : this.formLabelAlign.classify,
                     });
                 }
 
@@ -286,8 +312,10 @@
                 this.formLabelAlign = {
                     title: '',
                     abstract: '',
-                    content: '',
-                    promulgator: '',
+                    link: '',
+                    presenter: '',
+                    icon: '',
+                    classify: '',
                     title1: '添加文章',
                     isupdata: false,
                 };
@@ -317,9 +345,6 @@
                     //对展示数据的长度进行处理
                     if (this.list[i].abstract.length > 6) {
                         this.list[i].abstract = this.list[i].abstract.substr(0,6) + "...";
-                    }
-                    if (this.list[i].content.length > 6) {
-                        this.list[i].content = this.list[i].content.substr(0,6) + "...";
                     }
                     if (this.list[i].title.length > 6) {
                         this.list[i].title = this.list[i].title.substr(0,6) + "...";

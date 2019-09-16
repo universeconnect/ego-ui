@@ -4,7 +4,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state:{
         //状态
-        isLogin: null,//是否已经登录
+        isLogin: false,//是否已经登录
         scrolltop:0,//滚动条
         userinfo:{//用户信息
             username:'',//用户名
@@ -32,7 +32,6 @@ const store = new Vuex.Store({
             state.userinfo.head_portrait = UserInfo.head_portrait;
             state.userinfo.creation_time = UserInfo.creation_time;
             state.userinfo.access = UserInfo.access;
-            state.isLogin =  true;
         },
         logout(state){//清除登录数据
             state.userinfo.username = '';

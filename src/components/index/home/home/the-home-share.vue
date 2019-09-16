@@ -40,7 +40,7 @@
           <div class="share_essay">
             <span class="share_essay_title">文章分类</span>
             <div v-for="(sort,index) in essayData" :key="index" class="share_essay_sort">
-              <span>{{sort.sort}}</span>
+              <el-link :underline="false" class="share_essay_link">{{sort.sort}}</el-link>
               <el-divider></el-divider>
             </div>
           </div>
@@ -299,7 +299,7 @@
     margin: 40px 0 0 20px;
     width: 250px;
   }
-  .share_essay_sort span{
+  .share_essay_link{
     display: block;
     margin: -20px 0 -12px 0;
     color: #8e8e8e;

@@ -1,5 +1,10 @@
 <template>
   <div>
+    <a href="#" style="float: left; text-decoration: none;margin-left: 80px;font-size: small;color: #8e8e8e;">标题1</a>
+    <a href="#" style="float: left;text-decoration: none;margin-left: 80px;font-size: small;color: #8e8e8e;">标题2</a>
+    <a href="#" style="float: left;text-decoration: none;margin-left: 80px;font-size: small;color: #8e8e8e;">标题3</a>
+    <!--遇到了问题未解决，简单的将二级菜单写到了子组件里-->
+    <br>
     <a v-for="(value,index) in datas" :key="index">
       <ul>
         <li>
