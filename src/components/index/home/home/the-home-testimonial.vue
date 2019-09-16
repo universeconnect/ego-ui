@@ -2,7 +2,7 @@
 
       <div class="box01">
         <h2><font color="#b22222">Testimonial</font></h2>
-        <el-carousel :interval="5000" arrow="always">
+        <el-carousel :interval="5000" arrow="never">
 
           <el-carousel-item v-for="(item,index) in b" :key="index">
             <div  class="one">{{item.img}}</div>
@@ -58,21 +58,21 @@
   }
 
 
-  .el-carousel__item:nth-child(3) {
-    background-color: #99a9bf;
-  }
+  .el-carousel__item:nth-child(1) {
+    background-color: #e4e7ed;
+  } /*控制第一个*/
 
+  .el-carousel__item:nth-child(2) {
+    background-color:  #e4e7ed;
+  }
+  .el-carousel__item:nth-child(3) {
+    background-color:  #e4e7ed;
+  }
   .el-carousel__item:nth-child(4) {
-    background-color: #d3dce6;
+    background-color: #e4e7ed;
   }
   .el-carousel__item:nth-child(5) {
-    background-color: wheat;
-  }
-  .el-carousel__item:nth-child(6) {
-    background-color: cornsilk;
-  }
-  .el-carousel__item:nth-child(7) {
-    background-color: #666666;
+    background-color:  #e4e7ed;
   }
   .one{ height: 90px; width: 90px; background: #B3C0D1; margin: auto; border-radius: 50%; margin-top: 50px}
   .two{ margin-top: 50px}
