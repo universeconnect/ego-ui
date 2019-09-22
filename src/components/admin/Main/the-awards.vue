@@ -239,7 +239,7 @@
                         ID : this.formLabelAlign.ID,
                         awards : this.formLabelAlign.awards,
                         prizewinner : this.formLabelAlign.prizewinner,
-                      teacher: this.formLabelAlign.teacher,
+                        teacher: this.formLabelAlign.teacher,
                         data_of_award :this.formLabelAlign.data_of_award,
                         img : this.formLabelAlign.img,
                     });
@@ -248,7 +248,7 @@
                     this.insertdataF('http://49.234.9.206/Gaindata/insert_awards.php',{
                         awards : this.formLabelAlign.awards,
                         prizewinner : this.formLabelAlign.prizewinner,
-                      teacher: this.formLabelAlign.teacher,
+                        teacher: this.formLabelAlign.teacher,
                         data_of_award :this.formLabelAlign.data_of_award,
                         img : this.formLabelAlign.img,
                     });
@@ -265,7 +265,7 @@
                     prizewinner: '',
                     data_of_award: '',
                     img: '',
-                  teacher:'',
+                    teacher:'',
                     title: '添加获奖信息',
                     isupdata: false,
                 };

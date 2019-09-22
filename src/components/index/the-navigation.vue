@@ -8,7 +8,7 @@
                         <span class="box"></span>
                     </span>
                 </router-link>
-                <router-link :to="{path: '/index/home0'}" class="link01" replace>
+                <router-link :to="{path: '/index/links'}" class="link01" replace>
                     <span class="link02">
                         了解我们
                         <span class="box"></span>

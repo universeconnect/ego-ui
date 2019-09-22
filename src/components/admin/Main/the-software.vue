@@ -1,7 +1,7 @@
 <template>
     <div id="software">
         <el-table
-                :data="list.filter(data => !search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == search) || (data.access == search)).slice(ye*10-10,ye*10)"
+                :data="list.filter(data => !search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == search) || (data.access == search) || (data.access == search) || (data.classify == search)).slice(ye*10-10,ye*10)"
                 style="width: 100%">
             <el-table-column
                     label="ID"
@@ -13,16 +13,8 @@
                     prop="name">
             </el-table-column>
             <el-table-column
-                    label="软件介绍"
-                    prop="description">
-            </el-table-column>
-            <el-table-column
                     label="发布时间"
                     prop="release_time">
-            </el-table-column>
-            <el-table-column
-                    label="跳转链接"
-                    prop="link">
             </el-table-column>
             <el-table-column
                     label="下载量"
@@ -89,14 +81,14 @@
                     <el-input v-model="formLabelAlign.icon" placeholder="xxxxxxxxx"></el-input>
                 </el-form-item>
                 <el-form-item label="分类">
-                  <el-select v-model="formLabelAlign.classify" placeholder="请选择">
-                    <el-option
-                      v-for="item in classifyItem"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
+                    <el-select v-model="formLabelAlign.classify" placeholder="请选择">
+                        <el-option
+                                v-for="item in classifyItem"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item v-if="formLabelAlign.isupdata" label="下载量">
                     <el-input v-model="formLabelAlign.downloads" placeholder="x"></el-input>
@@ -167,7 +159,7 @@
                     downloads: '',
                     icon:'',
                     access: '',
-                  classify:'',
+                    classify:'',
                     name: '',
                     release_time: '',
                     title: '添加推荐软件',
@@ -187,29 +179,29 @@
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
                 dialogVisible1:false,
-              classifyItem:[{
-                value: '开发编程',
-                label: '开发编程'
-              }, {
-                value: '电脑办公',
-                label: '电脑办公'
-              }, {
-                value: '数据分析',
-                label: '数据分析'
-              }, {
-                value: '虚拟机',
-                label: '虚拟机'
-              }, {
-                value: '科技绘图',
-                label: '科技绘图'
-              }, {
-                value: '机械设计',
-                label: '机械设计'
-              }, {
-                value: '建筑设计',
-                label: '建筑设计'
-              }],
-              value:''
+                classifyItem:[{
+                    value: '开发编程',
+                    label: '开发编程'
+                }, {
+                    value: '电脑办公',
+                    label: '电脑办公'
+                }, {
+                    value: '数据分析',
+                    label: '数据分析'
+                }, {
+                    value: '虚拟机',
+                    label: '虚拟机'
+                }, {
+                    value: '科技绘图',
+                    label: '科技绘图'
+                }, {
+                    value: '机械设计',
+                    label: '机械设计'
+                }, {
+                    value: '建筑设计',
+                    label: '建筑设计'
+                }],
+                value:''
             }
         },
         created() {
@@ -224,7 +216,7 @@
                         this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
                         this.metadata = body.data.datas;//存放真实数据
                         this.end(this.ye);
-                        jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
+                        jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search) || (data.classify == this.search)));
                         jiaohu.$on("ye", (ye) => {
                             this.ye = ye;
                         });
@@ -280,15 +272,16 @@
             },
             updatareste(){
                 //对表单重新赋值
-              this.formLabelAlign.ID = this.updatadata.ID;
-              this.formLabelAlign.classify = this.updatadata.classifyItem;
-              this.formLabelAlign.description = this.updatadata.description;
-              this.formLabelAlign.link = this.updatadata.link;
-              this.formLabelAlign.icon = this .updatadata.icon;
-              this.formLabelAlign.downloads = this.updatadata.downloads;
-              this.formLabelAlign.access = this.updatadata.access;
-              this.formLabelAlign.name = this.updatadata.name;
-              this.formLabelAlign.release_time = this.updatadata.release_time;
+                this.formLabelAlign.ID = this.updatadata.ID;
+                this.formLabelAlign.classify = this.updatadata.classifyItem;
+                this.formLabelAlign.description = this.updatadata.description;
+                this.formLabelAlign.link = this.updatadata.link;
+                this.formLabelAlign.icon = this .updatadata.icon;
+                this.formLabelAlign.downloads = this.updatadata.downloads;
+                this.formLabelAlign.access = this.updatadata.access;
+                this.formLabelAlign.name = this.updatadata.name;
+                this.formLabelAlign.classify = this.updatadata.classify;
+                this.formLabelAlign.release_time = this.updatadata.release_time;
 
             },
             okupdate(){
@@ -313,8 +306,8 @@
                         name : this.formLabelAlign.name,
                         link: this.formLabelAlign.link,
                         icon: this.formLabelAlign.icon,
-                      access : this.formLabelAlign.access,
-                      classify: this.formLabelAlign.classify
+                        access : this.formLabelAlign.access,
+                        classify: this.formLabelAlign.classify
                     });
                 }
 
@@ -339,7 +332,7 @@
             handleDelete(index, row) {
             },
             end(ye) {
-                var i = (this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search))).length / 10;
+                var i = (this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search) || (data.classify == this.search))).length / 10;
                 if (ye > i) {
                     this.endye = true;
                 } else {
@@ -350,28 +343,20 @@
                 for (var i = 0; i < this.list.length; i++) {
                     this.$set(this.list[i], 'visible', false);
                     //对展示数据的长度进行处理
-                    if (this.list[i].description.length > 6) {
-                        this.list[i].description = this.list[i].description.substr(0,6) + "...";
+                    if (this.list[i].description.length > 8) {
+                        this.list[i].description = this.list[i].description.substr(0,8) + "...";
                     }
-                    if (this.list[i].release_time.length > 12) {
-                        this.list[i].release_time = this.list[i].release_time.substr(0,12) + "...";
+                    if (this.list[i].release_time.length > 8) {
+                        this.list[i].release_time = this.list[i].release_time.substr(0,8) + "...";
                     }
-                    if (this.list[i].link.length > 6) {
-                        this.list[i].link = this.list[i].link.substr(0,6) + "...";
-                    }
-                    if (this.list[i].downloads.length > 6) {
-                        this.list[i].downloads = this.list[i].downloads.substr(0,6) + "...";
-                    }
-                    if (this.list[i].access.length > 6) {
-                        this.list[i].access = this.list[i].access.substr(0,6) + "...";
-                    }if (this.list[i].icon.length > 12) {
-                        this.list[i].icon = this.list[i].icon.substr(0,12) + "...";
+                    if (this.list[i].link.length > 8) {
+                        this.list[i].link = this.list[i].link.substr(0,8) + "...";
                     }
                 }
             }
         },
         beforeUpdate(){
-            jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
+            jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search) || (data.classify == this.search)));
             this.end(this.ye);
         }
     }

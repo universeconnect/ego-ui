@@ -1,7 +1,7 @@
 <template>
     <div id="essay">
         <el-table
-                :data="list.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()) || (data.promulgator == search) || (data.ID == search) || (data.access == search)).slice(ye*10-10,ye*10)"
+                :data="list.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()) || (data.promulgator == search) || (data.ID == search) || (data.access == search) || (data.classify == search)).slice(ye*10-10,ye*10)"
                 style="width: 100%">
             <el-table-column
                     label="ID"
@@ -11,14 +11,6 @@
             <el-table-column
                     label="标题"
                     prop="title">
-            </el-table-column>
-            <el-table-column
-                    label="简介"
-                    prop="abstract">
-            </el-table-column>
-            <el-table-column
-                    label="转跳连接"
-                    prop="link">
             </el-table-column>
             <el-table-column
                     label="推荐者（发布者）"
@@ -39,10 +31,6 @@
             <el-table-column
                     label="分类"
                     prop="classify">
-            </el-table-column>
-            <el-table-column
-                    label="图标"
-                    prop="icon">
             </el-table-column>
             <el-table-column
                     align="right">
@@ -128,8 +116,8 @@
                 @click="">
             <p>{{tisi}}</p>
             <div style="text-align: right; margin: 0">
-              <el-button type="primary" size="mini"  @click="dialogVisible1 = false;nodata = false">确定</el-button>
-              <el-button type="text" size="mini" @click="nodata = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="nodata = false">取消</el-button>
+              <el-button type="text" size="mini"  @click="dialogVisible1 = false;nodata = false">确定</el-button>
             </div>
             <el-button
                     @click=" tisi= formLabelAlign.isupdata?'确定放弃修改吗？':'确定放弃添加吗？' "
@@ -219,7 +207,7 @@
                         this.list = JSON.parse(JSON.stringify(body.data.datas));//深度拷贝
                         this.metadata = body.data.datas;//存放真实数据
                         this.end(this.ye);
-                        jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search)));
+                        jiaohu.$emit("len", this.list.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || (data.ID == this.search) || (data.access == this.search) || (data.classify == this.search)));
                         jiaohu.$on("ye", (ye) => {
                             this.ye = ye;
                         });
@@ -316,7 +304,7 @@
                     presenter: '',
                     icon: '',
                     classify: '',
-                    title1: '添加文章',
+                    title1: '添加视频',
                     isupdata: false,
                 };
             },
@@ -330,7 +318,7 @@
             handleDelete(index, row) {
             },
             end(ye) {
-                var i = (this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search))).length / 10;
+                var i = (this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search) || (data.classify == this.search))).length / 10;
                 if (ye > i) {
                     this.endye = true;
                 } else {
@@ -353,7 +341,7 @@
             }
         },
         beforeUpdate(){
-            jiaohu.$emit("len", this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search)));
+            jiaohu.$emit("len", this.list.filter(data => !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()) || (data.promulgator == this.search) || (data.ID == this.search) || (data.access == this.search) || (data.classify == this.search)));
             this.end(this.ye);
         }
     }

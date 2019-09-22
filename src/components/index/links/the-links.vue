@@ -1,8 +1,7 @@
 <template>
     <div>
         <Navigation></Navigation>
-        <img src="http://49.234.9.206/LoginAndSignin/code.png" alt="" id="verificationCode">
-        <button @click="updataVerificationCode">换</button>
+        <h1>正在紧张规划中</h1>
     </div>
 </template>
 

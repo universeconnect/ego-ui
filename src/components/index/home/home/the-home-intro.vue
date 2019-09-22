@@ -67,16 +67,17 @@
             }
         },
         methods:{
+
             handleScroll() {
-                this.$store.commit('updatascrollTop',document.documentElement.scrollTop);
-                if(this.$store.state.scrolltop >= 140){
+                /*this.$store.commit('updatascrollTop',document.documentElement.scrollTop);*/
+                /*if(this.$store.state.scrolltop >= 10){
                     document.getElementsByClassName("tran")[0].style.filter = "alpha(Opacity=100)";
                     document.getElementsByClassName("tran")[0].style.opacity = 1;
                     document.getElementsByClassName("tran")[0].style.top = "0px";
                     document.getElementsByClassName("tran")[1].style.filter = "alpha(Opacity=100)";
                     document.getElementsByClassName("tran")[1].style.opacity = 1;
                     document.getElementsByClassName("tran")[1].style.top = "0px";
-                }/* else if(this.$store.state.scrolltop < 110){
+                }*//* else if(this.$store.state.scrolltop < 110){
                     document.getElementsByClassName("tran")[0].style.filter = "alpha(Opacity=0)";
                     document.getElementsByClassName("tran")[0].style.opacity = 0;
                     document.getElementsByClassName("tran")[0].style.top = "500px";
@@ -87,7 +88,14 @@
             },
         },
         mounted() {
+            this.$store.commit('updatascrollTop',document.documentElement.scrollTop);
             window.addEventListener('scroll', this.handleScroll);
+            document.getElementsByClassName("tran")[0].style.filter = "alpha(Opacity=100)";
+            document.getElementsByClassName("tran")[0].style.opacity = 1;
+            document.getElementsByClassName("tran")[0].style.top = "0px";
+            document.getElementsByClassName("tran")[1].style.filter = "alpha(Opacity=100)";
+            document.getElementsByClassName("tran")[1].style.opacity = 1;
+            document.getElementsByClassName("tran")[1].style.top = "0px";
         },
         beforeUpdate: function() {
 

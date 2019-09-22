@@ -15,16 +15,8 @@
         width="200px">
       </el-table-column>
       <el-table-column
-        label="图标"
-        prop="icon">
-      </el-table-column>
-      <el-table-column
         label="分类"
         prop="classify">
-      </el-table-column>
-      <el-table-column
-        label="链接"
-        prop="link">
       </el-table-column>
       <el-table-column
         label="阅读量"
@@ -39,7 +31,7 @@
         prop="access">
       </el-table-column>
       <el-table-column
-        label="注册时间"
+        label="发布时间"
         prop="release_time">
       </el-table-column>
       <el-table-column
@@ -85,6 +77,9 @@
       <div style="margin: 10px; line-height: 20px !important;"></div>
       <el-form :inline="true" :model="formLabelAlign" class="demo-form-inline">
         <h2 v-if="formLabelAlign.isupdata" style="margin: -20px auto 5px">ID:{{formLabelAlign.ID}}</h2>
+          <el-form-item label="标题">
+              <el-input v-model="formLabelAlign.title" placeholder="（http/https）：//xxxxxxxxx.xxxx"></el-input>
+          </el-form-item>
         <el-form-item label="链接">
           <el-input v-model="formLabelAlign.link" placeholder="（http/https）：//xxxxxxxxx.xxxx"></el-input>
         </el-form-item>
@@ -94,6 +89,12 @@
         <el-form-item label="作者">
           <el-input v-model="formLabelAlign.name" placeholder="xxxx"></el-input>
         </el-form-item>
+          <el-form-item label="权限" v-if="formLabelAlign.isupdata">
+              <el-input v-model="formLabelAlign.access" placeholder="xxxx"></el-input>
+          </el-form-item>
+          <el-form-item label="阅读量" v-if="formLabelAlign.isupdata">
+              <el-input v-model="formLabelAlign.reading_quantity" placeholder="xxxx"></el-input>
+          </el-form-item>
         <el-form-item label="分类">
           <el-select v-model="formLabelAlign.classify" placeholder="请选择">
             <el-option
@@ -104,16 +105,9 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="注册时间">
+        <el-form-item v-if="formLabelAlign.isupdata" label="发布时间">
           <el-input v-model="formLabelAlign.release_time" placeholder="xxxx"></el-input>
         </el-form-item>
-        <p>标题：</p>
-        <el-input
-          type="textarea"
-          :autosize="{ minRows: 2, maxRows: 4}"
-          placeholder="请输入内容"
-          v-model="formLabelAlign.title">
-        </el-input>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-popover
@@ -261,6 +255,7 @@
             },
             updatareste(){
                 //对表单重新赋值
+                this.formLabelAlign.reading_quantity = this.updatadata.reading_quantity;
                 this.formLabelAlign.link = this.updatadata.link;
                 this.formLabelAlign.icon = this.updatadata.icon;
                 this.formLabelAlign.classify = this.updatadata.classify;
@@ -289,7 +284,6 @@
                         title : this.formLabelAlign.title,
                         name : this.formLabelAlign.name,
                         link : this.formLabelAlign.link,
-                        release_time :this.formLabelAlign.release_time,
                         icon : this.formLabelAlign.icon,
                         classify : this.formLabelAlign.classify,
                     });
