@@ -67,7 +67,6 @@
             }
         },
         methods:{
-
             handleScroll() {
                 /*this.$store.commit('updatascrollTop',document.documentElement.scrollTop);*/
                 /*if(this.$store.state.scrolltop >= 10){

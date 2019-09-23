@@ -17,7 +17,6 @@
     import TheHomeIntro from './home/the-home-intro';
     import TheHomeShare from './home/the-home-share';
     import TheHomeTeam from './home/the-home-team';
-    import TheHomeTestimonial from './home/the-home-testimonial';
     export default {
         name: "home",
         data(){
@@ -25,7 +24,7 @@
 
             }
         },
-        components:{TheHomeBelow, TheHomeSlideshow, TheHomeIntro, TheHomeShare, TheHomeTeam, TheHomeTestimonial, TheHomeNavigation}
+        components:{TheHomeBelow, TheHomeSlideshow, TheHomeIntro, TheHomeShare, TheHomeTeam, TheHomeNavigation}
     }
 </script>
 

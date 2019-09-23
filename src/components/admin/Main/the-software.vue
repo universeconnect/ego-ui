@@ -108,7 +108,7 @@
                 </el-input>
 
             </el-form>
-            <span slot="footer" class="dialog-footer">
+        <span slot="footer" class="dialog-footer">
         <el-popover
                 placement="top"
                 width="160"
@@ -122,9 +122,9 @@
             <el-button
                     @click=" tisi= formLabelAlign.isupdata?'确定放弃修改吗？':'确定放弃添加吗？' "
                     slot="reference">取 消</el-button>
-        </el-popover>
-    <el-button v-if="formLabelAlign.isupdata" type="info" @click="updatareste">重置</el-button>
-        <el-popover
+            </el-popover>
+              <el-button v-if="formLabelAlign.isupdata" type="info" @click="updatareste">重置</el-button>
+            <el-popover
                 placement="top"
                 width="160"
                 v-model="okdata"
@@ -139,7 +139,7 @@
                     @click=" tisi= formLabelAlign.isupdata?'确定提交修改吗？':'确定提交添加吗？' "
                     slot="reference">确 定</el-button>
         </el-popover>
-  </span>
+        </span>
         </el-dialog>
     </div>
 </template>
