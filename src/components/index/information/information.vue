@@ -97,7 +97,8 @@
 
 <style scoped>
     #box{
-        width: 100%;
+        width: 1200px;
+      margin: 0 auto;
         height: 70px;
         background-color: #475669;
     }

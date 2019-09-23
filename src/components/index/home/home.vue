@@ -3,7 +3,6 @@
         <TheHomeNavigation></TheHomeNavigation>
         <TheHomeSlideshow></TheHomeSlideshow>
         <TheHomeIntro></TheHomeIntro>
-        <TheHomeTestimonial></TheHomeTestimonial>
         <TheHomeTeam></TheHomeTeam>
         <TheHomeShare></TheHomeShare>
         <TheHomeBelow></TheHomeBelow>
@@ -30,7 +29,8 @@
 
 <style scoped>
     .box01{
-        width: 100%;
+        width: 1200px;
+      margin: 0 auto;
     }
     *{
         margin: 0;

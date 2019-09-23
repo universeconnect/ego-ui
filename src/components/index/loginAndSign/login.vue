@@ -24,6 +24,7 @@
 <style scoped>
   .login{
     width: 100%;
+    margin: 0 auto;
     background-image: url("../../../assets/imgs/bg3.jpg");
     background-repeat: no-repeat;
   }

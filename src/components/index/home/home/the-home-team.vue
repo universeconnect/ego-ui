@@ -57,7 +57,7 @@
 </script>
 
 <style scoped>
-   .box01{ width:1200px; text-align: center; margin: auto; margin-top: 90px;}
+   .box01{ width:1200px; text-align: center; margin:0 auto; margin-top: 90px;}
 
 
   .el-carousel__item h2 {

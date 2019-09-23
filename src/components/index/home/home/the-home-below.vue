@@ -40,6 +40,9 @@
 </script>
 
 <style scoped>
+  .footer{
+    width: 1200px;
+  }
   a {
     text-decoration: none;
   }

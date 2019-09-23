@@ -22,7 +22,7 @@
                 </router-link>
                 <router-link :to="{path: '/index/links'}" class="link01" replace>
                     <span class="link02">
-                        有情链接
+                        友情链接
                         <span class="box"></span>
                     </span>
                 </router-link>

@@ -212,7 +212,7 @@
 
 <style scoped>
   .box01{
-    width: 100%;
+    width: 1200px;
     height: 650px;
     overflow: hidden;
   }
