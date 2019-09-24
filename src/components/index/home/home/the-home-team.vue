@@ -1,6 +1,6 @@
 <template>
     <div class="box01">
-     <h1>团队组成</h1>
+     <span class="cc">团队组成</span>
       <el-carousel :interval="5000" arrow="never" height="280px"  >
 
         <el-carousel-item v-for="(item,c) in a" :key="c">
@@ -90,6 +90,8 @@
   .aa{ margin-left:90px; margin-top: 0px}
   .a{width:300px; height:250px; background: #E9EEF3; float: left; margin: auto; margin-left: 30px}
   .b{ height: 90px; width: 90px; background: gold; margin: auto; border-radius: 50%; margin-top: 30px}
-  .cc{ color: #b22222}
+  .cc{ font-size: 35px;
+       height: 60px;
+       text-align: center;}
 
 </style>
