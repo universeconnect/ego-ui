@@ -3,7 +3,7 @@
       <el-row class="share">
         <el-col>
           <div class="share_title">
-            <span>Share</span>
+            <span>学习分享</span>
           </div>
 
         </el-col>
@@ -23,33 +23,6 @@
             </div>
         </el-col>
 
-        <el-col class="share_right">
-
-          <div>
-            <el-autocomplete
-              class="share_search"
-              v-model="state2"
-              style="border-radius: 30px;"
-              :fetch-suggestions="querySearch"
-              placeholder="请输入内容"
-              :trigger-on-focus="false"
-              @select="handleSelect">
-              <i slot="suffix" class="el-input__icon el-icon-search"></i>
-            </el-autocomplete>
-          </div>
-
-          <div class="share_essay">
-            <span class="share_essay_title">文章分类</span>
-            <div v-for="(sort,index) in essayData" :key="index" class="share_essay_sort">
-              <a class="link01" href="#">
-                <span>{{sort.sort}}</span>
-              </a>
-              <el-divider></el-divider>
-            </div>
-          </div>
-
-
-        </el-col>
 
       </el-row>
     </div>
@@ -227,13 +200,16 @@
     text-align: center;
   }
   .share_left{
-    width: 900px;
+    width: 1100px;
     height: 600px;
+    margin-left: 120px;
   }
   .share_card{
     height: 270px;
-    width: 280px;
+    width: 300px;
     float: left;
+
+
   }
   .share_care_content{
     padding: 10px 10px 0 10px;
@@ -262,7 +238,7 @@
 
   .share_card:nth-child(2),
   .share_card:nth-child(5){
-    margin: 0 22px;
+    margin: 0 28px;
   }
 
   .share_card:nth-child(4),
@@ -271,7 +247,7 @@
     margin-top: 20px;
   }
   .image {
-    width: 280px;
+    width: 300px;
     height: 200px;
     display: block;
   }

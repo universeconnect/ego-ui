@@ -1,7 +1,7 @@
 <template>
     <div class="box01">
-     <h2 class="cc">Team</h2>
-      <el-carousel :interval="5000" arrow="never" >
+     <h1>团队组成</h1>
+      <el-carousel :interval="5000" arrow="never" height="280px"  >
 
         <el-carousel-item v-for="(item,c) in a" :key="c">
           <div>{{item.text}}</div>
@@ -57,7 +57,7 @@
 </script>
 
 <style scoped>
-   .box01{ width:1200px; text-align: center; margin:0 auto; margin-top: 90px;}
+   .box01{ width: 1200px; text-align: center; margin: auto; margin-top: 90px;}
 
 
   .el-carousel__item h2 {
@@ -69,27 +69,27 @@
   }
 
   .el-carousel__item:nth-child(1) {
-    background-color: #e4e4e4;
+    background-color: white;
     indicator-position:none;
 
   } /*控制第一个*/
 
   .el-carousel__item:nth-child(2) {
-   background-color: #e4e4e4;
+   background-color: white;
 
   }
   .el-carousel__item:nth-child(3) {
-    background-color: #e4e4e4;
+    background-color: white;
   }
   .el-carousel__item:nth-child(4) {
-    background-color: #e4e4e4;
+    background-color:white;
   }
   .el-carousel__item:nth-child(5) {
-    background-color: #e4e4e4;
+    background-color: white;
   }
-  .aa{ margin-left:120px; margin-top: 25px}
-  .a{width:300px; height:230px; background: #e4e7ed; float: left; margin: auto; margin-left: 20px}
-  .b{ height: 90px; width: 90px; background: white; margin: auto; border-radius: 50%; margin-top: 20px}
+  .aa{ margin-left:90px; margin-top: 0px}
+  .a{width:300px; height:250px; background: #E9EEF3; float: left; margin: auto; margin-left: 30px}
+  .b{ height: 90px; width: 90px; background: gold; margin: auto; border-radius: 50%; margin-top: 30px}
   .cc{ color: #b22222}
 
 </style>
