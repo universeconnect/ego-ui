@@ -1,10 +1,9 @@
 <template>
     <div class="box01">
-     <span class="cc">团队组成</span>
+     <p class="cc">团队组成</p>
       <el-carousel :interval="5000" arrow="never" height="280px"  >
-
         <el-carousel-item v-for="(item,c) in a" :key="c">
-          <div>{{item.text}}</div>
+          <div style="margin-bottom: 20px;">{{item.text}}</div>
           <div class="aa">
               <div class="a">
                   <div class="b">{{item.img}}</div>
@@ -57,7 +56,7 @@
 </script>
 
 <style scoped>
-   .box01{ width: 1200px; text-align: center; margin: auto; margin-top: 90px;}
+   .box01{ width: 1200px; text-align: center; margin:0 auto; margin-top: 90px; margin-bottom: 100px;}
 
 
   .el-carousel__item h2 {
@@ -91,7 +90,6 @@
   .a{width:300px; height:250px; background: #E9EEF3; float: left; margin: auto; margin-left: 30px}
   .b{ height: 90px; width: 90px; background: gold; margin: auto; border-radius: 50%; margin-top: 30px}
   .cc{ font-size: 35px;
-       height: 60px;
        text-align: center;}
 
 </style>

@@ -196,7 +196,7 @@
   }
   .share_title{
     font-size: 35px;
-    height: 60px;
+  margin-bottom: 30px;
     text-align: center;
   }
   .share_left{

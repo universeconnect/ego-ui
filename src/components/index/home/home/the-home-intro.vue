@@ -1,7 +1,8 @@
 <template>
     <div class="box01">
-        <el-row style="width: 1200px; margin: 0 auto">
-            <el-col class="intro-right-box tran">
+        <el-row :gutter="24" >
+            <el-col :span="10" class="intro-right-box tran">
+              <div class="title" ><img  src="../../../../assets/default_imgs/win.png" width="35px"><a style="margin-left: 10px; font-size: 24px" >团队荣誉</a></div>
                 <el-carousel :interval="4000" type="card" height="310px">
                     <el-carousel-item class="intro-card-ca" v-for="item in award" :key="item.name">
                         <el-card shadow="always" class="intro-card-nei">
@@ -15,6 +16,15 @@
                     </el-carousel-item>
                 </el-carousel>
             </el-col>
+          <el-col :span="12">
+            <div class="title2" ><img  src="../../../../assets/default_imgs/star.png" width="35px"><a style="margin-left: 10px; font-size: 24px" >一周之星</a></div>
+            <el-card class="box-card-intro">
+              <div align="center">
+                <div class=" img-box" > </div>
+                <p>王明</p>
+              </div>
+            </el-card>
+          </el-col>
         </el-row>
     </div>
 </template>
@@ -96,6 +106,7 @@
     .box01{
         width: 1200px;
         height: 500px;
+      margin: 0 auto;
         overflow: hidden;
     }
     .intro-left-box{
@@ -111,8 +122,8 @@
     .intro-right-box{
         width: 45%;
         height: 500px;
-        margin-left: 7%;
-        padding-top: 80px;
+        margin-left: 50px;
+        padding-top: 50px;
     }
     .el-carousel__item h3 {
         color: #475669;
@@ -147,11 +158,32 @@
         margin: 0 auto;
     }
     .tran{
-        position: relative;
-        top: 500px;
+
         filter:alpha(Opacity=0);
         -moz-opacity:1;
         opacity: 0;
         transition-duration: 1.2s;
     }
+  .box-card-intro{
+    width: 450px;
+    height: 320px;
+    margin-left: 100px;
+    margin-top: 40px;
+  }
+  .title{
+     margin-bottom: 40px;
+     margin-left: 260px;
+     padding-bottom: 10px;
+   }
+    .title2{
+     margin: 50px 0 40px 240px;
+      padding-bottom: 10px;
+    }
+  .img-box{
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    border-radius: 50%;
+    background-color: #CC5522;
+  }
 </style>
