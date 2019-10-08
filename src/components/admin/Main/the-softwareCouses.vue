@@ -230,6 +230,7 @@
                 });
         },
         mounted() {
+            console.log(!null);
         },
         methods : {
             amend,//删除方法

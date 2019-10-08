@@ -11,6 +11,8 @@
           }
         },
         mounted() {
+            var a = null;
+            console.log(!a);
             /*//登录
             //1强行cookie中的isLogin
             this.$cookies.set("isLogin",true);
